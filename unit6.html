@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Grammar in Use 학습 자료</title>
+  <style>
+    /* 인쇄/화면 공통 기본 스타일 */
+	body {
+	  font-family: "Comic Sans MS", "Nanum Gothic", "Arial Rounded MT", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+	  line-height: 1.7;
+	  max-width: 900px;
+	  margin: 0 auto;
+	  padding: 24px;
+	  font-size: 17px;
+	  background-color: #fffaf5; /* 밝은 크림색 배경 */
+	  color: #333;
+	}
+
+	/* 제목들 */
+	h1, h2, h3 {
+	  margin-top: 1.2em;
+	  margin-bottom: 0.5em;
+	  font-weight: 700;
+	}
+
+	h1 {
+	  font-size: 1.9rem;
+	  color: #ff7b7b; /* 따뜻한 핑크 톤 */
+	  text-align: center;
+	}
+
+	h2 {
+	  font-size: 1.5rem;
+	  color: #3a7bd5; /* 파란색 포인트 */
+	  border-left: 8px solid #ffd86b;
+	  padding-left: 10px;
+	}
+
+	h3 {
+	  font-size: 1.25rem;
+	  color: #e67e22; /* 주황 계열 */
+	}
+
+	/* 섹션 카드 스타일 */
+	.section {
+	  margin-bottom: 24px;
+	  padding: 20px;
+	  border: 2px solid #f5d5a3; /* 연한 주황 테두리 */
+	  border-radius: 18px;
+	  background: #ffffff;
+	  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.05);
+	  page-break-inside: avoid;
+	}
+
+	/* 메타 정보 */
+	.meta {
+	  font-size: 0.95em;
+	  color: #666;
+	  margin-bottom: 12px;
+	  padding: 10px 14px;
+	  border-radius: 12px;
+	  background: #fff3c4;
+	}
+
+	/* 아이템 간 간격 */
+	.item {
+	  margin-bottom: 14px;
+	}
+
+	/* 질문 텍스트 강조 */
+	.question {
+	  font-weight: 600;
+	  margin-bottom: 6px;
+	}
+
+	/* 정답 보기 버튼 */
+	.answer-toggle {
+	  margin-top: 4px;
+	  margin-bottom: 4px;
+	  padding: 6px 14px;
+	  font-size: 0.95em;
+	  cursor: pointer;
+	  background: #ffd86b;
+	  border: none;
+	  border-radius: 16px;
+	  font-weight: 700;
+	  color: #333;
+	  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+	  transition: background 0.2s, transform 0.1s, box-shadow 0.1s;
+	}
+
+	.answer-toggle:hover {
+	  background: #ffca3a;
+	}
+
+	.answer-toggle:active {
+	  transform: translateY(1px);
+	  box-shadow: 0 0 0 rgba(0, 0, 0, 0.1);
+	}
+
+	/* 정답 박스 */
+	.answer {
+	  display: none;
+	  margin-top: 6px;
+	  padding: 10px 12px;
+	  border-left: 5px solid #6fcf97;
+	  background: #e7f9e7;
+	  font-size: 0.95em;
+	  border-radius: 10px;
+	}
+
+	.answer.visible {
+	  display: block;
+	}
+
+	/* 굵은 레이블 */
+	.label {
+	  font-weight: 700;
+	}
+
+	/* 설명/노트 */
+	.note {
+	  font-size: 0.9em;
+	  color: #555;
+	  margin-top: 6px;
+	}
+
+	/* 체크리스트 (자기 점검) */
+	.checklist {
+	  list-style: none;
+	  padding-left: 0;
+	  margin-top: 8px;
+	}
+
+	.checklist li {
+	  margin-bottom: 4px;
+	}
+
+	.checklist li::before {
+	  content: "☐ ";
+	  color: #ff7b7b;
+	  font-weight: 700;
+	}
+
+	/* 작은 글씨 */
+	.small {
+	  font-size: 0.9em;
+	}
+
+	/* 소제목 스타일 */
+	.subheading {
+	  font-weight: 700;
+	  margin-top: 8px;
+	  margin-bottom: 4px;
+	  color: #3a7bd5;
+	}
+
+	/* 예문 리스트 */
+	.example-list {
+	  margin-left: 22px;
+	  padding-left: 4px;
+	}
+
+	.example-list li {
+	  margin-bottom: 4px;
+	}
+
+	/* 리스트 번호 색깔 */
+	.example-list li::marker {
+	  color: #f39c12;
+	  font-weight: 700;
+	}
+
+	/* 하이라이트 텍스트 (중요 포인트) */
+	.highlight {
+	  font-weight: 700;
+	  color: #333;
+	  background: #fff3b0;
+	  padding: 2px 6px;
+	  border-radius: 6px;
+	}
+
+	/* 인쇄용 설정 */
+	@media print {
+	  body {
+		padding: 0;
+		background-color: #ffffff;
+	  }
+
+	  .section {
+		box-shadow: none;
+		border-radius: 0;
+	  }
+
+	  .answer-toggle {
+		display: none; /* 인쇄 시 버튼 숨기기 */
+	  }
+
+	  .answer {
+		display: none !important; /* 인쇄 시 정답 숨기기 */
+	  }
+	}
+	
+	.meta {
+		display: none !important;
+	}
+  </style>
+  <script>
+    function toggleAnswer(button) {
+      const answer = button.nextElementSibling;
+      if (!answer) return;
+      const isVisible = answer.classList.contains('visible');
+      if (isVisible) {
+        answer.classList.remove('visible');
+        button.textContent = '정답 보기';
+      } else {
+        answer.classList.add('visible');
+        button.textContent = '정답 숨기기';
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>Unit 6. I don’t … (simple present negative)</h1>
+  <div class="meta">
+    학습자: 초6 / 모국어: 한국어 · 예상 학습 시간: 약 30분 · 분량: A4 2장 내외
+  </div>
+
+  <!-- 1. 오늘의 문법 한눈에 보기 -->
+  <div class="section">
+    <h2>1. 오늘의 문법 한눈에 보기</h2>
+    <div class="item">
+      <p class="subheading">① 형식(모양)</p>
+      <p>
+        <span class="highlight">일반동사의 현재 시제 부정문</span>은 이렇게 만들어요.
+      </p>
+      <ul class="example-list">
+        <li><span class="highlight">I / You / We / They</span> + <span class="highlight">don’t (do not)</span> + 동사원형</li>
+        <li><span class="highlight">He / She / It</span> + <span class="highlight">doesn’t (does not)</span> + 동사원형</li>
+      </ul>
+      <p class="note">
+        ⚠ 동사원형 = <strong>-s, -es</strong> 안 붙인 기본형 (do, like, play, watch …)
+      </p>
+    </div>
+
+    <div class="item">
+      <p class="subheading">② 의미(뉘앙스)</p>
+      <p>
+        simple present(일반 현재)는 <span class="highlight">“늘 하는 일, 반복되는 습관, 사실”</span>을 말해요.<br />
+        그걸 <span class="highlight">“안 한다 / 그렇지 않다”</span>라고 말하고 싶을 때 <strong>don’t / doesn’t</strong>를 씁니다.
+      </p>
+      <ul class="example-list">
+        <li>I play soccer every weekend. → 나는 주말마다 축구를 해.</li>
+        <li>I <span class="highlight">don’t play</span> soccer on weekdays. → 나는 평일에는 축구를 안 해.</li>
+        <li>He likes pizza. → 그는 피자를 좋아해.</li>
+        <li>He <span class="highlight">doesn’t like</span> spicy food. → 그는 매운 음식은 좋아하지 않아.</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <p class="subheading">③ 언제 / 왜 쓰나요?</p>
+      <ul class="example-list">
+        <li>“나는 ○○ 안 해.” (습관, 반복적인 행동의 부정)</li>
+        <li>“그는 게임 많이 안 해.” (사실, 일반적인 상태의 부정)</li>
+        <li>“우리는 월요일에 수업 없어.” (규칙, 시간표의 부정)</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <p class="subheading">④ 자주 하는 실수</p>
+      <ul class="example-list">
+        <li><span class="highlight">He doesn’t likes</span> X → ❌<br />→ He <span class="highlight">doesn’t like</span> O (동사에 -s 빼기!)</li>
+        <li><span class="highlight">I don’t am</span> X → ❌<br />→ I <span class="highlight">am not</span> O (be동사(am/is/are)는 don’t/doesn’t 사용 X)</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 2. Noticing 활동 -->
+  <div class="section">
+    <h2>2. Noticing 활동: 규칙 스스로 발견하기</h2>
+    <p class="small">밑줄을 머릿속으로만 그려 보고, 공통점을 찾아 보세요.</p>
+    <div class="item">
+      <ol class="example-list">
+        <li>I don’t watch TV in the morning.</li>
+        <li>They don’t eat breakfast at school.</li>
+        <li>We don’t play games after 10 p.m.</li>
+        <li>She doesn’t go to the academy on Sundays.</li>
+        <li>He doesn’t read comics in class.</li>
+        <li>It doesn’t rain a lot in winter here.</li>
+      </ol>
+    </div>
+    <div class="item">
+      <p class="question">Q1. 위 문장에서, 부정(“~하지 않는다”)을 만들어 주는 단어는 무엇인가요?</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p><strong>don’t / doesn’t</strong>가 부정을 만들어 줍니다.</p>
+      </div>
+    </div>
+    <div class="item">
+      <p class="question">Q2. 어떤 주어(누가?)일 때 <span class="highlight">don’t</span>를 쓰고, 언제 <span class="highlight">doesn’t</span>를 쓰나요?</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p>
+          I, you, we, they → <strong>don’t</strong><br />
+          he, she, it, 단수명사(예: my brother) → <strong>doesn’t</strong>
+        </p>
+      </div>
+    </div>
+    <div class="item">
+      <p class="question">Q3. don’t / doesn’t 뒤에 오는 동사 모양은 어떠한가요?</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p>항상 <strong>동사원형</strong> (play, go, like, eat …)을 씁니다. 끝에 -s, -es 안 붙입니다.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Retrieval Practice -->
+  <div class="section">
+    <h2>3. 회상 연습(Retrieval): 책 안 보고 떠올리기</h2>
+    <div class="item">
+      <p class="question">① 방금 배운 규칙을 한국어로 짧게 적어 보세요.</p>
+      <p class="small">예: “나는 ~ 안 해”처럼 말할 때는 …</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">예시 답안 보기</button>
+      <div class="answer">
+        <p>
+          일반동사의 현재 부정문은 <strong>I/you/we/they + don’t + 동사원형</strong>,<br />
+          <strong>he/she/it + doesn’t + 동사원형</strong>으로 쓴다.
+        </p>
+      </div>
+    </div>
+    <div class="item">
+      <p class="question">② 기억나는 예문 하나를 영어로 다시 써 보세요. (스스로 만들면 더 좋아요!)</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">예시 답안 보기</button>
+      <div class="answer">
+        <p>예: I don’t play games on Monday.</p>
+      </div>
+    </div>
+    <div class="item">
+      <p class="note">
+        💡 부모님용 팁: 아이가 쓴 한국어/영어 문장을 소리 내어 읽게 하고, <br />
+        <strong>don’t / doesn’t + 동사원형</strong> 부분만 같이 체크해 주세요.
+      </p>
+    </div>
+  </div>
+
+  <!-- 4. 형식 연습: 빈칸 & 선택 -->
+  <div class="section">
+    <h2>4. 형식 연습: don’t / doesn’t 바르게 쓰기</h2>
+    <div class="item">
+      <p class="subheading">A. 괄호 안에서 맞는 것을 고르세요.</p>
+      <ol class="example-list">
+        <li>I ____ (don’t / doesn’t) like black coffee.</li>
+        <li>She ____ (don’t / doesn’t) play basketball.</li>
+        <li>They ____ (don’t / doesn’t) go to bed late.</li>
+        <li>My brother ____ (don’t / doesn’t) watch cartoons now.</li>
+        <li>We ____ (don’t / doesn’t) eat in the classroom.</li>
+      </ol>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <ol class="example-list">
+          <li>I <strong>don’t</strong> like black coffee.</li>
+          <li>She <strong>doesn’t</strong> play basketball.</li>
+          <li>They <strong>don’t</strong> go to bed late.</li>
+          <li>My brother <strong>doesn’t</strong> watch cartoons now.</li>
+          <li>We <strong>don’t</strong> eat in the classroom.</li>
+        </ol>
+        <p class="note">채점 팁: don’t / doesn’t만 맞으면 정답으로 봐도 좋습니다.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="subheading">B. 문장을 보고, 잘못된 부분을 고쳐 쓰세요.</p>
+      <ol class="example-list">
+        <li>He doesn’t likes math.</li>
+        <li>They doesn’t play soccer.</li>
+        <li>She don’t study English.</li>
+      </ol>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <ol class="example-list">
+          <li>He doesn’t <strong>like</strong> math.</li>
+          <li>They <strong>don’t</strong> play soccer.</li>
+          <li>She <strong>doesn’t</strong> study English.</li>
+        </ol>
+        <p class="note">포인트: doesn’t 뒤 동사는 항상 원형, 주어에 맞게 don’t / doesn’t 선택하기.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. 한국어 → 영어, 변형 연습 -->
+  <div class="section">
+    <h2>5. 한국어 → 영어 & 변형 연습</h2>
+
+    <div class="item">
+      <p class="subheading">A. 한국어를 영어로 쓰세요. (일반적인 사실/습관)</p>
+      <ol class="example-list">
+        <li>나(나는) 아침을 먹지 않아.</li>
+        <li>그(그는) 축구를 좋아하지 않아.</li>
+        <li>우리는 일요일마다 학교에 가지 않아.</li>
+        <li>그녀는 게임을 많이 하지 않아.</li>
+        <li>그들은 TV를 자주 보지 않아.</li>
+      </ol>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <ol class="example-list">
+          <li>I <strong>don’t eat</strong> breakfast.</li>
+          <li>He <strong>doesn’t like</strong> soccer.</li>
+          <li>We <strong>don’t go</strong> to school on Sundays.</li>
+          <li>She <strong>doesn’t play</strong> games a lot.</li>
+          <li>They <strong>don’t watch</strong> TV often.</li>
+        </ol>
+        <p class="note">
+          채점 팁: 주어(I / he / we / she / they)가 맞고, don’t / doesn’t + 동사원형이면 정답 처리가 가능합니다.
+        </p>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="subheading">B. 문장을 부정문으로 바꾸세요.</p>
+      <ol class="example-list">
+        <li>I play the piano every day.<br /><span class="label">→ 부정문:</span></li>
+        <li>She goes to the library after school.<br /><span class="label">→ 부정문:</span></li>
+        <li>They like spicy food.<br /><span class="label">→ 부정문:</span></li>
+        <li>My friend watches YouTube at night.<br /><span class="label">→ 부정문:</span></li>
+      </ol>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <ol class="example-list">
+          <li>I <strong>don’t play</strong> the piano every day.</li>
+          <li>She <strong>doesn’t go</strong> to the library after school.</li>
+          <li>They <strong>don’t like</strong> spicy food.</li>
+          <li>My friend <strong>doesn’t watch</strong> YouTube at night.</li>
+        </ol>
+        <p class="note">주의: doesn’t 뒤 동사에서는 <strong>goes → go, watches → watch</strong>처럼 -s를 빼야 합니다.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. 나와 연결하기 (Production) -->
+  <div class="section">
+    <h2>6. 나와 연결하기: 나의 습관 말하기</h2>
+    <div class="item">
+      <p class="question">① 아래 질문에 영어로 짧게 대답해 보세요.</p>
+      <ol class="example-list">
+        <li>Do you eat breakfast every day?<br /><span class="label">→ 부정일 때:</span> I don’t …</li>
+        <li>Do you play games on school nights?<br /><span class="label">→ 부정일 때:</span> I don’t …</li>
+      </ol>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">예시 답안 보기</button>
+      <div class="answer">
+        <ol class="example-list">
+          <li>I don’t eat breakfast every day.</li>
+          <li>I don’t play games on school nights.</li>
+        </ol>
+        <p class="note">아이의 실제 습관에 맞게 자유롭게 바꿔 쓰면 더 좋습니다.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">② 나에 대한 문장을 3개 만들어 보세요. (부정문)</p>
+      <ul class="example-list">
+        <li>I don’t …</li>
+        <li>I don’t …</li>
+        <li>I don’t …</li>
+      </ul>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">예시 아이디어 보기</button>
+      <div class="answer">
+        <ul class="example-list">
+          <li>I don’t drink coffee.</li>
+          <li>I don’t watch TV on weekdays.</li>
+          <li>I don’t go to bed late.</li>
+        </ul>
+        <p class="note">
+          부모님은 “왜 안 하는지?”를 한국어로 물어보면서 아이가 문장을 더 길게 확장해 보도록 도와주세요.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. 짧은 글/대화 만들기 -->
+  <div class="section">
+    <h2>7. 짧은 글/대화까지 도전!</h2>
+    <div class="item">
+      <p class="subheading">A. 나의 평일 저녁 루틴 소개하기</p>
+      <p>
+        아래 한국어 내용을 참고해서, <strong>영어로 3~4문장</strong>으로 써 보세요. <br />
+        (긍정문 + 부정문이 섞이게 해 보세요.)
+      </p>
+      <ul class="example-list">
+        <li>나는 보통 오후에 집에 온다.</li>
+        <li>나는 평일에는 게임을 하지 않는다.</li>
+        <li>나는 저녁을 먹고 숙제를 한다.</li>
+      </ul>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">예시 글 보기</button>
+      <div class="answer">
+        <p>
+          I come home in the afternoon on weekdays. I eat dinner and do my homework. <br />
+          I don’t play games on weekdays.
+        </p>
+        <p class="note">
+          채점 팁: 문장 사이에 <strong>don’t / doesn’t</strong>가 정확히 쓰였는지, 대략적인 의미가 통하면 정답으로 봐 주세요.
+        </p>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="subheading">B. 짧은 대화 완성하기</p>
+      <p>대화를 보고, 빈칸을 채워 완성해 보세요.</p>
+      <ol class="example-list">
+        <li>
+          A: Do you watch YouTube every night?<br />
+          B: No, I __________. I go to bed at 10.
+        </li>
+        <li>
+          A: Does your sister play soccer?<br />
+          B: No, she __________. She plays tennis.
+        </li>
+      </ol>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <ol class="example-list">
+          <li>B: No, I <strong>don’t</strong>. I go to bed at 10.</li>
+          <li>B: No, she <strong>doesn’t</strong>. She plays tennis.</li>
+        </ol>
+        <p class="note">
+          포인트: Yes/No 대답 뒤에 주어 + don’t / doesn’t를 간단히 써 주면 자연스러운 짧은 답이 됩니다.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. 내일 다시 보는 미니 복습 세트 -->
+  <div class="section">
+    <h2>8. 내일 다시 풀기 좋은 미니 복습 세트</h2>
+    <p class="small">내일 또는 며칠 뒤에 다시 풀어 보세요. (Spaced Repetition)</p>
+    <div class="item">
+      <ol class="example-list">
+        <li>(don’t / doesn’t) He ____ like chocolate.</li>
+        <li>나는 일요일에 공부하지 않는다. → <span class="label">영어로:</span></li>
+        <li>She goes to piano class on Fridays. → <span class="label">부정문으로:</span></li>
+        <li>빈칸에 don’t 또는 doesn’t를 쓰세요.<br />
+          They ________ watch TV in the morning.
+        </li>
+        <li>네가 “안 하는 습관” 한 가지를 영어로 써 보세요.<br />
+          I don’t …
+        </li>
+      </ol>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답/예시 보기</button>
+      <div class="answer">
+        <ol class="example-list">
+          <li>He <strong>doesn’t</strong> like chocolate.</li>
+          <li>I <strong>don’t study</strong> on Sundays.</li>
+          <li>She <strong>doesn’t go</strong> to piano class on Fridays.</li>
+          <li>They <strong>don’t</strong> watch TV in the morning.</li>
+          <li>예: I don’t drink soda.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- 9. 자기 점검 & 동기부여 -->
+  <div class="section">
+    <h2>9. 자기 점검 & 칭찬 코너</h2>
+    <div class="item">
+      <p class="question">오늘 공부한 내용을 스스로 체크해 보세요.</p>
+      <ul class="checklist">
+        <li>I / you / we / they 뒤에는 <strong>don’t</strong>를 쓸 수 있다.</li>
+        <li>he / she / it 뒤에는 <strong>doesn’t</strong>를 쓸 수 있다.</li>
+        <li>don’t / doesn’t 뒤 동사는 항상 <strong>동사원형</strong>이라는 것을 안다.</li>
+        <li>긍정문을 보고, 부정문으로 바꿀 수 있다.</li>
+        <li>나의 실제 생활에 맞는 부정문 문장을 2개 이상 만들 수 있다.</li>
+      </ul>
+    </div>
+    <div class="item">
+      <p class="note">
+        🌟 여기까지 열심히 풀었다면 <strong>정말 잘하고 있는 것</strong>이에요!<br />
+        한 번에 완벽할 필요는 없어요. 오늘은 “don’t / doesn’t + 동사원형”만 기억해도 큰 성공이에요. <br />
+        내일은 오늘 만든 문장 중에서 <strong>가장 마음에 드는 문장 1개</strong>만 다시 써 보고 소리 내어 읽어 보세요.
+      </p>
+    </div>
+  </div>
+</body>
+</html>

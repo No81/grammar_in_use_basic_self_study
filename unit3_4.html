@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Grammar in Use 학습 자료</title>
+  <style>
+    /* 인쇄/화면 공통 기본 스타일 */
+	body {
+	  font-family: "Comic Sans MS", "Nanum Gothic", "Arial Rounded MT", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+	  line-height: 1.7;
+	  max-width: 900px;
+	  margin: 0 auto;
+	  padding: 24px;
+	  font-size: 17px;
+	  background-color: #fffaf5; /* 밝은 크림색 배경 */
+	  color: #333;
+	}
+
+	/* 제목들 */
+	h1, h2, h3 {
+	  margin-top: 1.2em;
+	  margin-bottom: 0.5em;
+	  font-weight: 700;
+	}
+
+	h1 {
+	  font-size: 1.9rem;
+	  color: #ff7b7b; /* 따뜻한 핑크 톤 */
+	  text-align: center;
+	}
+
+	h2 {
+	  font-size: 1.5rem;
+	  color: #3a7bd5; /* 파란색 포인트 */
+	  border-left: 8px solid #ffd86b;
+	  padding-left: 10px;
+	}
+
+	h3 {
+	  font-size: 1.25rem;
+	  color: #e67e22; /* 주황 계열 */
+	}
+
+	/* 섹션 카드 스타일 */
+	.section {
+	  margin-bottom: 24px;
+	  padding: 20px;
+	  border: 2px solid #f5d5a3; /* 연한 주황 테두리 */
+	  border-radius: 18px;
+	  background: #ffffff;
+	  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.05);
+	  page-break-inside: avoid;
+	}
+
+	/* 메타 정보 */
+	.meta {
+	  font-size: 0.95em;
+	  color: #666;
+	  margin-bottom: 12px;
+	  padding: 10px 14px;
+	  border-radius: 12px;
+	  background: #fff3c4;
+	}
+
+	/* 아이템 간 간격 */
+	.item {
+	  margin-bottom: 14px;
+	}
+
+	/* 질문 텍스트 강조 */
+	.question {
+	  font-weight: 600;
+	  margin-bottom: 6px;
+	}
+
+	/* 정답 보기 버튼 */
+	.answer-toggle {
+	  margin-top: 4px;
+	  margin-bottom: 4px;
+	  padding: 6px 14px;
+	  font-size: 0.95em;
+	  cursor: pointer;
+	  background: #ffd86b;
+	  border: none;
+	  border-radius: 16px;
+	  font-weight: 700;
+	  color: #333;
+	  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+	  transition: background 0.2s, transform 0.1s, box-shadow 0.1s;
+	}
+
+	.answer-toggle:hover {
+	  background: #ffca3a;
+	}
+
+	.answer-toggle:active {
+	  transform: translateY(1px);
+	  box-shadow: 0 0 0 rgba(0, 0, 0, 0.1);
+	}
+
+	/* 정답 박스 */
+	.answer {
+	  display: none;
+	  margin-top: 6px;
+	  padding: 10px 12px;
+	  border-left: 5px solid #6fcf97;
+	  background: #e7f9e7;
+	  font-size: 0.95em;
+	  border-radius: 10px;
+	}
+
+	.answer.visible {
+	  display: block;
+	}
+
+	/* 굵은 레이블 */
+	.label {
+	  font-weight: 700;
+	}
+
+	/* 설명/노트 */
+	.note {
+	  font-size: 0.9em;
+	  color: #555;
+	  margin-top: 6px;
+	}
+
+	/* 체크리스트 (자기 점검) */
+	.checklist {
+	  list-style: none;
+	  padding-left: 0;
+	  margin-top: 8px;
+	}
+
+	.checklist li {
+	  margin-bottom: 4px;
+	}
+
+	.checklist li::before {
+	  content: "☐ ";
+	  color: #ff7b7b;
+	  font-weight: 700;
+	}
+
+	/* 작은 글씨 */
+	.small {
+	  font-size: 0.9em;
+	}
+
+	/* 소제목 스타일 */
+	.subheading {
+	  font-weight: 700;
+	  margin-top: 8px;
+	  margin-bottom: 4px;
+	  color: #3a7bd5;
+	}
+
+	/* 예문 리스트 */
+	.example-list {
+	  margin-left: 22px;
+	  padding-left: 4px;
+	}
+
+	.example-list li {
+	  margin-bottom: 4px;
+	}
+
+	/* 리스트 번호 색깔 */
+	.example-list li::marker {
+	  color: #f39c12;
+	  font-weight: 700;
+	}
+
+	/* 하이라이트 텍스트 (중요 포인트) */
+	.highlight {
+	  font-weight: 700;
+	  color: #333;
+	  background: #fff3b0;
+	  padding: 2px 6px;
+	  border-radius: 6px;
+	}
+
+	/* 인쇄용 설정 */
+	@media print {
+	  body {
+		padding: 0;
+		background-color: #ffffff;
+	  }
+
+	  .section {
+		box-shadow: none;
+		border-radius: 0;
+	  }
+
+	  .answer-toggle {
+		display: none; /* 인쇄 시 버튼 숨기기 */
+	  }
+
+	  .answer {
+		display: none !important; /* 인쇄 시 정답 숨기기 */
+	  }
+	}
+	
+	.meta {
+		display: none !important;
+	}
+  </style>
+  <script>
+    function toggleAnswer(button) {
+      const answer = button.nextElementSibling;
+      if (!answer) return;
+      const isVisible = answer.classList.contains('visible');
+      if (isVisible) {
+        answer.classList.remove('visible');
+        button.textContent = '정답 보기';
+      } else {
+        answer.classList.add('visible');
+        button.textContent = '정답 숨기기';
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>Present Continuous: I am doing / Are you doing?</h1>
+
+  <div class="section">
+    <div class="meta">
+      학습자: 한국어 모국어, 초등학교 6학년<br />
+      학습 시간: 약 30분<br />
+      오늘의 목표: <span class="highlight">지금 하고 있는 일을 영어로 말하고, 물어볼 수 있다.</span>
+    </div>
+    <h2>1. 오늘 배울 문법 한눈에 보기</h2>
+    <div class="item">
+      <span class="subheading">① 형식 (형태)</span><br />
+      <span class="highlight">be 동사(am / is / are) + 동사-ing</span><br />
+      예) I <b>am</b> play<b>ing</b> soccer. / She <b>is</b> read<b>ing</b> a book.
+    </div>
+    <div class="item">
+      <span class="subheading">② 의미 (무슨 뜻?)</span><br />
+      지금 이 순간, 또는 요즘에 <span class="highlight">진행 중인 행동</span>을 말할 때 쓰는 시제예요.<br />
+      한국어로는 보통 <b>“~하고 있어요”</b> 라고 번역돼요.
+    </div>
+    <div class="item">
+      <span class="subheading">③ 언제 / 왜 쓰나요?</span>
+      <ul class="example-list">
+        <li>바로 지금 하고 있는 일: I am eating lunch now. (지금 점심 먹고 있어요.)</li>
+        <li>요즘 하는 일, 임시로 하는 일: She is studying in the library this week. (이번 주에 도서관에서 공부하고 있어요.)</li>
+        <li>지금 상황에 대해 질문할 때: Are you doing your homework? (숙제하는 중이야?)</li>
+      </ul>
+    </div>
+    <div class="item">
+      <span class="subheading">④ 한국어 화자가 자주 하는 실수</span>
+      <ul class="example-list">
+        <li><b>be 동사 빼먹기</b><br />X I playing soccer. → ✔ I <b>am</b> playing soccer.</li>
+        <li><b>현재시제랑 헷갈리기</b><br />X I play soccer now. (지금 하는 행동을 말하고 싶을 때) → ✔ I am playing soccer now.</li>
+        <li><b>질문에서 어순 틀리기</b><br />X You are doing your homework? → ✔ <span class="highlight">Are you</span> doing your homework?</li>
+        <li><b>be 동사 선택 틀리기</b><br />I / You / We / They → <b>am, are</b> / He / She / It → <b>is</b></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>2. Noticing 활동: 규칙 스스로 발견하기</h2>
+    <div class="item">
+      <div class="question">
+        아래 문장을 조용히 읽어 보고, 공통점을 찾아 보세요. (동사 부분에 밑줄을 그어도 좋아요.)
+      </div>
+      <ol class="example-list">
+        <li>I <u>am eating</u> breakfast now.</li>
+        <li>She <u>is watching</u> a video.</li>
+        <li>They <u>are playing</u> basketball in the park.</li>
+        <li>We <u>are studying</u> English.</li>
+        <li>He <u>is drawing</u> a cute cat.</li>
+        <li>My friends <u>are chatting</u> online.</li>
+        <li>I <u>am doing</u> my homework.</li>
+        <li>The dog <u>is running</u> in the garden.</li>
+      </ol>
+    </div>
+
+    <div class="item">
+      <div class="question">
+        Q1. 위 문장에서 <span class="highlight">be 동사</span>(am / is / are)는 어떤 단어 앞에 와 있나요?
+      </div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        항상 <b>동사 + ing</b> 형태 앞에 와 있어요.<br />
+        예) am eating, is watching, are playing, is drawing, are chatting, am doing, is running
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="question">
+        Q2. 위 문장은 모두 <b>어떤 상황</b>을 말하고 있나요?<br />
+        (1) 항상 하는 습관인가요? (예: 매일 하는 일)<br />
+        (2) 지금 / 요즘 하고 있는 행동인가요?
+      </div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        (2) 지금 / 요즘 하고 있는 행동을 말하고 있어요. 그래서 <b>“~하고 있어요”</b>라고 번역돼요.
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="question">
+        Q3. I, you, he, she, we, they 처럼 주어에 따라 <span class="highlight">am / is / are</span>가 어떻게 달라지는지 적어 보세요.
+      </div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        I → am<br />
+        He / She / It / 한 사람, 한 물건 → is<br />
+        You / We / They / 여러 명, 여러 개 → are
+        <div class="note">
+          채점 팁: 위 네 줄 중 2개 이상 맞으면 잘한 것으로 봐 주세요.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>3. 형식 연습: be 동사 + 동사-ing 다지기</h2>
+
+    <h3>3-1. 빈칸에 am / is / are + 동사-ing 쓰기</h3>
+    <div class="item">
+      <div class="question">
+        괄호 안 단어를 이용해 문장을 완성하세요.
+      </div>
+      <ol class="example-list">
+        <li>I __________ (read) a comic book.</li>
+        <li>She __________ (cook) dinner now.</li>
+        <li>They __________ (play) games on the computer.</li>
+        <li>We __________ (study) for the test.</li>
+        <li>My brother __________ (draw) a robot.</li>
+        <li>You __________ (listen) to music.</li>
+      </ol>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        1. I <b>am reading</b> a comic book.<br />
+        2. She <b>is cooking</b> dinner now.<br />
+        3. They <b>are playing</b> games on the computer.<br />
+        4. We <b>are studying</b> for the test.<br />
+        5. My brother <b>is drawing</b> a robot.<br />
+        6. You <b>are listening</b> to music.
+        <div class="note">
+          채점 팁: be 동사(am / is / are)와 동사-ing 두 부분이 모두 맞으면 정답으로 보세요.
+        </div>
+      </div>
+    </div>
+
+    <h3>3-2. 현재형 → “~하고 있어요”로 바꾸기</h3>
+    <div class="item">
+      <div class="question">
+        아래 문장은 일반적인 사실/습관입니다. <br />
+        “지금 하고 있는 행동”으로 바꾸세요. (present continuous)
+      </div>
+      <ol class="example-list">
+        <li>I usually watch TV after dinner. → (지금 TV 보는 중)</li>
+        <li>He often plays soccer after school. → (지금 축구하는 중)</li>
+        <li>They sometimes read books in the library. → (지금 도서관에서 책 읽는 중)</li>
+        <li>My mom cleans the room every Sunday. → (지금 방을 청소하는 중)</li>
+      </ol>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        예시 정답:<br />
+        1. I <b>am watching</b> TV now.<br />
+        2. He <b>is playing</b> soccer now.<br />
+        3. They <b>are reading</b> books in the library now.<br />
+        4. My mom <b>is cleaning</b> the room now.
+        <div class="note">
+          채점 팁: now를 쓰지 않아도, be 동사 + 동사-ing가 정확하면 정답으로 인정해도 좋습니다.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>4. 질문 만들기: Are you doing ~ ?</h2>
+
+    <h3>4-1. Noticing: 질문문에서 어순 살펴보기</h3>
+    <div class="item">
+      <ol class="example-list">
+        <li><b>Are</b> you play<b>ing</b> the piano?</li>
+        <li><b>Is</b> he watch<b>ing</b> TV?</li>
+        <li><b>Are</b> they study<b>ing</b> English now?</li>
+        <li><b>Is</b> your sister sleep<b>ing</b>?</li>
+      </ol>
+    </div>
+    <div class="item">
+      <div class="question">
+        Q1. 평서문과 비교해 볼까요?<br />
+        You are playing the piano. → Are you playing the piano?<br />
+        무엇이 앞으로 나왔나요?
+      </div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <b>be 동사(am / is / are)</b>가 주어 앞(문장 맨 앞)으로 나옵니다.<br />
+        You are → <b>Are you</b> / He is → <b>Is he</b> / They are → <b>Are they</b>
+      </div>
+    </div>
+
+    <h3>4-2. 문장 고치기: 올바른 질문으로 바꾸기</h3>
+    <div class="item">
+      <div class="question">
+        틀린 질문문을 올바른 어순으로 고치세요.
+      </div>
+      <ol class="example-list">
+        <li>You are doing your homework? → ________________________________?</li>
+        <li>She watching is a movie? → ________________________________?</li>
+        <li>They playing are basketball? → ________________________________?</li>
+        <li>He reading is a comic? → ________________________________?</li>
+      </ol>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        1. <b>Are you doing your homework?</b><br />
+        2. <b>Is she watching a movie?</b><br />
+        3. <b>Are they playing basketball?</b><br />
+        4. <b>Is he reading a comic?</b>
+        <div class="note">
+          채점 팁: Are / Is 가 맨 앞에 와 있는지, 주어와 be 동사가 잘 짝을 이루는지(he → is, they → are)를 중심으로 봐 주세요.
+        </div>
+      </div>
+    </div>
+
+    <h3>4-3. yes / no 질문 & 짧게 대답하기</h3>
+    <div class="item">
+      <div class="question">
+        질문을 보고, 괄호 안 힌트에 맞게 짧게 대답해 보세요.
+      </div>
+      <ol class="example-list">
+        <li>Are you studying English now? (Yes) → Yes, __________________.</li>
+        <li>Is she playing games now? (No) → No, __________________.</li>
+        <li>Are they eating lunch? (Yes) → Yes, __________________.</li>
+        <li>Is he doing his homework? (No) → No, __________________.</li>
+      </ol>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        예시 정답:<br />
+        1. Yes, <b>I am</b>.<br />
+        2. No, <b>she is not</b>. / No, <b>she isn’t</b>.<br />
+        3. Yes, <b>they are</b>.<br />
+        4. No, <b>he is not</b>. / No, <b>he isn’t</b>.
+        <div class="note">
+          채점 팁: 줄임말(isn’t, aren’t)을 쓰지 않아도 괜찮아요. 주어 + am/is/are(not)만 맞으면 정답입니다.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>5. Retrieval Practice: 설명과 예문 떠올리기</h2>
+    <div class="item">
+      <div class="question">
+        5-1. 책을 덮고, 지금까지 배운 내용을 떠올려 보세요. (설명을 다시 보지 말고 써 보세요!)
+      </div>
+      <ol class="example-list">
+        <li>present continuous (현재진행형)의 기본 형태를 <b>영어</b>로 적어 보세요.<br />
+          (힌트: be 동사 + ________)</li>
+        <li>present continuous는 <b>언제</b> 쓰나요? 한국어로 간단히 적어 보세요.</li>
+        <li>너가 외우기 쉽게, 예문 1개를 <b>영어로</b> 적어 보세요. (예: 나는 지금 ~ 하고 있어.)</li>
+      </ol>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        예시 답안:<br />
+        1. be verb (am / is / are) + verb-ing<br />
+        2. 지금 하고 있는 행동이나 요즘 하고 있는 행동을 말할 때 쓴다.<br />
+        3. 예: I am playing the piano now. / I am studying English. 등
+        <div class="note">
+          채점 팁: 아이가 자기 말로 설명해도 좋습니다. 핵심이 들어가 있으면(“지금 / 하고 있는 중”) 정답으로 봐 주세요.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>6. Production 연습: 나와 친구 이야기하기</h2>
+
+    <h3>6-1. 한국어 → 영어 번역 (단문)</h3>
+    <div class="item">
+      <div class="question">
+        present continuous(현재진행형)을 사용해서 영어로 쓰세요.
+      </div>
+      <ol class="example-list">
+        <li>나 지금 영어 숙제 하고 있어.</li>
+        <li>민수는 지금 유튜브 보고 있어.</li>
+        <li>우리(we)는 지금 학교 운동장에서 뛰고 있어.</li>
+        <li>내 동생은 지금 게임하고 있어.</li>
+        <li>그들은 지금 카카오톡으로 채팅하고 있어.</li>
+      </ol>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        예시 정답:<br />
+        1. I am doing my English homework now.<br />
+        2. Minsu is watching YouTube now. / Minsu is watching a video now.<br />
+        3. We are running in the school playground now.<br />
+        4. My brother (My sister) is playing a game now.<br />
+        5. They are chatting on KakaoTalk now.
+        <div class="note">
+          채점 팁: 고유명사 철자(YouTube, KakaoTalk 등)는 너무 엄격하게 보지 않아도 좋습니다. be 동사 + 동사-ing 구조와 주어가 맞으면 정답으로 보세요.
+        </div>
+      </div>
+    </div>
+
+    <h3>6-2. 시제 바꾸기: 평소 습관 ↔ 지금 하는 일</h3>
+    <div class="item">
+      <div class="question">
+        1~3번은 현재진행형을 <b>평소 습관(현재시제)</b>으로, 4~6번은 현재시제를 <b>현재진행형</b>으로 바꾸세요.
+      </div>
+      <ol class="example-list">
+        <li>I am playing games now. → (평소 습관으로) __________________________.</li>
+        <li>She is studying English now. → __________________________.</li>
+        <li>They are watching TV now. → __________________________.</li>
+        <li>I usually read webtoons after dinner. → (지금 하는 일로) __________________________.</li>
+        <li>He often plays the piano. → __________________________.</li>
+        <li>They sometimes listen to music in the classroom. → __________________________.</li>
+      </ol>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        예시 정답:<br />
+        1. I play games. / I usually play games.<br />
+        2. She studies English. / She usually studies English.<br />
+        3. They watch TV. / They often watch TV.<br />
+        4. I am reading webtoons after dinner (now).<br />
+        5. He is playing the piano now.<br />
+        6. They are listening to music in the classroom now.
+        <div class="note">
+          채점 팁: 습관 문장에서는 -s / -es 형태(plays, studies)가 조금 틀려도, 시제 차이를 이해했다면 부분 점수를 줄 수 있습니다.
+        </div>
+      </div>
+    </div>
+
+    <h3>6-3. 나의 지금 상황 쓰기</h3>
+    <div class="item">
+      <div class="question">
+        지금 이 학습지를 풀고 있는 순간을 떠올리며, 자신의 상황을 영어로 3문장 써 보세요.<br />
+        (힌트: I am ~ing / My friend is ~ing / My family is ~ing)
+      </div>
+      <div class="note">
+        예) I am studying English now. My mom is cooking in the kitchen. My friend is playing games at home.
+      </div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        아이가 쓴 문장을 기준으로, 다음을 확인해 주세요.<br />
+        1) I / my friend / my mom 뒤에 오는 be 동사(am / is / are)가 맞는지<br />
+        2) 동사에 -ing가 붙어 있는지<br />
+        3) now, today 같은 시간 표현이 있으면 더 좋습니다.
+      </div>
+    </div>
+
+    <h3>6-4. 짧은 대화 만들기</h3>
+    <div class="item">
+      <div class="question">
+        친구가 지금 무엇을 하고 있는지 묻는 짧은 대화를 만들어 보세요. (2인 대화, 4줄 이상)
+      </div>
+      <div class="note">
+        예시 틀:<br />
+        A: Hi, ________. What are you doing?<br />
+        B: Hi. I am ____________________.<br />
+        A: Are you ____________________?<br />
+        B: Yes, I am. / No, I am not. I am ____________________.
+      </div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        예시 대화:<br />
+        A: Hi, Jimin. What are you doing?<br />
+        B: Hi. I am playing a game on my phone.<br />
+        A: Are you playing with your brother?<br />
+        B: No, I am not. I am playing with my friend Minho.
+        <div class="note">
+          채점 팁: 모든 문장을 완벽하게 쓰지 않아도 괜찮습니다. 질문에서 Are you ~ing? 형태와 대답에서 I am / I am not 구조가 있으면 잘한 것입니다.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>7. Spaced Repetition용 미니 복습 세트 (다음 날 다시!)</h2>
+    <div class="item">
+      <div class="question">
+        다음 날, 또는 며칠 뒤에 다시 풀어 보세요. 핵심만 모은 복습 문제입니다.
+      </div>
+      <ol class="example-list">
+        <li>(형식) present continuous의 기본 형태를 영어로 쓰세요.<br />
+          → ______________________________</li>
+        <li>(문장 만들기) 나 지금 물 마시는 중이야. → 영어로 쓰기<br />
+          → ______________________________</li>
+        <li>(시제 구별) 아래 문장이 습관인지, 지금 행동인지 써 보세요.<br />
+          a. I play soccer every Saturday.<br />
+          b. I am playing soccer now.<br />
+          → a: __________ / b: __________</li>
+        <li>(질문 만들기) She is doing her homework. → 질문으로 바꾸기<br />
+          → ______________________________?</li>
+        <li>(대답하기) Are they watching TV? (No) → 짧게 대답<br />
+          → ______________________________</li>
+        <li>(번역) 그는 지금 피자를 먹고 있어. → 영어로 쓰기<br />
+          → ______________________________</li>
+        <li>(나를 묻기) 친구가 너에게 묻는다: What are you doing now?<br />
+          영어로 대답 한 문장 써 보기<br />
+          → ______________________________</li>
+      </ol>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        예시 정답:<br />
+        1. be verb (am / is / are) + verb-ing<br />
+        2. I am drinking water now.<br />
+        3. a: habit / routine (습관) / present simple<br />
+           b: action now (지금 하는 행동) / present continuous<br />
+        4. Is she doing her homework?<br />
+        5. No, they are not. / No, they aren’t.<br />
+        6. He is eating pizza now.<br />
+        7. 예: I am studying English now. / I am doing my homework.
+        <div class="note">
+          채점 팁: 아이가 영어 단어를 다 맞게 쓰지 못해도, 시제 차이(습관 vs 지금 행동)를 구별하면 크게 칭찬해 주세요.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>8. 자기 점검 & 동기부여</h2>
+    <div class="item">
+      <div class="question">
+        오늘 배운 내용을 스스로 체크해 봅시다.
+      </div>
+      <ul class="checklist">
+        <li>be 동사(am / is / are) + 동사-ing 형태를 말로 설명할 수 있다.</li>
+        <li>“지금 무엇을 하고 있어?”를 영어로 물어볼 수 있다. (What are you doing?)</li>
+        <li>나와 친구, 가족이 지금 하는 일을 현재진행형으로 3문장 이상 쓸 수 있다.</li>
+        <li>“습관” 문장과 “지금 하는 행동” 문장을 구별할 수 있다.</li>
+        <li>Are you ~ing? 질문에 Yes / No로 짧게 대답할 수 있다.</li>
+      </ul>
+    </div>
+    <div class="item">
+      <p class="note">
+        여기까지 열심히 풀었다면 정말 잘하고 있어요!<br />
+        오늘은 <span class="highlight">“지금 ~하고 있어요”와 “지금 ~하고 있어?”</span>를 영어로 말하는 첫날이에요.<br />
+        같은 문제를 며칠 뒤에 한 번 더 풀면, 뇌가 더 오래 기억할 수 있어요. 내일 또는 주말에<br />
+        <b>7번 미니 복습 세트</b>만 다시 해 보는 것도 아주 좋습니다. 😊
+      </p>
+    </div>
+  </div>
+</body>
+</html>

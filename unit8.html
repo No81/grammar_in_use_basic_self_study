@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Grammar in Use 학습 자료</title>
+  <style>
+    /* 인쇄/화면 공통 기본 스타일 */
+	body {
+	  font-family: "Comic Sans MS", "Nanum Gothic", "Arial Rounded MT", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+	  line-height: 1.7;
+	  max-width: 900px;
+	  margin: 0 auto;
+	  padding: 24px;
+	  font-size: 17px;
+	  background-color: #fffaf5; /* 밝은 크림색 배경 */
+	  color: #333;
+	}
+
+	/* 제목들 */
+	h1, h2, h3 {
+	  margin-top: 1.2em;
+	  margin-bottom: 0.5em;
+	  font-weight: 700;
+	}
+
+	h1 {
+	  font-size: 1.9rem;
+	  color: #ff7b7b; /* 따뜻한 핑크 톤 */
+	  text-align: center;
+	}
+
+	h2 {
+	  font-size: 1.5rem;
+	  color: #3a7bd5; /* 파란색 포인트 */
+	  border-left: 8px solid #ffd86b;
+	  padding-left: 10px;
+	}
+
+	h3 {
+	  font-size: 1.25rem;
+	  color: #e67e22; /* 주황 계열 */
+	}
+
+	/* 섹션 카드 스타일 */
+	.section {
+	  margin-bottom: 24px;
+	  padding: 20px;
+	  border: 2px solid #f5d5a3; /* 연한 주황 테두리 */
+	  border-radius: 18px;
+	  background: #ffffff;
+	  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.05);
+	  page-break-inside: avoid;
+	}
+
+	/* 메타 정보 */
+	.meta {
+	  font-size: 0.95em;
+	  color: #666;
+	  margin-bottom: 12px;
+	  padding: 10px 14px;
+	  border-radius: 12px;
+	  background: #fff3c4;
+	}
+
+	/* 아이템 간 간격 */
+	.item {
+	  margin-bottom: 14px;
+	}
+
+	/* 질문 텍스트 강조 */
+	.question {
+	  font-weight: 600;
+	  margin-bottom: 6px;
+	}
+
+	/* 정답 보기 버튼 */
+	.answer-toggle {
+	  margin-top: 4px;
+	  margin-bottom: 4px;
+	  padding: 6px 14px;
+	  font-size: 0.95em;
+	  cursor: pointer;
+	  background: #ffd86b;
+	  border: none;
+	  border-radius: 16px;
+	  font-weight: 700;
+	  color: #333;
+	  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+	  transition: background 0.2s, transform 0.1s, box-shadow 0.1s;
+	}
+
+	.answer-toggle:hover {
+	  background: #ffca3a;
+	}
+
+	.answer-toggle:active {
+	  transform: translateY(1px);
+	  box-shadow: 0 0 0 rgba(0, 0, 0, 0.1);
+	}
+
+	/* 정답 박스 */
+	.answer {
+	  display: none;
+	  margin-top: 6px;
+	  padding: 10px 12px;
+	  border-left: 5px solid #6fcf97;
+	  background: #e7f9e7;
+	  font-size: 0.95em;
+	  border-radius: 10px;
+	}
+
+	.answer.visible {
+	  display: block;
+	}
+
+	/* 굵은 레이블 */
+	.label {
+	  font-weight: 700;
+	}
+
+	/* 설명/노트 */
+	.note {
+	  font-size: 0.9em;
+	  color: #555;
+	  margin-top: 6px;
+	}
+
+	/* 체크리스트 (자기 점검) */
+	.checklist {
+	  list-style: none;
+	  padding-left: 0;
+	  margin-top: 8px;
+	}
+
+	.checklist li {
+	  margin-bottom: 4px;
+	}
+
+	.checklist li::before {
+	  content: "☐ ";
+	  color: #ff7b7b;
+	  font-weight: 700;
+	}
+
+	/* 작은 글씨 */
+	.small {
+	  font-size: 0.9em;
+	}
+
+	/* 소제목 스타일 */
+	.subheading {
+	  font-weight: 700;
+	  margin-top: 8px;
+	  margin-bottom: 4px;
+	  color: #3a7bd5;
+	}
+
+	/* 예문 리스트 */
+	.example-list {
+	  margin-left: 22px;
+	  padding-left: 4px;
+	}
+
+	.example-list li {
+	  margin-bottom: 4px;
+	}
+
+	/* 리스트 번호 색깔 */
+	.example-list li::marker {
+	  color: #f39c12;
+	  font-weight: 700;
+	}
+
+	/* 하이라이트 텍스트 (중요 포인트) */
+	.highlight {
+	  font-weight: 700;
+	  color: #333;
+	  background: #fff3b0;
+	  padding: 2px 6px;
+	  border-radius: 6px;
+	}
+
+	/* 인쇄용 설정 */
+	@media print {
+	  body {
+		padding: 0;
+		background-color: #ffffff;
+	  }
+
+	  .section {
+		box-shadow: none;
+		border-radius: 0;
+	  }
+
+	  .answer-toggle {
+		display: none; /* 인쇄 시 버튼 숨기기 */
+	  }
+
+	  .answer {
+		display: none !important; /* 인쇄 시 정답 숨기기 */
+	  }
+	}
+	
+	.meta {
+		display: none !important;
+	}
+  </style>
+  <script>
+    function toggleAnswer(button) {
+      const answer = button.nextElementSibling;
+      if (!answer) return;
+      const isVisible = answer.classList.contains('visible');
+      if (isVisible) {
+        answer.classList.remove('visible');
+        button.textContent = '정답 보기';
+      } else {
+        answer.classList.add('visible');
+        button.textContent = '정답 숨기기';
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>Unit 8. I am doing &amp; I do</h1>
+  <div class="meta">
+    학습자: 초등학교 6학년 · 모국어: 한국어 · 예상 학습 시간: 약 30분 · 난이도: ★★☆☆☆
+  </div>
+
+  <div class="section">
+    <h2>1. 오늘의 목표 &amp; 큰 그림 보기</h2>
+    <div class="item">
+      <p class="question">오늘 배울 내용</p>
+      <ul class="example-list">
+        <li><span class="highlight">I am doing</span> : 지금 하고 있는 일, 요즘 잠깐 하는 일 말하기</li>
+        <li><span class="highlight">I do</span> : 항상 하는 일, 사실, 규칙적인 습관 말하기</li>
+        <li>두 표현을 보고 <span class="highlight">언제 어떤 것을 써야 하는지</span> 구별하기</li>
+      </ul>
+    </div>
+    <div class="item">
+      <p class="note">
+        한국어에서는 &ldquo;나는 축구해.&rdquo;라고 한 문장으로 말하지만,<br />
+        영어에서는 보통 <span class="highlight">지금 하는 일</span>인지, <span class="highlight">평소 습관</span>인지 나누어 말해요.
+      </p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>2. 문법 설명: 형식 + 의미 + 언제 쓰는지</h2>
+
+    <h3>A. I am doing (present continuous)</h3>
+    <div class="item">
+      <p class="subheading">① 형식 (형태)</p>
+      <ul class="example-list">
+        <li><span class="highlight">주어 + am / is / are + 동사-ing</span></li>
+        <li>I am reading. / She is eating. / They are playing.</li>
+      </ul>
+    </div>
+    <div class="item">
+      <p class="subheading">② 의미</p>
+      <ul class="example-list">
+        <li><span class="highlight">지금, 바로 이 순간</span> 하고 있는 행동</li>
+        <li>요즘 <span class="highlight">일시적으로 하고 있는 일</span></li>
+      </ul>
+      <p class="note small">
+        예) I am doing my homework. (지금 숙제 하는 중이야.)<br />
+        예) I am watching a drama these days. (요즘 그 드라마 보고 있어.)
+      </p>
+    </div>
+    <div class="item">
+      <p class="subheading">③ 언제 / 왜 쓰는지</p>
+      <ul class="example-list">
+        <li>전화 중: &ldquo;I am walking to school.&rdquo; (지금 학교 가는 중이야.)</li>
+        <li>채팅: &ldquo;I am studying English now.&rdquo;</li>
+        <li>요즘만 잠깐 하는 활동: &ldquo;I am practicing piano this month.&rdquo;</li>
+      </ul>
+    </div>
+
+    <h3>B. I do (simple present)</h3>
+    <div class="item">
+      <p class="subheading">① 형식 (형태)</p>
+      <ul class="example-list">
+        <li><span class="highlight">주어 + 동사 원형</span> (3인칭 단수: 동사에 s 붙기)</li>
+        <li>I play / You play / He plays / She likes / They like</li>
+      </ul>
+    </div>
+    <div class="item">
+      <p class="subheading">② 의미</p>
+      <ul class="example-list">
+        <li><span class="highlight">평소 습관</span> (자주, 항상, 규칙적으로 하는 일)</li>
+        <li><span class="highlight">사실, 규칙</span>, 변하지 않는 것</li>
+      </ul>
+      <p class="note small">
+        예) I play games every day. (나는 매일 게임을 한다.)<br />
+        예) The sun rises in the east. (태양은 동쪽에서 뜬다.)
+      </p>
+    </div>
+    <div class="item">
+      <p class="subheading">③ 언제 / 왜 쓰는지</p>
+      <ul class="example-list">
+        <li>자기 소개: &ldquo;I live in Seoul.&rdquo;</li>
+        <li>습관 말하기: &ldquo;I go to hagwon on Mondays.&rdquo;</li>
+        <li>사실 말하기: &ldquo;Water boils at 100 degrees.&rdquo;</li>
+      </ul>
+    </div>
+
+    <h3>C. 자주 하는 실수 (한국어 화자)</h3>
+    <div class="item">
+      <ul class="example-list">
+        <li>&ldquo;나는 축구해.&rdquo;를 모두 <span class="highlight">I am playing soccer.</span>로 말하는 실수</li>
+        <li>하지만 &ldquo;나 축구 동아리야.&rdquo;처럼 평소 습관이라면 <span class="highlight">I play soccer.</span></li>
+      </ul>
+      <p class="note">
+        <span class="highlight">지금 당장</span> 하고 있으면 <strong>I am doing</strong>,<br />
+        <span class="highlight">평소 자주</span> 하면 <strong>I do</strong>를 떠올려 보세요!
+      </p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>3. Noticing 활동: 문장에서 규칙 찾아보기</h2>
+    <div class="item">
+      <p class="question">① 아래 문장을 두 그룹으로 나누어 보세요.</p>
+      <ol class="example-list">
+        <li>I am eating ramen now.</li>
+        <li>I play badminton every weekend.</li>
+        <li>She is doing her homework at the desk.</li>
+        <li>He goes to school by bus.</li>
+        <li>They are watching a movie.</li>
+        <li>My dad cooks dinner every day.</li>
+      </ol>
+      <p class="note small">
+        연필로 &ldquo;지금 하고 있는 일&rdquo; / &ldquo;평소 하는 일&rdquo; 두 그룹으로 나누어 보세요.
+      </p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p><span class="label">지금 하고 있는 일 (I am doing):</span></p>
+        <ul class="example-list">
+          <li>1. I am eating ramen now.</li>
+          <li>3. She is doing her homework at the desk.</li>
+          <li>5. They are watching a movie.</li>
+        </ul>
+        <p><span class="label">평소 하는 일 (I do):</span></p>
+        <ul class="example-list">
+          <li>2. I play badminton every weekend.</li>
+          <li>4. He goes to school by bus.</li>
+          <li>6. My dad cooks dinner every day.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">② 규칙을 스스로 말해 보세요.</p>
+      <ol class="example-list">
+        <li>어떤 문장들에 am / is / are + 동사-ing가 있었나요?</li>
+        <li>그 문장들은 &ldquo;지금&rdquo;인가요, &ldquo;평소&rdquo;인가요?</li>
+        <li>동사에 s가 붙은 문장은 어떤 주어와 같이 쓰였나요?</li>
+      </ol>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <ul class="example-list">
+          <li>am / is / are + 동사-ing는 지금 하고 있는 일, 요즘 하는 일에 쓰였어요.</li>
+          <li>s가 붙은 동사는 he / she / my dad처럼 3인칭 단수 주어와 같이 쓰여요.</li>
+          <li>평소 습관이나 사실에는 동사 원형(또는 s 붙은 형태)만 쓰고, be 동사는 쓰지 않아요.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>4. Retrieval Practice: 방금 배운 것 떠올리기</h2>
+    <div class="item">
+      <p class="question">① 책이나 위 설명을 보지 말고, 아래를 적어 보세요.</p>
+      <ol class="example-list">
+        <li>&ldquo;지금 하고 있는 일&rdquo;을 말할 때 쓰는 영어 시제 이름은? (힌트: present ...)</li>
+        <li>&ldquo;평소 습관&rdquo;을 말할 때 쓰는 영어 시제 이름은?</li>
+        <li>I am doing과 I do의 차이를 한글로 짧게 써 보세요.</li>
+      </ol>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <ol class="example-list">
+          <li>present continuous (현재 진행형)</li>
+          <li>simple present (일반 현재)</li>
+          <li>예시 답: I am doing은 지금 하는 일, I do는 평소 하는 일 / 사실을 말할 때 쓴다.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">② 기억나는 예문을 하나 써 보세요.</p>
+      <p>아까 본 예문 말고, <span class="highlight">새로운 예문</span>을 만들어 보세요.</p>
+      <ul class="example-list">
+        <li>I am doing 문장 1개: ________________________________</li>
+        <li>I do 문장 1개: _____________________________________</li>
+      </ul>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p class="note small">
+          예시 정답 (다른 문장도 괜찮아요!)<br />
+          I am doing: I am listening to music now.<br />
+          I do: I listen to music every night.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>5. 연습 1: 형식 구별하기 (기초)</h2>
+    <div class="item">
+      <p class="question">① 다음 문장이 &ldquo;지금 하는 일&rdquo;인지, &ldquo;평소 하는 일&rdquo;인지 O표 하세요.</p>
+      <table>
+        <tr>
+          <th>문장</th>
+          <th>지금 (I am doing)</th>
+          <th>평소 (I do)</th>
+        </tr>
+        <tr>
+          <td>1. I am drawing a picture now.</td>
+          <td>□</td>
+          <td>□</td>
+        </tr>
+        <tr>
+          <td>2. I draw pictures every day.</td>
+          <td>□</td>
+          <td>□</td>
+        </tr>
+        <tr>
+          <td>3. She plays the piano on Sundays.</td>
+          <td>□</td>
+          <td>□</td>
+        </tr>
+        <tr>
+          <td>4. She is playing the piano now.</td>
+          <td>□</td>
+          <td>□</td>
+        </tr>
+      </table>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <ul class="example-list">
+          <li>1. 지금 (I am doing)</li>
+          <li>2. 평소 (I do)</li>
+          <li>3. 평소 (I do)</li>
+          <li>4. 지금 (I am doing)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">② 빈칸에 am / is / are 또는 동사에 -s를 넣으세요.</p>
+      <ol class="example-list">
+        <li>I _______ (do) my homework every evening.</li>
+        <li>He _______ (do) his homework every evening.</li>
+        <li>He _______ doing his homework now.</li>
+        <li>We _______ playing a game now.</li>
+      </ol>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <ol class="example-list">
+          <li>I <strong>do</strong> my homework every evening.</li>
+          <li>He <strong>does</strong> his homework every evening.</li>
+          <li>He <strong>is</strong> doing his homework now.</li>
+          <li>We <strong>are</strong> playing a game now.</li>
+        </ol>
+        <p class="note small">
+          평소에는 do / does, 지금은 am / is / are + 동사-ing 형태인지 확인해 주세요.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>6. 연습 2: 한국어 → 영어 번역 (의미에 맞게 시제 고르기)</h2>
+    <div class="item">
+      <p class="question">다음 문장을 영어로 쓰세요. &ldquo;지금&rdquo;인지 &ldquo;평소&rdquo;인지 먼저 생각해 보세요.</p>
+      <ol class="example-list">
+        <li>나는 지금 영어 공부를 하는 중이야.</li>
+        <li>나는 매일 영어 단어를 외워.</li>
+        <li>우리 엄마는 지금 저녁을 요리하는 중이야.</li>
+        <li>우리 엄마는 보통 7시에 저녁을 요리해.</li>
+        <li>나는 요즘 피아노를 배우는 중이야. (these days 사용)</li>
+      </ol>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <ol class="example-list">
+          <li>I am studying English now.</li>
+          <li>I memorize English words every day.</li>
+          <li>My mom is cooking dinner now.</li>
+          <li>My mom cooks dinner at seven o&#39;clock.</li>
+          <li>I am learning the piano these days.</li>
+        </ol>
+        <p class="note small">
+          단어 순서와 시제(진행형 / 일반 현재)가 맞으면 정답으로 보셔도 좋습니다.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>7. 연습 3: 시제 바꾸기 (변형 연습)</h2>
+    <div class="item">
+      <p class="question">① I do → I am doing 으로 바꾸기</p>
+      <p>평소 하는 일을 &ldquo;지금 하는 중&rdquo;으로 바꾸어 보세요.</p>
+      <ol class="example-list">
+        <li>I play soccer after school. → (지금 하는 중으로)</li>
+        <li>She reads a book in her room. → (지금 하는 중으로)</li>
+      </ol>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <ol class="example-list">
+          <li>I am playing soccer now.</li>
+          <li>She is reading a book in her room now.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">② I am doing → I do 로 바꾸기</p>
+      <p>&ldquo;지금 하는 중&rdquo; 문장을 &ldquo;평소 습관&rdquo; 문장으로 바꾸어 보세요.</p>
+      <ol class="example-list">
+        <li>I am watching YouTube now. → (평소 습관으로)</li>
+        <li>We are going to the library now. → (평소 습관으로)</li>
+      </ol>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <ol class="example-list">
+          <li>I watch YouTube every day. (또는 often, after school 등)</li>
+          <li>We go to the library on Saturdays. (또는 every week 등)</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">③ 나의 진짜 생활로 바꾸기</p>
+      <p>아래 문장을 <span class="highlight">진짜 나에게 맞게</span> 고쳐 보세요.</p>
+      <ol class="example-list">
+        <li>I am playing a game now. (지금 정말 하는 일을 써 보세요.)<br />
+          → _____________________________________________
+        </li>
+        <li>I play games every day. (사실/습관이 맞게 바꾸기)<br />
+          → _____________________________________________
+        </li>
+      </ol>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p class="note small">
+          예시 정답 (학생의 실제 생활에 맞게 다르게 써도 좋아요.)<br />
+          I am chatting with my friend now.<br />
+          I play games on weekends.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>8. 짧은 글 / 대화 만들기</h2>
+    <div class="item">
+      <p class="question">① 나의 하루 소개하기</p>
+      <p>아래 지시에 따라 3~4문장으로 써 보세요.</p>
+      <ul class="example-list">
+        <li>한 문장은 <span class="highlight">I am doing</span>을 사용해서 &ldquo;지금 하는 일&rdquo; 쓰기</li>
+        <li>두세 문장은 <span class="highlight">I do</span>를 사용해서 &ldquo;평소 하는 일&rdquo; 쓰기</li>
+      </ul>
+      <p>
+        예) ____________________________________________<br />
+        ________________________________________________<br />
+        ________________________________________________
+      </p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p class="note small">
+          예시 글:<br />
+          I am studying English now.<br />
+          I go to school at eight o&#39;clock.<br />
+          I play soccer with my friends after school.
+        </p>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">② 친구와 카톡 대화 만들기</p>
+      <p>아래 대화를 완성해 보세요. (괄호 안 힌트를 보고 I am doing / I do 중 골라 쓰기)</p>
+      <ol class="example-list">
+        <li>A: What are you doing now?<br />
+            B: I _________________________________. (게임 중)</li>
+        <li>A: Really? You __________________________ a lot. (평소 자주 게임함)</li>
+      </ol>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <ol class="example-list">
+          <li>B: I am playing a game.</li>
+          <li>A: Really? You play games a lot.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>9. 피드백 가이드 (채점 팁)</h2>
+    <div class="item">
+      <p class="subheading">학부모용 간단 기준</p>
+      <ul class="example-list">
+        <li>① <span class="highlight">지금</span>인지 <span class="highlight">평소</span>인지에 따라
+          <strong>I am doing / I do</strong>를 올바르게 골랐는지 보기</li>
+        <li>② 동사 형태 확인:
+          <ul class="example-list">
+            <li>진행형: am / is / are + 동사-ing</li>
+            <li>일반 현재: I / you / we / they + 동사원형, he / she + 동사-s</li>
+          </ul>
+        </li>
+        <li>③ 철자(spelling)와 대소문자는 크게 틀리지 않으면 부분 점수 인정</li>
+      </ul>
+      <p class="note small">
+        문장의 내용이 조금 달라도, <span class="highlight">시제 선택</span>과 <span class="highlight">어순(주어-동사)</span>이 맞으면 정답으로 보셔도 좋습니다.
+      </p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>10. 내일 다시 풀기: 미니 복습 세트</h2>
+    <p class="small">
+      이 문제들은 오늘 공부한 것 중 <span class="highlight">정말 중요한 핵심</span>입니다.<br />
+      내일 또는 모레, 다시 한 번 풀어 보세요!
+    </p>
+    <div class="item">
+      <ol class="example-list">
+        <li>(한국어 → 영어) 나는 지금 유튜브를 보고 있어.<br />
+          → _____________________________________________
+        </li>
+        <li>(한국어 → 영어) 나는 보통 저녁에 유튜브를 봐.<br />
+          → _____________________________________________
+        </li>
+        <li>빈칸 채우기: He _______ (play) soccer every Friday.</li>
+        <li>빈칸 채우기: He _______ playing soccer now.</li>
+        <li>문장 만들기: I am doing 문장 1개, I do 문장 1개를 써 보세요.</li>
+      </ol>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <ol class="example-list">
+          <li>I am watching YouTube now.</li>
+          <li>I watch YouTube in the evening.</li>
+          <li>He <strong>plays</strong> soccer every Friday.</li>
+          <li>He <strong>is</strong> playing soccer now.</li>
+          <li>예시: I am doing my homework now. / I do my homework every day.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>11. 자기 점검 &amp; 동기부여</h2>
+    <div class="item">
+      <p class="question">오늘 공부를 마치며, 스스로 체크해 보세요.</p>
+      <ul class="checklist">
+        <li>&ldquo;지금 하는 일&rdquo;과 &ldquo;평소 하는 일&rdquo;을 한국어로 구별해서 설명할 수 있다.</li>
+        <li>I am doing / I do 중 어떤 것을 써야 할지 대부분 스스로 고를 수 있다.</li>
+        <li>나의 하루를 I am doing과 I do를 섞어서 3문장 이상 말할 수 있다.</li>
+        <li>실수해도 괜찮다고 생각하고, 다시 고쳐 보는 연습을 할 수 있다.</li>
+      </ul>
+      <p class="note">
+        여기까지 풀었다면 정말 잘하고 있는 거예요! 😊<br />
+        영어는 <span class="highlight">조금씩, 자주</span> 연습하는 것이 가장 중요해요.<br />
+        내일은 오늘 만든 문장 중 2~3개만 다시 소리 내어 읽어 보세요.
+      </p>
+    </div>
+  </div>
+</body>
+</html>

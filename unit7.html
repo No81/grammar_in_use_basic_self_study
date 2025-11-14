@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Grammar in Use 학습 자료</title>
+  <style>
+	body {
+	  font-family: "Comic Sans MS", "Nanum Gothic", "Arial Rounded MT", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+	  line-height: 1.7;
+	  max-width: 900px;
+	  margin: 0 auto;
+	  padding: 24px;
+	  font-size: 17px;
+	  background-color: #fffaf5;
+	  color: #333;
+	}
+	h1, h2, h3 {
+	  margin-top: 1.2em;
+	  margin-bottom: 0.5em;
+	  font-weight: 700;
+	}
+	h1 {
+	  font-size: 1.9rem;
+	  color: #ff7b7b;
+	  text-align: center;
+	}
+	h2 {
+	  font-size: 1.5rem;
+	  color: #3a7bd5;
+	  border-left: 8px solid #ffd86b;
+	  padding-left: 10px;
+	}
+	h3 {
+	  font-size: 1.25rem;
+	  color: #e67e22;
+	}
+	.section {
+	  margin-bottom: 24px;
+	  padding: 20px;
+	  border: 2px solid #f5d5a3;
+	  border-radius: 18px;
+	  background: #ffffff;
+	  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.05);
+	  page-break-inside: avoid;
+	}
+	.meta {
+	  font-size: 0.95em;
+	  color: #666;
+	  margin-bottom: 12px;
+	  padding: 10px 14px;
+	  border-radius: 12px;
+	  background: #fff3c4;
+	}
+	.item {
+	  margin-bottom: 14px;
+	}
+	.question {
+	  font-weight: 600;
+	  margin-bottom: 6px;
+	}
+	.answer-toggle {
+	  margin-top: 4px;
+	  margin-bottom: 4px;
+	  padding: 6px 14px;
+	  font-size: 0.95em;
+	  cursor: pointer;
+	  background: #ffd86b;
+	  border: none;
+	  border-radius: 16px;
+	  font-weight: 700;
+	  color: #333;
+	  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+	  transition: background 0.2s, transform 0.1s, box-shadow 0.1s;
+	}
+	.answer-toggle:hover {
+	  background: #ffca3a;
+	}
+	.answer-toggle:active {
+	  transform: translateY(1px);
+	  box-shadow: 0 0 0 rgba(0, 0, 0, 0.1);
+	}
+	.answer {
+	  display: none;
+	  margin-top: 6px;
+	  padding: 10px 12px;
+	  border-left: 5px solid #6fcf97;
+	  background: #e7f9e7;
+	  font-size: 0.95em;
+	  border-radius: 10px;
+	}
+	.answer.visible {
+	  display: block;
+	}
+	.label {
+	  font-weight: 700;
+	}
+	.note {
+	  font-size: 0.9em;
+	  color: #555;
+	  margin-top: 6px;
+	}
+	.checklist {
+	  list-style: none;
+	  padding-left: 0;
+	  margin-top: 8px;
+	}
+	.checklist li {
+	  margin-bottom: 4px;
+	}
+	.checklist li::before {
+	  content: "☐ ";
+	  color: #ff7b7b;
+	  font-weight: 700;
+	}
+	.small {
+	  font-size: 0.9em;
+	}
+	.subheading {
+	  font-weight: 700;
+	  margin-top: 8px;
+	  margin-bottom: 4px;
+	  color: #3a7bd5;
+	}
+	.example-list {
+	  margin-left: 22px;
+	  padding-left: 4px;
+	}
+	.example-list li {
+	  margin-bottom: 4px;
+	}
+	.example-list li::marker {
+	  color: #f39c12;
+	  font-weight: 700;
+	}
+	.highlight {
+	  font-weight: 700;
+	  color: #333;
+	  background: #fff3b0;
+	  padding: 2px 6px;
+	  border-radius: 6px;
+	}
+	@media print {
+	  body {
+		padding: 0;
+		background-color: #ffffff;
+	  }
+	  .section {
+		box-shadow: none;
+		border-radius: 0;
+	  }
+	  .answer-toggle {
+		display: none;
+	  }
+	  .answer {
+		display: none !important;
+	  }
+	}
+	.meta {
+	  display: none !important;
+	}
+  </style>
+  <script>
+    function toggleAnswer(button) {
+      const answer = button.nextElementSibling;
+      if (!answer) return;
+      const isVisible = answer.classList.contains('visible');
+      if (isVisible) {
+        answer.classList.remove('visible');
+        button.textContent = '정답 보기';
+      } else {
+        answer.classList.add('visible');
+        button.textContent = '정답 숨기기';
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>Unit 7 – Do you ... ? (Simple Present Questions)</h1>
+  <div class="meta">
+    대상: 초등 6학년 · 모국어: 한국어 · 권장 학습 시간: 약 30분 · 목표: <strong>Do you ... ?</strong> 를 사용해 자연스럽게 질문하고 답할 수 있다.
+  </div>
+
+  <div class="section">
+    <h2>1. 오늘의 문법 한눈에 보기</h2>
+    <div class="item">
+      <p class="question">① 핵심 포인트</p>
+      <ul class="example-list">
+        <li><span class="highlight">Do you + 동사원형 ... ?</span> → “너는 ~하니?”, “너 ~해?” (습관·사실)</li>
+        <li>대답은 보통 <span class="highlight">Yes, I do. / No, I don’t.</span></li>
+        <li>“너 ~하고 있는 중이야?”는 <span class="highlight">Are you ~ing?</span> (진행형) 이라서 <strong>다른 문법</strong>이다.</li>
+      </ul>
+    </div>
+    <div class="item">
+      <p class="question">② 형태 (Form)</p>
+      <p>
+        <span class="highlight">Do + 주어(I/you/we/they) + 동사원형 ... ?</span><br />
+        예) Do you like math? / Do they play soccer?
+      </p>
+      <p>
+        3인칭 단수(he/she/it)일 때는 <span class="highlight">Does</span> 사용:<br />
+        <span class="highlight">Does he like math?</span><br />
+        → 답: Yes, <span class="highlight">he does</span>. / No, <span class="highlight">he doesn’t</span>.
+      </p>
+    </div>
+    <div class="item">
+      <p class="question">③ 의미 & 사용</p>
+      <ul class="example-list">
+        <li>평소 습관: Do you get up early? (너 평소에 일찍 일어나?)</li>
+        <li>좋아하는 것: Do you like computer games?</li>
+        <li>사실/규칙: Do you go to school by bus?</li>
+      </ul>
+    </div>
+    <div class="item">
+      <p class="question">④ 헷갈리는 표현 비교</p>
+      <ul class="example-list">
+        <li><span class="highlight">Do you play soccer?</span> (보통 그래? 습관)</li>
+        <li><span class="highlight">Are you playing soccer?</span> (지금 하는 중이야?)</li>
+      </ul>
+      <p class="note">
+        한국어에서는 둘 다 “축구 해?”라서 헷갈리기 쉽다. <br />
+        평소 자주 하는지 물어볼 때 → <span class="highlight">Do you ... ?</span><br />
+        지금 이 순간 하는지 물어볼 때 → <span class="highlight">Are you ... ?</span>
+      </p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>2. Noticing 활동 – 문장에서 규칙 찾기</h2>
+    <p class="small">※ 문장을 소리 내서 읽고, 규칙을 스스로 찾아보세요.</p>
+    <ol class="example-list">
+      <li>Do you like music?</li>
+      <li>Do you have a pet?</li>
+      <li>Do you go to 학원 after school?</li>
+      <li>Do you play games on your phone?</li>
+      <li>Does he watch YouTube every day?</li>
+      <li>Does she eat breakfast in the morning?</li>
+      <li>Do they walk to school?</li>
+      <li>Do we have English class today?</li>
+    </ol>
+    <div class="item">
+      <p class="question">질문 1. 위 문장에서 공통적으로 문장 앞에 오는 말은 무엇인가요?</p>
+      <p>→ _________________________________________</p>
+    </div>
+    <div class="item">
+      <p class="question">질문 2. <code>you / we / they</code> 일 때와 <code>he / she</code> 일 때, 앞에 오는 단어가 어떻게 달라지나요?</p>
+      <p>→ _________________________________________</p>
+    </div>
+    <div class="item">
+      <p class="question">질문 3. 질문 뒤에 오는 동사의 모양(원형, -s, -ing 중)에 표시를 해 보세요.</p>
+      <p>→ like, have, go, play, watch, eat, walk, have 중에서, 모두 <strong>어떤 모양</strong>인가요?</p>
+      <p>→ _________________________________________</p>
+    </div>
+    <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+    <div class="answer">
+      <p><span class="label">해설/정답</span></p>
+      <ul>
+        <li>질문 1: 대부분 <strong>Do</strong> 또는 <strong>Does</strong> 가 문장 처음에 온다.</li>
+        <li>질문 2: <strong>you/we/they</strong> → Do / <strong>he/she</strong> → Does 를 사용한다.</li>
+        <li>질문 3: 모든 동사는 <strong>동사원형</strong> (like, have, go, play, watch, eat, walk, have) 이다.</li>
+      </ul>
+      <p class="note small">채점 팁: 아이가 “Do/Does + 동사원형” 구조만 발견해도 잘한 것이라고 칭찬해 주세요.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>3. Retrieval Practice – 규칙을 스스로 떠올리기</h2>
+    <div class="item">
+      <p class="question">1) 방금 배운 규칙을 한국어로 간단히 적어 보세요.</p>
+      <p>“Do you ... ?” 를 언제, 어떻게 쓰나요?</p>
+      <p>→ ________________________________________________________________________</p>
+      <p>→ ________________________________________________________________________</p>
+    </div>
+    <div class="item">
+      <p class="question">2) 기억나는 예문을 떠올려, 영어로 다시 써 보세요.</p>
+      <p>(교재 위 문장 그대로 쓰지 말고, <strong>조금 바꾸거나 새 문장</strong>을 만들어 보세요.)</p>
+      <p>예문 1: ________________________________________________________________</p>
+      <p>예문 2: ________________________________________________________________</p>
+    </div>
+    <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+    <div class="answer">
+      <p class="label">예시 답안</p>
+      <ul>
+        <li>규칙 예시: “평소에 하는 습관이나 사실을 물어볼 때, 문장 앞에 Do/Does를 쓰고 그 뒤에 주어와 동사원형을 쓴다.”</li>
+        <li>예문 예시:
+          <ul>
+            <li>Do you study English every day?</li>
+            <li>Do you drink milk in the morning?</li>
+          </ul>
+        </li>
+      </ul>
+      <p class="note small">채점 팁: 정확히 같을 필요는 없고, “Do/Does + 주어 + 동사원형” 구조와 의미만 살아 있으면 정답으로 봐 주세요.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>4. 기본 연습 – Do / Does & Yes / No 대답</h2>
+    <p class="small">빈칸에 알맞은 말을 써 넣으세요. (Do / Does / don’t / doesn’t)</p>
+    <ol class="example-list">
+      <li>______ you like chocolate?</li>
+      <li>Yes, I ______. I love it!</li>
+      <li>______ he play the piano?</li>
+      <li>No, he ______. He plays the guitar.</li>
+      <li>______ they go to the same school?</li>
+      <li>No, they ______. They go to different schools.</li>
+      <li>______ your sister watch cartoons?</li>
+      <li>Yes, she ______. She watches them every weekend.</li>
+    </ol>
+    <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+    <div class="answer">
+      <p class="label">정답</p>
+      <ol>
+        <li><strong>Do</strong> you like chocolate?</li>
+        <li>Yes, I <strong>do</strong>.</li>
+        <li><strong>Does</strong> he play the piano?</li>
+        <li>No, he <strong>doesn’t</strong>.</li>
+        <li><strong>Do</strong> they go to the same school?</li>
+        <li>No, they <strong>don’t</strong>.</li>
+        <li><strong>Does</strong> your sister watch cartoons?</li>
+        <li>Yes, she <strong>does</strong>.</li>
+      </ol>
+      <p class="note small">
+        채점 팁: Do/Does, don’t/doesn’t 네 가지를 <strong>어울리게 짝지었는지</strong>만 확인해 주세요.
+        철자에 조금 실수가 있어도 “do / does / don’t / doesn’t”를 구분하면 정답으로 인정해도 좋습니다.
+      </p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>5. 문장 만들기 – 단어를 순서대로 바꾸기</h2>
+    <p class="small">단어들을 올바른 순서로 바꾸어 <strong>질문</strong>을 만드세요.</p>
+    <ol class="example-list">
+      <li>you / like / science? <br />→ ________________________________________</li>
+      <li>you / go / to bed / at 11? <br />→ ________________________________________</li>
+      <li>your mom / cook / spicy food? <br />→ ________________________________________</li>
+      <li>your friends / play / soccer / after school? <br />→ ________________________________________</li>
+      <li>your teacher / speak / English in class? <br />→ ________________________________________</li>
+    </ol>
+    <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+    <div class="answer">
+      <p class="label">모범답안</p>
+      <ol>
+        <li>Do you like science?</li>
+        <li>Do you go to bed at 11?</li>
+        <li>Does your mom cook spicy food?</li>
+        <li>Do your friends play soccer after school?</li>
+        <li>Does your teacher speak English in class?</li>
+      </ol>
+      <p class="note small">
+        채점 팁:
+        <br />1) 문장 맨 앞에 <strong>Do/Does</strong>가 왔는지,
+        <br />2) 주어 뒤의 동사가 <strong>원형</strong>인지(plays X, play O)만 확인해 주세요.
+      </p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>6. 한국어 → 영어 번역 연습</h2>
+    <p class="small">힌트를 보고, <strong>Do you ... ? / Does he ... ?</strong> 를 사용해 영어로 쓰세요.</p>
+    <ol class="example-list">
+      <li>
+        너는 아침에 밥을 먹니?<br />
+        (eat / breakfast / in the morning)<br />
+        → ________________________________________________________
+      </li>
+      <li>
+        너는 버스로 학교에 가니?<br />
+        (go / to school / by bus)<br />
+        → ________________________________________________________
+      </li>
+      <li>
+        그는 피자를 좋아하니?<br />
+        (he / like / pizza)<br />
+        → ________________________________________________________
+      </li>
+      <li>
+        너의 친구들은 주말에 게임을 하니?<br />
+        (your friends / play / games / on weekends)<br />
+        → ________________________________________________________
+      </li>
+      <li>
+        너는 학원 숙제를 매일 하니?<br />
+        (do / your academy homework / every day)<br />
+        → ________________________________________________________
+      </li>
+    </ol>
+    <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+    <div class="answer">
+      <p class="label">모범답안</p>
+      <ol>
+        <li>Do you eat breakfast in the morning?</li>
+        <li>Do you go to school by bus?</li>
+        <li>Does he like pizza?</li>
+        <li>Do your friends play games on weekends?</li>
+        <li>Do you do your academy homework every day?</li>
+      </ol>
+      <p class="note small">
+        채점 팁: 어순이 <strong>Do/Does + 주어 + 동사원형</strong>이면 정답으로 봐 주세요.
+        전치사(<code>by, on</code>)나 부사(<code>every day</code>) 위치는 조금 달라도 괜찮습니다.
+      </p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>7. 내 생활과 연결하기 – 나에 대해 질문하고 답하기</h2>
+    <div class="item">
+      <p class="question">1) 나에 대한 질문 만들기</p>
+      <p>아래 한국어 문장을 보고, 영어로 <strong>질문</strong>을 만들어 보세요.</p>
+      <ol class="example-list">
+        <li>너는 스마트폰으로 게임을 하니?<br />→ 영어 질문: _________________________________</li>
+        <li>너는 밤 12시 전에 잠을 자니?<br />→ 영어 질문: _________________________________</li>
+        <li>너는 유튜브를 자주 보니?<br />→ 영어 질문: _________________________________</li>
+      </ol>
+    </div>
+    <div class="item">
+      <p class="question">2) 위 질문에 스스로 대답해 보세요.</p>
+      <p><span class="small">Yes, I do. / No, I don’t. 를 사용해서, 이유도 한 문장 덧붙여 보세요.</span></p>
+      <ol class="example-list">
+        <li>Do you ____________________________________?<br />
+          → ___________________________________________ (Yes/No + 이유)
+        </li>
+        <li>Do you ____________________________________?<br />
+          → ___________________________________________</li>
+        <li>Do you ____________________________________?<br />
+          → ___________________________________________</li>
+      </ol>
+    </div>
+    <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+    <div class="answer">
+      <p class="label">질문 예시</p>
+      <ul>
+        <li>Do you play games on your smartphone?</li>
+        <li>Do you go to bed before twelve?</li>
+        <li>Do you watch YouTube often?</li>
+      </ul>
+      <p class="label">대답 예시</p>
+      <ul>
+        <li>Yes, I do. I play games every day.</li>
+        <li>No, I don’t. I go to bed at one.</li>
+        <li>Yes, I do. I like watching funny videos.</li>
+      </ul>
+      <p class="note small">채점 팁: 의미가 통하면 다양한 답을 모두 정답으로 인정해 주세요. “Do you ~ ?”와 “Yes, I do. / No, I don’t.”가 맞게 쓰였는지만 확인하면 됩니다.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>8. 짧은 대화 완성하기</h2>
+    <p class="small">대화를 보고, 빈칸에 알맞은 말을 채우세요.</p>
+    <div class="item">
+      <p><strong>A:</strong> __________________ you have PE class on Mondays?<br />
+         <strong>B:</strong> Yes, I ______. I love PE.<br />
+         <strong>A:</strong> ______ you like your PE teacher?<br />
+         <strong>B:</strong> Yes, I ______. She is very kind.</p>
+    </div>
+    <div class="item">
+      <p><strong>C:</strong> ______ your brother play computer games?<br />
+         <strong>D:</strong> No, he ______. He doesn’t like games.<br />
+         <strong>C:</strong> What ______ he like?<br />
+         <strong>D:</strong> He ______ reading books.</p>
+    </div>
+    <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+    <div class="answer">
+      <p class="label">정답</p>
+      <ul>
+        <li>A: <strong>Do</strong> you have PE class on Mondays?<br />
+            B: Yes, I <strong>do</strong>.<br />
+            A: <strong>Do</strong> you like your PE teacher?<br />
+            B: Yes, I <strong>do</strong>.
+        </li>
+        <li>C: <strong>Does</strong> your brother play computer games?<br />
+            D: No, he <strong>doesn’t</strong>.<br />
+            C: What <strong>does</strong> he like?<br />
+            D: He <strong>likes</strong> reading books.
+        </li>
+      </ul>
+      <p class="note small">
+        마지막 문장 “He likes reading books.” 는 <strong>평서문</strong>이라서 <code>likes</code> 처럼 -s 가 붙습니다.
+        질문문(Does he like...?)과 헷갈리지 않도록 지도해 주세요.
+      </p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>9. 내일 다시 보는 Mini Review (Spaced Repetition)</h2>
+    <p class="small">다음 날, 다시 풀어 보기에 좋은 핵심 문제들입니다. 따로 잘라서 사용해도 좋아요.</p>
+    <ol class="example-list">
+      <li>(형태) 빈칸을 채우세요.<br />
+        ______ you like English? → ____________________________
+      </li>
+      <li>(형태) 빈칸을 채우세요.<br />
+        ______ he play soccer? → ____________________________
+      </li>
+      <li>(의미) “너는 주말에 늦게 일어나니?” 를 영어로 써 보세요.<br />
+        → ___________________________________________________
+      </li>
+      <li>(형태) 알맞은 것을 고르세요.<br />
+        ______ your parents watch TV at night?<br />
+        a) Do&nbsp;&nbsp;&nbsp; b) Does&nbsp;&nbsp;&nbsp; c) Are
+      </li>
+      <li>(대답) 다음 질문에 Yes 또는 No로 짧게 대답해 보세요.<br />
+        Do you play computer games every day?<br />
+        → ___________________________________________________
+      </li>
+    </ol>
+    <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+    <div class="answer">
+      <p class="label">정답</p>
+      <ol>
+        <li>Do you like English? → <strong>Do</strong> you like English?</li>
+        <li>Does he play soccer? → <strong>Does</strong> he play soccer?</li>
+        <li>Do you get up late on weekends?</li>
+        <li>a) <strong>Do</strong> your parents watch TV at night?</li>
+        <li>예시: Yes, I do. / No, I don’t.</li>
+      </ol>
+      <p class="note small">채점 팁: 아이가 다음 날 다시 풀 때, 틀린 문제에만 표시하고, 왜 그런지 같이 설명해 주세요. “Do/Does + 주어 + 동사원형” 구조를 계속 떠올릴 수 있게 도와줍니다.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>10. 자기 점검 & 칭찬 코너</h2>
+    <p class="question">오늘 배운 내용을 스스로 체크해 보세요.</p>
+    <ul class="checklist">
+      <li>“Do you ... ? / Does he/she ... ?” 질문을 보고 <strong>습관/사실</strong>을 묻는 말인지 이해할 수 있다.</li>
+      <li>Do/Does 뒤에는 항상 <strong>동사원형</strong>이 온다는 것을 기억한다.</li>
+      <li>“Do you ... ?” 질문에 <strong>Yes, I do. / No, I don’t.</strong>라고 대답할 수 있다.</li>
+      <li>나와 친구의 하루에 대해 “Do you ... ?” 질문을 2개 이상 만들 수 있다.</li>
+    </ul>
+    <p class="note">
+      여기까지 열심히 했다면 정말 잘하고 있는 거예요! 😊<br />
+      모르면 안 되는 게 아니라, <strong>조금씩 더 알게 되는 중</strong>이라고 생각하세요. 오늘은 “Do you ... ?” 라는 질문의 문을 연 날입니다!
+    </p>
+  </div>
+</body>
+</html>
