@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Grammar in Use 학습 자료</title>
+  <style>
+    /* 인쇄/화면 공통 기본 스타일 */
+	body {
+	  font-family: "Comic Sans MS", "Nanum Gothic", "Arial Rounded MT", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+	  line-height: 1.7;
+	  max-width: 900px;
+	  margin: 0 auto;
+	  padding: 24px;
+	  font-size: 17px;
+	  background-color: #fffaf5; /* 밝은 크림색 배경 */
+	  color: #333;
+	}
+
+	/* 제목들 */
+	h1, h2, h3 {
+	  margin-top: 1.2em;
+	  margin-bottom: 0.5em;
+	  font-weight: 700;
+	}
+
+	h1 {
+	  font-size: 1.9rem;
+	  color: #ff7b7b; /* 따뜻한 핑크 톤 */
+	  text-align: center;
+	}
+
+	h2 {
+	  font-size: 1.5rem;
+	  color: #3a7bd5; /* 파란색 포인트 */
+	  border-left: 8px solid #ffd86b;
+	  padding-left: 10px;
+	}
+
+	h3 {
+	  font-size: 1.25rem;
+	  color: #e67e22; /* 주황 계열 */
+	}
+
+	/* 섹션 카드 스타일 */
+	.section {
+	  margin-bottom: 24px;
+	  padding: 20px;
+	  border: 2px solid #f5d5a3; /* 연한 주황 테두리 */
+	  border-radius: 18px;
+	  background: #ffffff;
+	  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.05);
+	  page-break-inside: avoid;
+	}
+
+	/* 메타 정보 */
+	.meta {
+	  font-size: 0.95em;
+	  color: #666;
+	  margin-bottom: 12px;
+	  padding: 10px 14px;
+	  border-radius: 12px;
+	  background: #fff3c4;
+      display: none !important;
+	}
+
+	/* 아이템 간 간격 */
+	.item {
+	  margin-bottom: 14px;
+	}
+
+	/* 질문 텍스트 강조 */
+	.question {
+	  font-weight: 600;
+	  margin-bottom: 6px;
+	}
+
+	/* 정답 보기 버튼 */
+	.answer-toggle {
+	  margin-top: 4px;
+	  margin-bottom: 4px;
+	  padding: 6px 14px;
+	  font-size: 0.95em;
+	  cursor: pointer;
+	  background: #ffd86b;
+	  border: none;
+	  border-radius: 16px;
+	  font-weight: 700;
+	  color: #333;
+	  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+	  transition: background 0.2s, transform 0.1s, box-shadow 0.1s;
+	}
+
+	.answer-toggle:hover {
+	  background: #ffca3a;
+	}
+
+	.answer-toggle:active {
+	  transform: translateY(1px);
+	  box-shadow: 0 0 0 rgba(0, 0, 0, 0.1);
+	}
+
+	/* 정답 박스 */
+	.answer {
+	  display: none;
+	  margin-top: 6px;
+	  padding: 10px 12px;
+	  border-left: 5px solid #6fcf97;
+	  background: #e7f9e7;
+	  font-size: 0.95em;
+	  border-radius: 10px;
+	}
+
+	.answer.visible {
+	  display: block;
+	}
+
+	/* 굵은 레이블 */
+	.label {
+	  font-weight: 700;
+	}
+
+	/* 설명/노트 */
+	.note {
+	  font-size: 0.9em;
+	  color: #555;
+	  margin-top: 6px;
+	}
+
+	/* 체크리스트 (자기 점검) */
+	.checklist {
+	  list-style: none;
+	  padding-left: 0;
+	  margin-top: 8px;
+	}
+
+	.checklist li {
+	  margin-bottom: 4px;
+	}
+
+	.checklist li::before {
+	  content: "☐ ";
+	  color: #ff7b7b;
+	  font-weight: 700;
+	}
+
+	/* 작은 글씨 */
+	.small {
+	  font-size: 0.9em;
+	}
+
+	/* 소제목 스타일 */
+	.subheading {
+	  font-weight: 700;
+	  margin-top: 8px;
+	  margin-bottom: 4px;
+	  color: #3a7bd5;
+	}
+
+	/* 예문 리스트 */
+	.example-list {
+	  margin-left: 22px;
+	  padding-left: 4px;
+	}
+
+	.example-list li {
+	  margin-bottom: 4px;
+	}
+
+	/* 리스트 번호 색깔 */
+	.example-list li::marker {
+	  color: #f39c12;
+	  font-weight: 700;
+	}
+
+	/* 하이라이트 텍스트 (중요 포인트) */
+	.highlight {
+	  font-weight: 700;
+	  color: #333;
+	  background: #fff3b0;
+	  padding: 2px 6px;
+	  border-radius: 6px;
+	}
+
+	/* 인쇄용 설정 */
+	@media print {
+	  body {
+		padding: 0;
+		background-color: #ffffff;
+	  }
+
+	  .section {
+		box-shadow: none;
+		border-radius: 0;
+	  }
+
+	  .answer-toggle {
+		display: none; /* 인쇄 시 버튼 숨기기 */
+	  }
+
+	  .answer {
+		display: none !important; /* 인쇄 시 정답 숨기기 */
+	  }
+	}
+	
+	.meta {
+		display: none !important;
+	}
+  </style>
+  <script>
+    function toggleAnswer(button) {
+      const answer = button.nextElementSibling;
+      if (!answer) return;
+      const isVisible = answer.classList.contains('visible');
+      if (isVisible) {
+        answer.classList.remove('visible');
+        button.textContent = '정답 보기';
+      } else {
+        answer.classList.add('visible');
+        button.textContent = '정답 숨기기';
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>Unit 16 - Have you ... ? (경험 물어보기)</h1>
+  <div class="meta">
+    Grammar in Use Present Perfect: Unit 16. Have you ... ? / 대상: 초등 6학년 / 1회 30분 / 분량: A4 2장 기준
+  </div>
+
+  <!-- 1. 오늘의 목표 & 워밍업 -->
+  <div class="section" id="overview">
+    <h2>1. 오늘의 목표 &amp; 워밍업</h2>
+    <div class="item">
+      <p class="question">오늘의 학습 목표</p>
+      <ul class="example-list">
+        <li><span class="highlight">Have you ... ?</span>를 보고 “~해 본 적 있니?”라는 뜻을 이해할 수 있다.</li>
+        <li><span class="highlight">Have you ~?</span>로 친구의 경험을 물어보는 질문을 만들 수 있다.</li>
+        <li><span class="highlight">Yes, I have. / No, I haven’t.</span> 같이 짧게 대답할 수 있다.</li>
+      </ul>
+    </div>
+    <div class="item">
+      <p class="question">워밍업 질문 (한국어로 먼저 이야기해 보세요)</p>
+      <ul class="example-list">
+        <li>놀이공원에 가 본 적이 있나요?</li>
+        <li>해외(다른 나라)에 가 본 적이 있나요?</li>
+        <li>아주 매운 음식을 먹어 본 적이 있나요?</li>
+      </ul>
+      <p class="note small">→ 아이가 한국어로 먼저 말해 보고, 나중에 영어 문장 만들기 활동에서 다시 사용합니다.</p>
+    </div>
+  </div>
+
+  <!-- 2. 문법 설명: Have you ... ? -->
+  <div class="section" id="grammar-explanation">
+    <h2>2. 문법 설명: Have you ... ?</h2>
+    <div class="item">
+      <p class="subheading">1) 기본 뜻</p>
+      <p>
+        <span class="highlight">Have you + 과거분사(p.p.) ... ?</span> 는<br />
+        우리말로 <span class="highlight">“~해 본 적 있니?”</span> 또는 <span class="highlight">“지금까지 ~한 적 있니?”</span> 라는 뜻이에요.
+      </p>
+      <ul class="example-list">
+        <li><b>Have you visited Jeju?</b> → 제주도에 가 본 적 있어?</li>
+        <li><b>Have you seen this movie?</b> → 이 영화 본 적 있어?</li>
+        <li><b>Have you eaten sushi?</b> → 초밥 먹어 본 적 있어?</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <p class="subheading">2) 문장 구조</p>
+      <p class="highlight">Have + 주어 + 과거분사(p.p.) ... ?</p>
+      <ul class="example-list">
+        <li><b>Have you</b> visited Japan?</li>
+        <li><b>Have you</b> played Roblox today?</li>
+      </ul>
+      <p class="note small">
+        *과거분사(p.p.) 예: gone, been, seen, eaten, played, visited, watched, tried 등
+      </p>
+    </div>
+
+    <div class="item">
+      <p class="subheading">3) 짧은 대답 (Short answers)</p>
+      <ul class="example-list">
+        <li>Yes, I have. / No, I haven’t.</li>
+        <li>Yes, he has. / No, he hasn’t.</li>
+      </ul>
+      <p class="note small">
+        *질문에 나온 <b>have</b> / <b>has</b>를 그대로 사용해서 대답합니다.
+      </p>
+    </div>
+
+    <div class="item">
+      <p class="subheading">4) Did you ... ? 와의 차이 (간단 비교)</p>
+      <ul class="example-list">
+        <li><b>Did you go to Jeju last year?</b><br />→ 작년이라는 <u>과거의 한 시점</u>을 물어봄.</li>
+        <li><b>Have you ever been to Jeju?</b><br />→ “지금까지 살아오면서” <u>경험</u>이 있는지 물어봄.</li>
+      </ul>
+      <p class="note small">
+        *오늘은 <span class="highlight">경험</span>을 묻는 <b>Have you ... ?</b>에 집중합니다.
+      </p>
+    </div>
+  </div>
+
+  <!-- 3. Noticing 활동 -->
+  <div class="section" id="noticing">
+    <h2>3. Noticing 활동: 규칙 스스로 발견하기</h2>
+    <div class="item">
+      <p class="subheading">① 예문 먼저 보기</p>
+      <ol class="example-list">
+        <li>Have you ever <b>been</b> to Busan?</li>
+        <li>Have you <b>seen</b> a rainbow?</li>
+        <li>Have you <b>tried</b> spicy ramen?</li>
+        <li>Have you <b>played</b> soccer at night?</li>
+        <li>Have you <b>visited</b> a museum?</li>
+      </ol>
+    </div>
+    <div class="item">
+      <p class="question">Q1. 위 문장들에서 공통으로 문장 맨 앞에 오는 단어는 무엇인가요?</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        모두 <b>Have</b> 로 시작합니다.
+      </div>
+    </div>
+    <div class="item">
+      <p class="question">Q2. <b>Have</b> 뒤에는 어떤 말(어떤 종류의 동사)이 오는지 한국어로 설명해 보세요.</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <b>주어(you)</b>가 나오고, 그 뒤에 <b>과거분사(p.p.) 동사</b>가 나옵니다. (been, seen, tried, played, visited 등)
+      </div>
+    </div>
+    <div class="item">
+      <p class="question">Q3. 이 문장들은 “언제”의 한 시점(어제, 작년 등)을 말하나요? 아니면 “해 본 적이 있는지 경험”을 묻나요?</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        “어제, 작년” 같은 정확한 시점이 아니라, <b>해 본 적이 있는지 경험</b>을 묻는 문장입니다.
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. Retrieval Practice -->
+  <div class="section" id="retrieval">
+    <h2>4. 회상 연습 (Retrieval Practice)</h2>
+    <p class="note small">※ 위쪽 설명을 보지 말고, 기억나는 대로 써 보세요.</p>
+
+    <div class="item">
+      <p class="question">① 오늘 배운 문장을 한국어로 설명해 보세요.</p>
+      <p>“Have you + p.p. ... ?”는 무슨 뜻인가요?</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        “Have you + p.p. ... ?”는 <b>지금까지 ~해 본 적 있니?</b>라는 뜻이에요.
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">② 기억나는 예문을 영어로 1문장 써 보세요.</p>
+      <p class="small">힌트: 놀이공원, 영화, 음식 등을 떠올려 보세요.</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        예) <b>Have you ever been to Lotte World?</b><br />
+        예) <b>Have you tried tteokbokki?</b><br />
+        <span class="note small">*비슷한 내용이면 단어가 조금 달라도 괜찮습니다.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. 단계별 연습: 쉬운 문제 → 조금 어려운 문제 -->
+  <div class="section" id="controlled-practice">
+    <h2>5. 단계별 연습 1: 형태 연습</h2>
+
+    <div class="item">
+      <h3>5-1. 맞는 대답 고르기 (선택형)</h3>
+      <p class="small">괄호 안에서 알맞은 대답을 고르세요.</p>
+
+      <div class="item">
+        <p class="question">1) Have you visited Jeju?</p>
+        <p>a) Yes, I did. &nbsp;&nbsp; b) Yes, I have.</p>
+        <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+        <div class="answer">
+          정답: <b>b) Yes, I have.</b><br />
+          <span class="note small">*“Have you ~?” 질문이므로 “have”로 대답합니다.</span>
+        </div>
+      </div>
+
+      <div class="item">
+        <p class="question">2) Have you seen a dolphin?</p>
+        <p>a) No, I haven’t. &nbsp;&nbsp; b) No, I don’t.</p>
+        <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+        <div class="answer">
+          정답: <b>a) No, I haven’t.</b>
+        </div>
+      </div>
+
+      <div class="item">
+        <p class="question">3) Have you tried sushi?</p>
+        <p>a) Yes, I have. &nbsp;&nbsp; b) Yes, I am.</p>
+        <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+        <div class="answer">
+          정답: <b>a) Yes, I have.</b>
+        </div>
+      </div>
+    </div>
+
+    <div class="item">
+      <h3>5-2. 빈칸 채우기 (Have / Has / p.p.)</h3>
+      <p class="small">괄호 안 단어를 보고 <b>Have you ~ ?</b> 문장을 완성해 보세요.</p>
+
+      <div class="item">
+        <p class="question">4) (you / eat / ramen)</p>
+        <p>Have you __________ __________?</p>
+        <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+        <div class="answer">
+          정답: <b>Have you eaten ramen?</b><br />
+          <span class="note small">*eat의 p.p.는 eaten 입니다.</span>
+        </div>
+      </div>
+
+      <div class="item">
+        <p class="question">5) (you / watch / this video)</p>
+        <p>Have you __________ __________ __________?</p>
+        <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+        <div class="answer">
+          정답: <b>Have you watched this video?</b>
+        </div>
+      </div>
+
+      <div class="item">
+        <p class="question">6) (you / be / to Seoul Tower)</p>
+        <p>Have you __________ __________ __________?</p>
+        <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+        <div class="answer">
+          정답: <b>Have you been to Seoul Tower?</b><br />
+          <span class="note small">*be 동사의 p.p.는 been 입니다.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. 단계별 연습 2: 의미 & 변형 연습 -->
+  <div class="section" id="meaning-practice">
+    <h2>6. 단계별 연습 2: 의미 &amp; 변형 연습</h2>
+
+    <div class="item">
+      <h3>6-1. 한국어를 보고 영어 질문 만들기</h3>
+      <p class="small">한국어를 보고 <b>Have you ~ ?</b> 질문으로 바꾸어 보세요.</p>
+
+      <div class="item">
+        <p class="question">7) 너, 제주도에 가 본 적 있어?</p>
+        <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+        <div class="answer">
+          예) <b>Have you ever been to Jeju?</b><br />
+          <span class="note small">*ever는 “언제든지, 한 번이라도”라는 뜻으로 경험을 나타낼 때 자주 같이 씁니다. 없어도 괜찮습니다.</span>
+        </div>
+      </div>
+
+      <div class="item">
+        <p class="question">8) 너, 이 게임 해 본 적 있어?</p>
+        <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+        <div class="answer">
+          예) <b>Have you played this game?</b>
+        </div>
+      </div>
+
+      <div class="item">
+        <p class="question">9) 너, 외국 친구와 영어로 말해 본 적 있어?</p>
+        <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+        <div class="answer">
+          예) <b>Have you spoken English with a foreign friend?</b><br />
+          <span class="note small">*speak의 p.p.는 spoken 입니다.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="item">
+      <h3>6-2. 질문 + 대답 세트 만들기</h3>
+      <p class="small">알맞은 짧은 대답을 써 보세요.</p>
+
+      <div class="item">
+        <p class="question">10) Have you visited a museum?</p>
+        <p>→ (예: 아니요, 아직 한 번도 안 가 봤어요.)</p>
+        <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+        <div class="answer">
+          예) <b>No, I haven’t.</b><br />
+          <span class="note small">*haven't = have not (줄임말)</span>
+        </div>
+      </div>
+
+      <div class="item">
+        <p class="question">11) Have you done your homework?</p>
+        <p>→ (예: 응, 다 했어.)</p>
+        <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+        <div class="answer">
+          예) <b>Yes, I have.</b>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. 생산(Production) 연습: 내 이야기로 말하기 -->
+  <div class="section" id="production">
+    <h2>7. 표현 연습 (Production): 내 이야기를 영어로!</h2>
+
+    <div class="item">
+      <h3>7-1. 나에 대해서 말하기</h3>
+      <p class="small">아래 한국어 문장을 보고, 내 경험에 맞게 <b>Yes, I have.</b> / <b>No, I haven’t.</b> 를 써 보세요.</p>
+
+      <div class="item">
+        <p class="question">12) 놀이공원에 가 본 적이 있다.</p>
+        <p>질문: <b>Have you ever been to an amusement park?</b><br />
+        나의 대답: __________________________________</p>
+        <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+        <div class="answer">
+          예) <b>Yes, I have.</b> 또는 <b>No, I haven’t.</b> (본인 경험에 맞게 쓰기)
+        </div>
+      </div>
+
+      <div class="item">
+        <p class="question">13) 아주 매운 라면을 먹어 본 적이 있다.</p>
+        <p>질문: <b>Have you tried very spicy ramen?</b><br />
+        나의 대답: __________________________________</p>
+        <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+        <div class="answer">
+          예) <b>Yes, I have.</b> / <b>No, I haven’t.</b>
+        </div>
+      </div>
+    </div>
+
+    <div class="item">
+      <h3>7-2. 짧은 대화 만들기</h3>
+      <p class="small">친구 A와 B의 대화를 완성해 보세요.</p>
+
+      <div class="item">
+        <p class="question">14) 대화 완성하기</p>
+        <p>
+          A: ____________________________ (제주도 가 본 적 있니?)<br />
+          B: Yes, I have. I went there with my family.<br />
+        </p>
+        <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+        <div class="answer">
+          A: <b>Have you ever been to Jeju?</b>
+        </div>
+      </div>
+
+      <div class="item">
+        <p class="question">15) 대화 완성하기</p>
+        <p>
+          A: ____________________________ (이 게임 해 본 적 있어?)<br />
+          B: No, I haven’t. Is it fun?<br />
+        </p>
+        <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+        <div class="answer">
+          A: <b>Have you played this game?</b>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. 피드백 가이드 (채점 기준) -->
+  <div class="section" id="feedback-guide">
+    <h2>8. 피드백 가이드 (학부모용)</h2>
+    <div class="item">
+      <p class="subheading">채점 시 크게 볼 것 3가지</p>
+      <ul class="example-list">
+        <li>① 문장 맨 앞에 <b>Have</b>가 왔는지</li>
+        <li>② 주어(you, I 등) 뒤에 <b>과거분사(p.p.)</b>를 썼는지 (예: been, seen, eaten, played)</li>
+        <li>③ 짧은 대답이 <b>Yes, I have. / No, I haven’t.</b> 처럼 <b>have</b>를 사용했는지</li>
+      </ul>
+      <p class="note small">
+        위 3가지가 맞으면 철자가 조금 틀려도 “거의 정답”으로 보셔도 좋습니다.
+      </p>
+    </div>
+    <div class="item">
+      <p class="subheading">아이에게 해 줄 수 있는 피드백 문장 예시</p>
+      <ul class="example-list">
+        <li>“Have로 잘 시작했네! 아주 좋아.”</li>
+        <li>“과거분사만 조금 더 연습하면 완벽할 것 같아.”</li>
+        <li>“네 경험을 영어로 잘 설명했어. 정말 멋지다!”</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 9. Spaced Repetition용 미니 복습 세트 -->
+  <div class="section" id="spaced-review">
+    <h2>9. 내일 다시 보는 미니 복습 세트</h2>
+    <p class="small">다음 날 5~10분 정도로 빠르게 다시 풀어보면 좋아요.</p>
+
+    <div class="item">
+      <p class="question">1) 빈칸 채우기</p>
+      <p>a. ______ you ever been to Jeju?<br />
+         b. ______ you tried sushi?<br />
+         c. ______ you seen this movie?</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        a. <b>Have</b> / b. <b>Have</b> / c. <b>Have</b>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">2) 맞는 짧은 대답 고르기</p>
+      <p>a. Have you visited a museum? → ( Yes, I have. / Yes, I am. )<br />
+         b. Have you eaten ramen? → ( No, I don’t. / No, I haven’t. )</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        a. <b>Yes, I have.</b><br />
+        b. <b>No, I haven’t.</b>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">3) 한국어 → 영어</p>
+      <p>a. 너, 이 영화 본 적 있어?<br />
+         b. 너, 외국에 가 본 적 있어?</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        a. 예) <b>Have you seen this movie?</b><br />
+        b. 예) <b>Have you ever been to a foreign country?</b>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">4) 내 경험 쓰기</p>
+      <p>Have you tried very spicy food?<br />
+         → 나의 대답: ______________________</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        예) <b>Yes, I have.</b> 또는 <b>No, I haven’t.</b>
+      </div>
+    </div>
+  </div>
+
+  <!-- 10. 자기 점검 & 동기부여 -->
+  <div class="section" id="self-check">
+    <h2>10. 자기 점검 &amp; 한 줄 칭찬</h2>
+    <p class="subheading">오늘 공부한 내용을 스스로 체크해 보세요.</p>
+    <ul class="checklist">
+      <li><b>Have you + p.p.</b> 가 “~해 본 적 있니?”라는 뜻인지 기억할 수 있다.</li>
+      <li><b>Have you been / seen / eaten / played</b> 같은 문장을 스스로 만들 수 있다.</li>
+      <li><b>Yes, I have. / No, I haven’t.</b>로 자연스럽게 대답할 수 있다.</li>
+      <li>내 경험(놀이공원, 게임, 음식, 여행 등)을 영어로 1문장 이상 말해 보았다.</li>
+    </ul>
+    <p class="note">
+      여기까지 풀었다면 정말 잘하고 있어요! 🎉<br />
+      오늘 배운 <span class="highlight">Have you ~ ?</span>를 내일 친구나 가족에게 한 번 물어보세요.<br />
+      예) <b>Have you tried tteokbokki?</b> 라고 직접 말해 보면 머릿속에 더 오래 남아요.
+    </p>
+  </div>
+</body>
+</html>

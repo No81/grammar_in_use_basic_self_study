@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Grammar in Use 학습 자료</title>
+  <style>
+	body {
+	  font-family: "Comic Sans MS", "Nanum Gothic", "Arial Rounded MT", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+	  line-height: 1.7;
+	  max-width: 900px;
+	  margin: 0 auto;
+	  padding: 24px;
+	  font-size: 17px;
+	  background-color: #fffaf5;
+	  color: #333;
+	}
+
+	h1, h2, h3 {
+	  margin-top: 1.2em;
+	  margin-bottom: 0.5em;
+	  font-weight: 700;
+	}
+
+	h1 {
+	  font-size: 1.9rem;
+	  color: #ff7b7b;
+	  text-align: center;
+	}
+
+	h2 {
+	  font-size: 1.5rem;
+	  color: #3a7bd5;
+	  border-left: 8px solid #ffd86b;
+	  padding-left: 10px;
+	}
+
+	h3 {
+	  font-size: 1.25rem;
+	  color: #e67e22;
+	}
+
+	.section {
+	  margin-bottom: 24px;
+	  padding: 20px;
+	  border: 2px solid #f5d5a3;
+	  border-radius: 18px;
+	  background: #ffffff;
+	  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.05);
+	  page-break-inside: avoid;
+	}
+
+	.meta {
+	  font-size: 0.95em;
+	  color: #666;
+	  margin-bottom: 12px;
+	  padding: 10px 14px;
+	  border-radius: 12px;
+	  background: #fff3c4;
+      display: none !important;
+	}
+
+	.item {
+	  margin-bottom: 14px;
+	}
+
+	.question {
+	  font-weight: 600;
+	  margin-bottom: 6px;
+	}
+
+	.answer-toggle {
+	  margin-top: 4px;
+	  margin-bottom: 4px;
+	  padding: 6px 14px;
+	  font-size: 0.95em;
+	  cursor: pointer;
+	  background: #ffd86b;
+	  border: none;
+	  border-radius: 16px;
+	  font-weight: 700;
+	  color: #333;
+	  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+	  transition: background 0.2s, transform 0.1s, box-shadow 0.1s;
+	}
+
+	.answer-toggle:hover {
+	  background: #ffca3a;
+	}
+
+	.answer-toggle:active {
+	  transform: translateY(1px);
+	  box-shadow: 0 0 0 rgba(0, 0, 0, 0.1);
+	}
+
+	.answer {
+	  display: none;
+	  margin-top: 6px;
+	  padding: 10px 12px;
+	  border-left: 5px solid #6fcf97;
+	  background: #e7f9e7;
+	  font-size: 0.95em;
+	  border-radius: 10px;
+	}
+
+	.answer.visible {
+	  display: block;
+	}
+
+	.label {
+	  font-weight: 700;
+	}
+
+	.note {
+	  font-size: 0.9em;
+	  color: #555;
+	  margin-top: 6px;
+	}
+
+	.checklist {
+	  list-style: none;
+	  padding-left: 0;
+	  margin-top: 8px;
+	}
+
+	.checklist li {
+	  margin-bottom: 4px;
+	}
+
+	.checklist li::before {
+	  content: "☐ ";
+	  color: #ff7b7b;
+	  font-weight: 700;
+	}
+
+	.small {
+	  font-size: 0.9em;
+	}
+
+	.subheading {
+	  font-weight: 700;
+	  margin-top: 8px;
+	  margin-bottom: 4px;
+	  color: #3a7bd5;
+	}
+
+	.example-list {
+	  margin-left: 22px;
+	  padding-left: 4px;
+	}
+
+	.example-list li {
+	  margin-bottom: 4px;
+	}
+
+	.example-list li::marker {
+	  color: #f39c12;
+	  font-weight: 700;
+	}
+
+	.highlight {
+	  font-weight: 700;
+	  color: #333;
+	  background: #fff3b0;
+	  padding: 2px 6px;
+	  border-radius: 6px;
+	}
+
+	@media print {
+	  body {
+		padding: 0;
+		background-color: #ffffff;
+	  }
+
+	  .section {
+		box-shadow: none;
+		border-radius: 0;
+	  }
+
+	  .answer-toggle {
+		display: none;
+	  }
+
+	  .answer {
+		display: none !important;
+	  }
+	}
+	
+	.meta {
+		display: none !important;
+	}
+  </style>
+  <script>
+    function toggleAnswer(button) {
+      const answer = button.nextElementSibling;
+      if (!answer) return;
+      const isVisible = answer.classList.contains('visible');
+      if (isVisible) {
+        answer.classList.remove('visible');
+        button.textContent = '정답 보기';
+      } else {
+        answer.classList.add('visible');
+        button.textContent = '정답 숨기기';
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>Unit 11 - worked / got / went (일반동사 과거형)</h1>
+  <div class="meta">
+    학습자: 초등학교 6학년, 한국어 모국어 · 수준: 문장은 읽을 수 있지만 문법 지식이 약함 · 1회 30분, 분량 A4 2장 내외
+  </div>
+
+  <div class="section">
+    <h2>1. 오늘의 목표 & 전체 그림</h2>
+    <div class="item">
+      <p class="question">오늘 배울 것</p>
+      <ul class="example-list">
+        <li>과거에 한 일을 말할 때 쓰는 <span class="highlight">과거형 동사(Simple Past)</span>를 이해하기</li>
+        <li><span class="highlight">규칙 동사</span>(work → worked)와 <span class="highlight">불규칙 동사</span>(go → went, get → got) 구별하기</li>
+        <li>어제, 지난주, 작년에 했던 일을 영어 문장으로 말하고 쓰기</li>
+      </ul>
+    </div>
+    <div class="item">
+      <p class="question">한국어랑 비교해서 생각해 봐요</p>
+      <p>한국어에서는 어제, 지난주 같은 말만 붙이면 돼요. (예: <span class="highlight">나는 어제 숙제 했어</span>)<br>
+      하지만 영어에서는 <span class="highlight">동사 모양 자체가 과거형</span>으로 바뀌어요. (예: I <u>do</u> my homework. → I <u>did</u> my homework.)</p>
+    </div>
+    <div class="note small">
+      ※ 자주 하는 실수: <br>
+      - <em>I go to school yesterday.</em> (X) → <span class="highlight">I went to school yesterday.</span> (O)<br>
+      - <em>I did went.</em> (X) → 조동사 did와 과거형 동사를 같이 쓰지 않아요.
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>2. 문법 설명 – Simple Past (worked / got / went)</h2>
+    <div class="item">
+      <p class="subheading">1) 언제 쓰나요?</p>
+      <ul class="example-list">
+        <li><span class="highlight">이미 끝난 과거의 행동</span>을 말할 때<br>
+          (어제, 지난주, 작년, 조금 전 등)</li>
+        <li>시간 표현과 자주 함께 사용:
+          <span class="highlight">yesterday, last week, last year, this morning, two days ago</span> 등</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <p class="subheading">2) 규칙 동사 형태 (regular verbs)</p>
+      <p>대부분의 동사는 <span class="highlight">동사 + -ed</span>를 붙여서 과거형을 만들어요.</p>
+      <ul class="example-list">
+        <li>work → worked (일하다 → 일했다)</li>
+        <li>play → played (놀다 → 놀았다)</li>
+        <li>watch → watched (보다 → 보았다)</li>
+        <li>clean → cleaned (청소하다 → 청소했다)</li>
+      </ul>
+      <p class="note small">
+        철자 규칙(자세한 건 나중에 배우지만, 간단히)<br>
+        - e로 끝나면: like → liked<br>
+        - 자음 + y로 끝나면: study → studied
+      </p>
+    </div>
+
+    <div class="item">
+      <p class="subheading">3) 불규칙 동사 형태 (irregular verbs)</p>
+      <p>몇몇 중요한 동사는 <span class="highlight">-ed를 붙이지 않고, 완전히 다른 모양</span>이 돼요. 이것들을 잘 외워야 해요.</p>
+      <ul class="example-list">
+        <li>go → <span class="highlight">went</span> (가다 → 갔다)</li>
+        <li>get → <span class="highlight">got</span> (얻다/받다 → 얻었다/받았다)</li>
+        <li>have → <span class="highlight">had</span> (가지다/먹다 → 가졌다/먹었다)</li>
+        <li>do → <span class="highlight">did</span> (하다 → 했다)</li>
+        <li>see → <span class="highlight">saw</span> (보다 → 보았다)</li>
+        <li>eat → <span class="highlight">ate</span> (먹다 → 먹었다)</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <p class="subheading">4) 문장 구조</p>
+      <ul class="example-list">
+        <li><span class="highlight">긍정문</span>: 주어 + 과거형 동사 + (나머지)<br>
+          예) I <u>worked</u> yesterday. / She <u>went</u> to school.</li>
+        <li><span class="highlight">의문문</span>: Did + 주어 + 동사 원형...?<br>
+          예) Did you <u>play</u> soccer?</li>
+        <li><span class="highlight">부정문</span>: 주어 + did not(didn't) + 동사 원형<br>
+          예) I didn't <u>watch</u> TV.</li>
+      </ul>
+      <p class="note small">
+        중요!<br>
+        - 의문문/부정문에서는 <span class="highlight">did</span>가 과거를 나타내므로, <span class="highlight">본동사는 원형</span>으로 돌아가요.<br>
+        (Did you went? (X) → Did you go? (O))
+      </p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>3. Noticing 활동 – 규칙 찾기</h2>
+    <div class="item">
+      <p class="question">① 아래 문장을 읽고, 과거형 동사를 동그라미 해 보세요.</p>
+      <ol class="example-list">
+        <li>Yesterday, I <u>worked</u> on my science project.</li>
+        <li>My sister <u>played</u> games on her tablet.</li>
+        <li>We <u>watched</u> a funny movie last night.</li>
+        <li>My dad <u>went</u> to the supermarket.</li>
+        <li>I <u>got</u> a new pencil case from my mom.</li>
+        <li>We <u>had</u> pizza for dinner.</li>
+        <li>I <u>saw</u> a rainbow after the rain.</li>
+        <li>My friend <u>did</u> his homework before dinner.</li>
+      </ol>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p><span class="label">과거형 동사:</span> worked, played, watched, went, got, had, saw, did</p>
+        <p class="small">위 동사들은 모두 "이미 끝난 행동"을 말하고 있어서 과거형을 사용했어요.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">② 규칙 동사와 불규칙 동사를 나누어 보세요.</p>
+      <p>위 문장에서 찾은 과거형 동사를 아래 표에 적어 보세요.</p>
+      <ul class="example-list">
+        <li>규칙 동사 (-ed 붙인 것): __________________________</li>
+        <li>불규칙 동사 (모양이 많이 바뀐 것): __________________</li>
+      </ul>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p><span class="label">규칙 동사:</span> worked, played, watched</p>
+        <p><span class="label">불규칙 동사:</span> went, got, had, saw, did</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">③ 이 문장들은 <span class="highlight">언제</span> 일어난 일인가요?</p>
+      <p>힌트: yesterday, last night, for dinner 같은 표현을 보고 생각해 보세요.</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p>모두 <span class="highlight">과거(이미 끝난 시간)</span>에 일어난 일이에요. 그래서 simple past를 사용했어요.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>4. Retrieval Practice – 방금 배운 내용 떠올리기</h2>
+    <div class="item">
+      <p class="question">① 방금 배운 규칙을 한국어로 짧게 써 보세요.</p>
+      <p>힌트: 과거에 한 일을 말할 때, 동사는 어떻게 바뀌나요?</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p>예시 답:<br>
+        "과거에 이미 끝난 일을 말할 때 동사를 과거형으로 쓴다. 대부분은 동사에 -ed를 붙이고, go→went 같은 불규칙 동사는 따로 외워야 한다."</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">② 기억나는 과거형 동사 3개를 영어로 써 보세요. (뜻도 같이 써 보기)</p>
+      <p>예: went (갔다), ____________, ____________, ____________</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p>예시 답:</p>
+        <ul class="example-list">
+          <li>went (갔다)</li>
+          <li>worked (일했다)</li>
+          <li>played (놀았다)</li>
+          <li>had (가졌다/먹었다)</li>
+        </ul>
+        <p class="small">※ 3개 이상 잘 썼다면 아주 잘한 거예요!</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">③ 아래 동사들의 과거형을 <u>책을 보지 않고</u> 써 보세요.</p>
+      <ul class="example-list">
+        <li>go → __________</li>
+        <li>get → __________</li>
+        <li>have → __________</li>
+        <li>work → __________</li>
+      </ul>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <ul class="example-list">
+          <li>go → went</li>
+          <li>get → got</li>
+          <li>have → had</li>
+          <li>work → worked</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>5. 연습 1 – 기본 이해 확인 (선택·빈칸)</h2>
+    <div class="item">
+      <p class="question">① 괄호 안 동사를 알맞은 과거형으로 바꾸세요.</p>
+      <ol class="example-list">
+        <li>Yesterday, I __________ (go) to the library.</li>
+        <li>My mom __________ (cook) dinner last night.</li>
+        <li>We __________ (play) soccer after school.</li>
+        <li>He __________ (get) a new game last weekend.</li>
+        <li>They __________ (watch) a drama on TV.</li>
+      </ol>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <ol class="example-list">
+          <li>went</li>
+          <li>cooked</li>
+          <li>played</li>
+          <li>got</li>
+          <li>watched</li>
+        </ol>
+        <p class="note small">정답 기준: 동사의 과거형 모양만 맞으면 정답으로 봐도 좋아요. 철자도 함께 확인해 주세요.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">② 다음 중 <span class="highlight">과거형 문장</span>이 아닌 것을 고르세요.</p>
+      <ol class="example-list">
+        <li>I went to bed at eleven.</li>
+        <li>She plays the piano every day.</li>
+        <li>We watched a movie yesterday.</li>
+        <li>They had lunch at school.</li>
+      </ol>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p>정답: <span class="highlight">2번</span><br>
+        2번 문장은 plays(현재형)와 every day(현재 습관)를 사용하고 있어요.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>6. 연습 2 – 문장 변형 연습</h2>
+    <div class="item">
+      <p class="question">① 현재형 문장을 과거형으로 바꾸세요.</p>
+      <ol class="example-list">
+        <li>I work in the classroom after school.<br>
+          → ___________________________________________.</li>
+        <li>He goes to the PC room on Saturdays.<br>
+          → ___________________________________________.</li>
+        <li>We have lunch at home.<br>
+          → ___________________________________________.</li>
+      </ol>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <ol class="example-list">
+          <li>I worked in the classroom after school.</li>
+          <li>He went to the PC room on Saturdays. / He went to the PC room last Saturday. (시간 표현을 과거로 바꾸면 더 자연스러움)</li>
+          <li>We had lunch at home.</li>
+        </ol>
+        <p class="note small">핵심: 동사를 과거형으로 바꾸는 것이 가장 중요합니다. 시간 표현도 과거에 어울리게 바꿔 주면 더 좋아요.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">② 주어만 바꾸어 보세요. (동사는 과거형 유지)</p>
+      <p>예: I worked → My friends worked</p>
+      <ol class="example-list">
+        <li>I went to the park yesterday.<br>
+          → My friends ________________________________________.</li>
+        <li>She got a high score in the English test.<br>
+          → We ______________________________________________.</li>
+      </ol>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <ol class="example-list">
+          <li>My friends went to the park yesterday.</li>
+          <li>We got a high score in the English test.</li>
+        </ol>
+        <p class="note small">주어만 바꾸고, went / got 같은 과거형은 그대로 두는 게 포인트입니다.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>7. 연습 3 – 한국어 → 영어 번역 (나의 실제 생활)</h2>
+    <div class="item">
+      <p class="question">다음 문장을 영어로 써 보세요. (단, 시제는 모두 과거!)</p>
+      <ol class="example-list">
+        <li>어제 나는 영어 숙제를 했다.<br>
+          → ___________________________________________.</li>
+        <li>우리는 어젯밤에 재미있는 영화를 봤다.<br>
+          → ___________________________________________.</li>
+        <li>나는 지난주에 새로운 게임을 받았다.<br>
+          → ___________________________________________.</li>
+        <li>우리 가족은 어제 피자를 먹었다.<br>
+          → ___________________________________________.</li>
+        <li>나는 오늘 아침에 무지개를 보았다.<br>
+          → ___________________________________________.</li>
+      </ol>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <ol class="example-list">
+          <li>Yesterday, I did my English homework. / I did my English homework yesterday.</li>
+          <li>We watched a funny movie last night.</li>
+          <li>I got a new game last week.</li>
+          <li>My family had pizza yesterday. / We had pizza yesterday.</li>
+          <li>I saw a rainbow this morning.</li>
+        </ol>
+        <p class="note small">
+          채점 팁(부모님용):<br>
+          - 동사의 시제(과거형)와 어순만 맞으면 정답으로 보셔도 좋습니다.<br>
+          - Yesterday, / last night 같은 시간 표현 위치는 앞·뒤 어느 쪽에 와도 괜찮습니다.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>8. 짧은 글 써 보기 – 나의 어제 하루</h2>
+    <div class="item">
+      <p class="question">어제 한 일을 3~4문장으로 써 보세요. 가능한 한 과거형 동사를 많이 사용해 보세요.</p>
+      <p>예시 틀:</p>
+      <ul class="example-list">
+        <li>Yesterday, I __________.</li>
+        <li>I __________ with my friend.</li>
+        <li>We __________ and __________.</li>
+        <li>I __________ in the evening.</li>
+      </ul>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p>예시 답(그대로 외우지 말고 참고만 하세요):</p>
+        <p>
+          Yesterday, I <u>went</u> to school. I <u>played</u> basketball with my friends.<br>
+          We <u>watched</u> a video in the classroom and <u>worked</u> on a project.<br>
+          In the evening, I <u>did</u> my homework and <u>had</u> dinner with my family.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>9. Spaced Repetition – 내일 다시 풀어 보기 문제 세트</h2>
+    <p class="small">※ 이 부분은 오늘 풀어도 좋고, 내일/모레 다시 풀어 보면서 복습용으로 사용하세요.</p>
+    <div class="item">
+      <ol class="example-list">
+        <li>다음 동사의 과거형을 쓰세요.
+          <ul class="example-list">
+            <li>go → __________</li>
+            <li>work → __________</li>
+            <li>get → __________</li>
+          </ul>
+        </li>
+        <li>빈칸에 알맞은 동사를 과거형으로 쓰세요.<br>
+          Yesterday, we __________ (watch) a football match.</li>
+        <li>한국어를 영어로 쓰세요.<br>
+          나는 어제 새로운 친구를 만났다.<br>
+          → ___________________________________________.</li>
+        <li>현재형을 과거형으로 바꾸세요.<br>
+          I play games on my phone.<br>
+          → ___________________________________________.</li>
+        <li>오늘 하루 중 이미 끝난 일 한 가지를 과거형 동사를 사용해서 영어로 써 보세요.<br>
+          → ___________________________________________.</li>
+      </ol>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <ol class="example-list">
+          <li>
+            go → went, work → worked, get → got
+          </li>
+          <li>
+            watched
+          </li>
+          <li>
+            I met a new friend yesterday.
+          </li>
+          <li>
+            I played games on my phone.
+          </li>
+          <li>
+            예: I ate breakfast. / I went to school. / I did my homework. 등
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>10. 자기 점검 & 동기 부여</h2>
+    <div class="item">
+      <p class="question">오늘 공부를 돌아보며 체크해 보세요.</p>
+      <ul class="checklist">
+        <li>규칙 동사에 -ed를 붙여 과거형을 만들 수 있다.</li>
+        <li>go → went, get → got, have → had 같은 불규칙 동사 몇 개를 기억할 수 있다.</li>
+        <li>어제 한 일을 영어 문장 2개 이상으로 말하거나 쓸 수 있다.</li>
+        <li>현재형 문장을 과거형으로 바꿀 수 있다.</li>
+      </ul>
+    </div>
+    <div class="item">
+      <p class="note">
+        여기까지 풀었다면 정말 잘하고 있어요! 👏<br>
+        과거형은 처음에 외울 게 많아서 어렵게 느껴질 수 있지만, <span class="highlight">내가 실제로 한 일</span>을 계속 영어로 말해 보고 써 보면 점점 더 쉬워질 거예요.
+      </p>
+    </div>
+    <div class="item small">
+      <p class="label">부모님을 위한 간단 채점 가이드</p>
+      <ul class="example-list">
+        <li>동사의 시제(과거형)와 어순이 맞으면 대부분 정답으로 인정해 주세요.</li>
+        <li>철자(spelling)가 조금 틀려도, 어떤 동사를 쓰려고 했는지 알 수 있으면 부분점수(✓)를 주시면 좋습니다.</li>
+        <li>아이 스스로 고칠 수 있도록, 정답을 보여 주기 전 "어디가 이상한 것 같니?"라고 먼저 물어봐 주세요.</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

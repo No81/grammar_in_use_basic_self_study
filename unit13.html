@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Grammar in Use 학습 자료</title>
+  <style>
+	body {
+	  font-family: "Comic Sans MS", "Nanum Gothic", "Arial Rounded MT", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+	  line-height: 1.7;
+	  max-width: 900px;
+	  margin: 0 auto;
+	  padding: 24px;
+	  font-size: 17px;
+	  background-color: #fffaf5;
+	  color: #333;
+	}
+
+	h1, h2, h3 {
+	  margin-top: 1.2em;
+	  margin-bottom: 0.5em;
+	  font-weight: 700;
+	}
+
+	h1 {
+	  font-size: 1.9rem;
+	  color: #ff7b7b;
+	  text-align: center;
+	}
+
+	h2 {
+	  font-size: 1.5rem;
+	  color: #3a7bd5;
+	  border-left: 8px solid #ffd86b;
+	  padding-left: 10px;
+	}
+
+	h3 {
+	  font-size: 1.25rem;
+	  color: #e67e22;
+	}
+
+	.section {
+	  margin-bottom: 24px;
+	  padding: 20px;
+	  border: 2px solid #f5d5a3;
+	  border-radius: 18px;
+	  background: #ffffff;
+	  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.05);
+	  page-break-inside: avoid;
+	}
+
+	.meta {
+	  font-size: 0.95em;
+	  color: #666;
+	  margin-bottom: 12px;
+	  padding: 10px 14px;
+	  border-radius: 12px;
+	  background: #fff3c4;
+      display: none !important;
+	}
+
+	.item {
+	  margin-bottom: 14px;
+	}
+
+	.question {
+	  font-weight: 600;
+	  margin-bottom: 6px;
+	}
+
+	.answer-toggle {
+	  margin-top: 4px;
+	  margin-bottom: 4px;
+	  padding: 6px 14px;
+	  font-size: 0.95em;
+	  cursor: pointer;
+	  background: #ffd86b;
+	  border: none;
+	  border-radius: 16px;
+	  font-weight: 700;
+	  color: #333;
+	  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+	  transition: background 0.2s, transform 0.1s, box-shadow 0.1s;
+	}
+
+	.answer-toggle:hover {
+	  background: #ffca3a;
+	}
+
+	.answer-toggle:active {
+	  transform: translateY(1px);
+	  box-shadow: 0 0 0 rgba(0, 0, 0, 0.1);
+	}
+
+	.answer {
+	  display: none;
+	  margin-top: 6px;
+	  padding: 10px 12px;
+	  border-left: 5px solid #6fcf97;
+	  background: #e7f9e7;
+	  font-size: 0.95em;
+	  border-radius: 10px;
+	}
+
+	.answer.visible {
+	  display: block;
+	}
+
+	.label {
+	  font-weight: 700;
+	}
+
+	.note {
+	  font-size: 0.9em;
+	  color: #555;
+	  margin-top: 6px;
+	}
+
+	.checklist {
+	  list-style: none;
+	  padding-left: 0;
+	  margin-top: 8px;
+	}
+
+	.checklist li {
+	  margin-bottom: 4px;
+	}
+
+	.checklist li::before {
+	  content: "☐ ";
+	  color: #ff7b7b;
+	  font-weight: 700;
+	}
+
+	.small {
+	  font-size: 0.9em;
+	}
+
+	.subheading {
+	  font-weight: 700;
+	  margin-top: 8px;
+	  margin-bottom: 4px;
+	  color: #3a7bd5;
+	}
+
+	.example-list {
+	  margin-left: 22px;
+	  padding-left: 4px;
+	}
+
+	.example-list li {
+	  margin-bottom: 4px;
+	}
+
+	.example-list li::marker {
+	  color: #f39c12;
+	  font-weight: 700;
+	}
+
+	.highlight {
+	  font-weight: 700;
+	  color: #333;
+	  background: #fff3b0;
+	  padding: 2px 6px;
+	  border-radius: 6px;
+	}
+
+	@media print {
+	  body {
+		padding: 0;
+		background-color: #ffffff;
+	  }
+
+	  .section {
+		box-shadow: none;
+		border-radius: 0;
+	  }
+
+	  .answer-toggle {
+		display: none;
+	  }
+
+	  .answer {
+		display: none !important;
+	  }
+	}
+	
+	.meta {
+		display: none !important;
+	}
+  </style>
+  <script>
+    function toggleAnswer(button) {
+      const answer = button.nextElementSibling;
+      if (!answer) return;
+      const isVisible = answer.classList.contains('visible');
+      if (isVisible) {
+        answer.classList.remove('visible');
+        button.textContent = '정답 보기';
+      } else {
+        answer.classList.add('visible');
+        button.textContent = '정답 숨기기';
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>Unit 13 - I was doing (과거진행형)</h1>
+
+  <div class="meta">
+    Grammar in Use 스타일 학습지 · 대상: 초6 · 주제: 과거진행형 (was/were + ~ing) · 예상 소요 시간: 30분 · 분량: A4 약 2장
+  </div>
+
+  <div class="section">
+    <h2>1. 오늘의 목표 & 워밍업</h2>
+    <div class="item">
+      <p class="question">★ 오늘의 문법</p>
+      <p>
+        오늘은 <span class="highlight">과거 진행형 (past continuous)</span>, 즉
+        <span class="highlight">“~하고 있었어요”</span>를 배우는 시간이에요.
+      </p>
+      <ul class="example-list">
+        <li>I was doing my homework. (나는 숙제를 하고 <u>있었어요</u>.)</li>
+        <li>They were playing soccer. (그들은 축구를 하고 <u>있었어요</u>.)</li>
+      </ul>
+    </div>
+    <div class="item">
+      <p class="question">1-1. 워밍업 질문</p>
+      <p>어제 저녁 8시에 너는 무엇을 하고 있었니? 아래에 한국어로 먼저 적어 보세요.</p>
+      <textarea style="width:100%;height:60px;"></textarea>
+      <div class="note small">
+        나중에 배운 뒤에, 위 문장을 영어로도 써 볼 거예요!
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>2. 문법 설명: 과거 진행형 핵심 정리</h2>
+    <div class="item">
+      <p class="subheading">1) 형식(형태)</p>
+      <p>
+        과거 진행형은
+        <span class="highlight">was / were + 동사-ing</span> 으로 만듭니다.
+      </p>
+      <ul class="example-list">
+        <li>I <span class="highlight">was reading</span> a book.</li>
+        <li>She <span class="highlight">was watching</span> TV.</li>
+        <li>They <span class="highlight">were playing</span> games.</li>
+        <li>We <span class="highlight">were eating</span> dinner.</li>
+      </ul>
+      <div class="note">
+        I, he, she, it → was / you, we, they → were
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="subheading">2) 의미(뉘앙스)</p>
+      <p>
+        과거 진행형은 <span class="highlight">“그때 한창 ~하고 있는 중이었다”</span>를 나타냅니다.
+        어떤 <u>특정한 과거 시점</u>에 동작이 <u>진행 중</u>이었음을 보여줘요.
+      </p>
+      <ul class="example-list">
+        <li>At 8 p.m., I was studying English. (8시에 나는 영어를 공부하고 있는 중이었다.)</li>
+        <li>When my mom came in, I was playing a game. (엄마가 들어오셨을 때, 나는 게임을 하고 있었다.)</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <p class="subheading">3) 언제 쓰는지 (사용 맥락)</p>
+      <ul class="example-list">
+        <li>과거의 <span class="highlight">특정 시간</span>에 무엇을 하고 있었는지 말할 때</li>
+        <li>다른 일이 일어났을 때, 그 전에 <span class="highlight">이미 하고 있던 행동</span>을 말할 때</li>
+      </ul>
+      <p>
+        예) When the phone rang, I <span class="highlight">was taking</span> a shower.
+        (전화가 울렸을 때, 나는 샤워를 하고 있었다.)
+      </p>
+    </div>
+
+    <div class="item">
+      <p class="subheading">4) 단순 과거와 비교</p>
+      <p>
+        <span class="highlight">단순 과거 (simple past)</span>는 “그때 ~했다(끝났다)”이고,<br />
+        <span class="highlight">과거 진행형 (past continuous)</span>은 “그때 ~하고 있었다(진행 중이었다)”입니다.
+      </p>
+      <ul class="example-list">
+        <li>I <u>watched</u> TV at 8. (8시에 TV를 봤다. → 행동이 완료된 느낌)</li>
+        <li>I <u>was watching</u> TV at 8. (8시에 TV를 보고 있는 중이었다. → 진행 중)</li>
+      </ul>
+      <div class="note">
+        한국어에서는 둘 다 “봤다/보고 있었다”로 비슷하게 느껴져서 헷갈릴 수 있어요.
+        <span class="highlight">“~하고 있는 중이었다” 느낌이면 과거 진행형</span>을 떠올려 보세요.
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>3. Noticing 활동: 규칙 스스로 발견하기</h2>
+    <div class="item">
+      <p class="question">3-1. 예문 관찰하기</p>
+      <ol class="example-list">
+        <li>I was doing my homework at 9 p.m.</li>
+        <li>She was listening to music on the bus.</li>
+        <li>They were playing basketball in the park.</li>
+        <li>We were eating pizza when Dad arrived.</li>
+        <li>My brother was sleeping during the movie.</li>
+        <li>You were talking with your friend on the phone.</li>
+      </ol>
+    </div>
+
+    <div class="item">
+      <p class="question">3-2. 규칙 찾기 (한글로 적어보기)</p>
+      <p>위 문장에서 공통적으로 쓰인 동사의 모양(형태)을 적어 보세요.</p>
+      <textarea style="width:100%;height:50px;"></textarea>
+
+      <p style="margin-top:10px;">누가(who)에 따라 was, were가 어떻게 달라지는지 적어 보세요.</p>
+      <textarea style="width:100%;height:60px;"></textarea>
+
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p>
+          모두 <span class="highlight">was / were + 동사-ing</span> 형태입니다.<br />
+          I, he, she, it → was / you, we, they → were 를 사용합니다.
+        </p>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">3-3. 언제 쓰는지 생각해 보기</p>
+      <p>위 6개 문장 속 시간 표현(예: at 9 p.m., when Dad arrived)을 동그라미 표시해 보고,</p>
+      <p>그 시간에 “이미 하고 있던 행동”을 말하는지, “그때 딱 한 번 한 행동”을 말하는지 적어 보세요.</p>
+      <textarea style="width:100%;height:70px;"></textarea>
+
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p>
+          모두 과거의 어떤 <span class="highlight">특정 시간이나 순간</span>에
+          <span class="highlight">이미 진행 중이던 행동</span>을 말하고 있습니다.
+          그래서 과거 진행형을 사용했습니다.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>4. 회상 연습 (Retrieval Practice)</h2>
+    <div class="item">
+      <p class="question">4-1. 규칙 떠올리기</p>
+      <p>책이나 위 설명을 보지 말고, 기억 나는 대로 써 보세요.</p>
+      <p>과거 진행형은 어떻게 만들까요? (한국어로 대답해도 좋아요.)</p>
+      <textarea style="width:100%;height:70px;"></textarea>
+
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p>
+          과거 진행형은 <span class="highlight">주어 + was / were + 동사-ing</span> 으로 만든다.<br />
+          I, he, she, it → was / you, we, they → were.
+        </p>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">4-2. 기억나는 예문 다시 쓰기</p>
+      <p>아까 본 예문 중에서 기억나는 문장을 한 개 이상 영어로 적어 보세요.</p>
+      <textarea style="width:100%;height:70px;"></textarea>
+
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p>예시)</p>
+        <ul class="example-list">
+          <li>I was doing my homework at 9 p.m.</li>
+          <li>They were playing basketball in the park.</li>
+        </ul>
+        <p class="note">비슷한 의미로, 주어/장소를 바꾸어도 괜찮습니다.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>5. 형식 익히기: was / were 고르기</h2>
+    <div class="item">
+      <p class="question">5-1. 괄호 안에서 골라 쓰기</p>
+      <p>빈칸에 알맞은 was / were를 골라 쓰세요.</p>
+      <ol class="example-list">
+        <li>I ______ reading a comic book.</li>
+        <li>He ______ playing the piano.</li>
+        <li>They ______ studying in the library.</li>
+        <li>We ______ eating lunch at school.</li>
+        <li>You ______ talking with your friend.</li>
+        <li>My parents ______ watching TV.</li>
+      </ol>
+
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <ol class="example-list">
+          <li>I <span class="highlight">was</span> reading a comic book.</li>
+          <li>He <span class="highlight">was</span> playing the piano.</li>
+          <li>They <span class="highlight">were</span> studying in the library.</li>
+          <li>We <span class="highlight">were</span> eating lunch at school.</li>
+          <li>You <span class="highlight">were</span> talking with your friend.</li>
+          <li>My parents <span class="highlight">were</span> watching TV.</li>
+        </ol>
+        <p class="note">
+          I, he, she, it → was / 복수(we, you, they, parents 등) → were 가 되는지 확인해 주세요.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>6. 단순 과거 → 과거 진행형으로 바꾸기</h2>
+    <div class="item">
+      <p class="question">6-1. 문장을 바꿔 써 보세요</p>
+      <p>아래 문장은 단순 과거입니다. “그때 ~하고 있었다” 느낌이 나도록 과거 진행형으로 바꿔 보세요.</p>
+      <ol class="example-list">
+        <li>I watched YouTube at 10 p.m. → (힌트: was / watching)</li>
+        <li>She played the game at 7 p.m. → (힌트: was / playing)</li>
+        <li>They ate ramen at midnight. → (힌트: were / eating)</li>
+        <li>We studied English at 9 o’clock. → (힌트: were / studying)</li>
+      </ol>
+      <textarea style="width:100%;height:120px;"></textarea>
+
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <ol class="example-list">
+          <li>I <span class="highlight">was watching</span> YouTube at 10 p.m.</li>
+          <li>She <span class="highlight">was playing</span> the game at 7 p.m.</li>
+          <li>They <span class="highlight">were eating</span> ramen at midnight.</li>
+          <li>We <span class="highlight">were studying</span> English at 9 o’clock.</li>
+        </ol>
+        <p class="note">
+          시간 표현은 그대로 두고 동사 부분만 “was / were + 동사-ing”으로 바꾸면 됩니다.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>7. 한국어 → 영어 번역 연습 (내 생활과 연결하기)</h2>
+    <div class="item">
+      <p class="question">7-1. 문장을 영어로 써 보세요</p>
+      <p>과거의 “특정 시간”에 무엇을 하고 있었는지 말하는 문장입니다.</p>
+      <ol class="example-list">
+        <li>어제 밤 9시에 나는 영어 단어를 외우고 있었어.</li>
+        <li>어제 저녁에 엄마가 왔을 때, 나는 게임을 하고 있었어.</li>
+        <li>어제 점심시간에 우리는 급식을 먹고 있었어.</li>
+        <li>어제 오후 5시에 내 친구들은 운동장을 달리고 있었어.</li>
+        <li>어제 아침 7시에 너는 버스에서 음악을 듣고 있었어.</li>
+      </ol>
+      <textarea style="width:100%;height:160px;"></textarea>
+
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <ol class="example-list">
+          <li>At 9 p.m. yesterday, I <span class="highlight">was memorizing</span> English words.</li>
+          <li>When my mom came yesterday evening, I <span class="highlight">was playing</span> a game.</li>
+          <li>At lunchtime yesterday, we <span class="highlight">were eating</span> school lunch.</li>
+          <li>At 5 p.m. yesterday, my friends <span class="highlight">were running</span> on the playground.</li>
+          <li>At 7 a.m. yesterday, you <span class="highlight">were listening</span> to music on the bus.</li>
+        </ol>
+        <p class="note">
+          단어와 어순이 조금 달라도, <span class="highlight">was / were + 동사-ing</span>과
+          시간 표현이 맞으면 정답으로 봐도 좋습니다.
+        </p>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">7-2. 완전 내 이야기 만들기</p>
+      <p>다음 문장을 완성해 보세요. (자유롭게 써도 좋아요!)</p>
+      <ol class="example-list">
+        <li>Yesterday at 8 p.m., I was ____________________________.</li>
+        <li>When my friend called me, I was ______________________.</li>
+        <li>When my teacher came in, we were _____________________.</li>
+      </ol>
+      <textarea style="width:100%;height:120px;"></textarea>
+
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p>예시 답안</p>
+        <ul class="example-list">
+          <li>Yesterday at 8 p.m., I was doing my homework.</li>
+          <li>When my friend called me, I was watching YouTube.</li>
+          <li>When my teacher came in, we were talking about the test.</li>
+        </ul>
+        <p class="note">
+          아이가 자신만의 문장을 만들었다면, <span class="highlight">주어 + was / were + 동사-ing</span>
+          구조만 맞으면 칭찬해 주세요!
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>8. 짧은 대화 완성하기</h2>
+    <div class="item">
+      <p class="question">8-1. 괄호 안 동사를 과거 진행형으로 바꾸어 넣으세요.</p>
+      <p>
+        A와 B의 대화를 읽고, 빈칸을 채워 보세요.
+      </p>
+      <p>
+        A: What <u>________</u> you <u>________</u> (do) at 10 last night?<br />
+        B: I <u>________</u> (watch) a movie.<br />
+        A: Really? I <u>________</u> (play) a game then.
+      </p>
+      <textarea style="width:100%;height:80px;"></textarea>
+
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p>
+          A: What <span class="highlight">were</span> you <span class="highlight">doing</span> at 10 last night?<br />
+          B: I <span class="highlight">was watching</span> a movie.<br />
+          A: Really? I <span class="highlight">was playing</span> a game then.
+        </p>
+        <p class="note">
+          질문에서는 you 이므로 <span class="highlight">were you doing</span>,<br />
+          대답에서는 I 이므로 <span class="highlight">was watching / was playing</span>이 됩니다.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>9. Spaced Repetition용 미니 복습 세트 (다음 날 풀기 좋아요)</h2>
+    <p class="small">
+      다음 날, 또는 며칠 뒤에 다시 풀어 보세요. (정답은 아래 버튼으로 확인)
+    </p>
+    <div class="item">
+      <p class="question">9-1. was / were + 동사-ing 쓰기</p>
+      <ol class="example-list">
+        <li>(I / read / a webtoon / at 11 p.m.)<br />→ ______________________________.</li>
+        <li>(They / play / soccer / in the gym.)<br />→ ______________________________.</li>
+        <li>(We / eat / dinner / when Dad came.)<br />→ ______________________________.</li>
+        <li>(She / listen / to music / on the bus.)<br />→ ______________________________.</li>
+        <li>(You / study / math / at 9 last night.)<br />→ ______________________________.</li>
+      </ol>
+      <textarea style="width:100%;height:150px;"></textarea>
+
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <ol class="example-list">
+          <li>I <span class="highlight">was reading</span> a webtoon at 11 p.m.</li>
+          <li>They <span class="highlight">were playing</span> soccer in the gym.</li>
+          <li>We <span class="highlight">were eating</span> dinner when Dad came.</li>
+          <li>She <span class="highlight">was listening</span> to music on the bus.</li>
+          <li>You <span class="highlight">were studying</span> math at 9 last night.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">9-2. 단순 과거 vs 과거 진행형 고르기</p>
+      <p>괄호 안에서 알맞은 것을 골라 문장을 완성해 보세요.</p>
+      <ol class="example-list">
+        <li>At 8 p.m., I (watched / was watching) TV.</li>
+        <li>When the teacher came in, we (talked / were talking).</li>
+        <li>They (played / were playing) soccer yesterday afternoon. (그때 한 행동 전체)</li>
+        <li>At 7 a.m., my sister (slept / was sleeping).</li>
+      </ol>
+      <textarea style="width:100%;height:100px;"></textarea>
+
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <ol class="example-list">
+          <li>At 8 p.m., I <span class="highlight">was watching</span> TV. (그 시각에 보고 있는 중)</li>
+          <li>When the teacher came in, we <span class="highlight">were talking</span>.</li>
+          <li>They <span class="highlight">played</span> soccer yesterday afternoon. (그 시간 동안 한 행동 전체)</li>
+          <li>At 7 a.m., my sister <span class="highlight">was sleeping</span>.</li>
+        </ol>
+        <p class="note">
+          “그때 뭐 하는 <u>중이었는지</u>”가 중요하면 과거 진행형,<br />
+          “그날 ~했다”처럼 행동 전체를 말하면 단순 과거를 자주 씁니다.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>10. 피드백 가이드 (학부모용)</h2>
+    <div class="item">
+      <p class="subheading">채점할 때 간단 기준</p>
+      <ul class="example-list">
+        <li>
+          <span class="highlight">구조</span>: 주어 + was / were + 동사-ing 이 지켜졌는지 확인합니다.
+        </li>
+        <li>
+          <span class="highlight">주어에 맞는 be동사</span>를 썼는지 확인합니다.
+          (I, he, she, it → was / you, we, they → were)
+        </li>
+        <li>
+          철자나 작은 표현 실수는 너무 엄격하게 보지 말고,
+          <span class="highlight">시제와 어순</span>이 맞으면 정답으로 봐 주세요.
+        </li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <p class="subheading">자주 나오는 실수 예</p>
+      <ul class="example-list">
+        <li>*I were playing… → I was playing…</li>
+        <li>*They was watching… → They were watching…</li>
+        <li>*I was play a game. → I was playing a game.</li>
+      </ul>
+      <p class="note">
+        아이가 위와 같은 실수를 하더라도, 먼저 “좋은 시도야!”라고 칭찬해 주신 뒤,<br />
+        “여기는 was / were 다음에 동사-ing 이 와야 해.” 같이 짧게 알려 주세요.
+      </p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>11. 자기 점검 & 칭찬</h2>
+    <div class="item">
+      <p class="question">오늘 공부를 마친 후, 아래를 체크해 보세요.</p>
+      <ul class="checklist">
+        <li>과거 진행형이 “was / were + 동사-ing” 이라는 것을 설명할 수 있다.</li>
+        <li>단순 과거와 과거 진행형의 느낌 차이를 말할 수 있다.</li>
+        <li>한국어 문장을 보고 과거 진행형 영어 문장으로 바꿔 쓸 수 있다.</li>
+        <li>내 하루를 생각하며 “어제 ~시에 나는 ~하고 있었다” 문장을 2개 이상 만들 수 있다.</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <p class="question">나에게 보내는 한 줄 메모</p>
+      <p>오늘 공부하면서 느낀 점이나, 다음에 더 잘하고 싶은 점을 적어 보세요.</p>
+      <textarea style="width:100%;height:70px;"></textarea>
+    </div>
+
+    <div class="item">
+      <p class="note">
+        여기까지 열심히 공부했다면, 이미 <span class="highlight">과거 진행형 고수</span>가 되어 가고 있어요!<br />
+        작은 실수는 괜찮아요. 중요한 건, “그때 ~하고 <u>있었어</u>”를 말하고 싶을 때<br />
+        <span class="highlight">was / were + 동사-ing</span>이 자동으로 떠오르기 시작했다는 거예요. 정말 잘하고 있어요! 🌟
+      </p>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Grammar in Use 학습 자료</title>
+  <style>
+	body {
+	  font-family: "Comic Sans MS", "Nanum Gothic", "Arial Rounded MT", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+	  line-height: 1.7;
+	  max-width: 900px;
+	  margin: 0 auto;
+	  padding: 24px;
+	  font-size: 17px;
+	  background-color: #fffaf5;
+	  color: #333;
+	}
+	h1, h2, h3 {
+	  margin-top: 1.2em;
+	  margin-bottom: 0.5em;
+	  font-weight: 700;
+	}
+	h1 {
+	  font-size: 1.9rem;
+	  color: #ff7b7b;
+	  text-align: center;
+	}
+	h2 {
+	  font-size: 1.5rem;
+	  color: #3a7bd5;
+	  border-left: 8px solid #ffd86b;
+	  padding-left: 10px;
+	}
+	h3 {
+	  font-size: 1.25rem;
+	  color: #e67e22;
+	}
+	.section {
+	  margin-bottom: 24px;
+	  padding: 20px;
+	  border: 2px solid #f5d5a3;
+	  border-radius: 18px;
+	  background: #ffffff;
+	  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.05);
+	  page-break-inside: avoid;
+	}
+	.meta {
+	  font-size: 0.95em;
+	  color: #666;
+	  margin-bottom: 12px;
+	  padding: 10px 14px;
+	  border-radius: 12px;
+	  background: #fff3c4;
+      display: none !important;
+	}
+	.item {
+	  margin-bottom: 14px;
+	}
+	.question {
+	  font-weight: 600;
+	  margin-bottom: 6px;
+	}
+	.answer-toggle {
+	  margin-top: 4px;
+	  margin-bottom: 4px;
+	  padding: 6px 14px;
+	  font-size: 0.95em;
+	  cursor: pointer;
+	  background: #ffd86b;
+	  border: none;
+	  border-radius: 16px;
+	  font-weight: 700;
+	  color: #333;
+	  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+	  transition: background 0.2s, transform 0.1s, box-shadow 0.1s;
+	}
+	.answer-toggle:hover {
+	  background: #ffca3a;
+	}
+	.answer-toggle:active {
+	  transform: translateY(1px);
+	  box-shadow: 0 0 0 rgba(0, 0, 0, 0.1);
+	}
+	.answer {
+	  display: none;
+	  margin-top: 6px;
+	  padding: 10px 12px;
+	  border-left: 5px solid #6fcf97;
+	  background: #e7f9e7;
+	  font-size: 0.95em;
+	  border-radius: 10px;
+	}
+	.answer.visible {
+	  display: block;
+	}
+	.label {
+	  font-weight: 700;
+	}
+	.note {
+	  font-size: 0.9em;
+	  color: #555;
+	  margin-top: 6px;
+	}
+	.checklist {
+	  list-style: none;
+	  padding-left: 0;
+	  margin-top: 8px;
+	}
+	.checklist li {
+	  margin-bottom: 4px;
+	}
+	.checklist li::before {
+	  content: "☐ ";
+	  color: #ff7b7b;
+	  font-weight: 700;
+	}
+	.small {
+	  font-size: 0.9em;
+	}
+	.subheading {
+	  font-weight: 700;
+	  margin-top: 8px;
+	  margin-bottom: 4px;
+	  color: #3a7bd5;
+	}
+	.example-list {
+	  margin-left: 22px;
+	  padding-left: 4px;
+	}
+	.example-list li {
+	  margin-bottom: 4px;
+	}
+	.example-list li::marker {
+	  color: #f39c12;
+	  font-weight: 700;
+	}
+	.highlight {
+	  font-weight: 700;
+	  color: #333;
+	  background: #fff3b0;
+	  padding: 2px 6px;
+	  border-radius: 6px;
+	}
+	@media print {
+	  body {
+		padding: 0;
+		background-color: #ffffff;
+	  }
+	  .section {
+		box-shadow: none;
+		border-radius: 0;
+	  }
+	  .answer-toggle {
+		display: none;
+	  }
+	  .answer {
+		display: none !important;
+	  }
+	}
+	.meta {
+	  display: none !important;
+	}
+  </style>
+  <script>
+    function toggleAnswer(button) {
+      const answer = button.nextElementSibling;
+      if (!answer) return;
+      const isVisible = answer.classList.contains('visible');
+      if (isVisible) {
+        answer.classList.remove('visible');
+        button.textContent = '정답 보기';
+      } else {
+        answer.classList.add('visible');
+        button.textContent = '정답 숨기기';
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>Unit 19 - I have done & I did (현재완료와 과거시제 비교)</h1>
+  <div class="meta">
+    Grammar in Use 기반 / 주제: 현재완료와 과거시제 구별하기<br />
+    대상: 초6 / 학습 시간: 약 30분 / 분량: A4 약 2쪽
+  </div>
+
+  <!-- 1. 오늘의 목표 -->
+  <div class="section">
+    <h2>1. 오늘의 목표</h2>
+    <div class="item">
+      <p><span class="highlight">오늘은 아래 두 가지를 구별해서 쓰는 연습</span>을 합니다.</p>
+      <ul class="example-list">
+        <li><span class="highlight">현재완료</span>: I have done ~ (지금까지 해 본 경험·결과·계속)</li>
+        <li><span class="highlight">과거시제</span>: I did ~ (과거의 <u>끝난</u> 한 시점 이야기)</li>
+      </ul>
+      <p class="note">
+        한국어로는 둘 다 보통 “했다”라고 번역되기 때문에 헷갈리기 쉽습니다.<br />
+        오늘은 “<span class="highlight">지금과 연결되는가?</span>” “<span class="highlight">언제 했는지 시간 말하는가?</span>”에 집중해 보세요.
+      </p>
+    </div>
+  </div>
+
+  <!-- 2. 기본 문법 설명 -->
+  <div class="section">
+    <h2>2. 기본 문법 설명 (형태 + 의미 + 언제 쓰는지)</h2>
+    <div class="item">
+      <h3>① 형태(모양)</h3>
+      <ul class="example-list">
+        <li><span class="highlight">현재완료</span>: <b>have/has + 과거분사 (p.p.)</b><br />
+          I have <b>finished</b> my homework.<br />
+          She has <b>lost</b> her key.
+        </li>
+        <li><span class="highlight">과거시제</span>: <b>동사 과거형</b><br />
+          I <b>finished</b> my homework yesterday.<br />
+          She <b>lost</b> her key yesterday.
+        </li>
+      </ul>
+    </div>
+    <div class="item">
+      <h3>② 의미/뉘앙스</h3>
+      <ul class="example-list">
+        <li>
+          <span class="highlight">현재완료 (have done)</span><br />
+          → “지금과 연결”되는 느낌<br />
+          - <b>경험</b>: 지금까지 해 본 적이 있다 / 없다<br />
+          - <b>결과</b>: 지금 상태에 영향을 주는 결과<br />
+          - <b>계속</b>: 과거부터 지금까지 계속
+        </li>
+        <li>
+          <span class="highlight">과거시제 (did)</span><br />
+          → “과거의 한 시점” 이야기, 지금과 꼭 연결되지 않아도 됨<br />
+          - 언제 일어났는지 시간이 함께 나오는 경우가 많음
+        </li>
+      </ul>
+    </div>
+    <div class="item">
+      <h3>③ 자주 같이 쓰이는 말</h3>
+      <ul class="example-list">
+        <li><span class="highlight">현재완료</span>: just, already, yet, ever, never, recently, lately 등<br />
+          예) I have just finished it. / Have you ever been to Japan?
+        </li>
+        <li><span class="highlight">과거시제</span>: yesterday, last year, in 2020, two days ago 등<br />
+          예) I finished it yesterday. / I went there last year.
+        </li>
+      </ul>
+      <p class="note">
+        <b>규칙</b>: <span class="highlight">yesterday / last ~ / ~ ago / in 2020</span> 같은 <b>구체적인 과거 시점</b>이 나오면 보통 <b>과거시제(did)</b>를 사용합니다.
+      </p>
+    </div>
+    <div class="item">
+      <h3>④ 한국어 화자가 자주 하는 실수</h3>
+      <ul class="example-list">
+        <li>“나는 작년에 거기에 가 본 적이 있다.”라고 생각하고<br />
+          <b>✗ I have been there last year.</b> (X)<br />
+          → <span class="highlight">last year</span>이 있으므로<br />
+          <b>✓ I went there last year.</b> (과거시제)
+        </li>
+        <li>“나는 열쇠를 잃어버렸다(그래서 지금 없다)” 라고 말하고 싶은데<br />
+          <b>✗ I lost my key. (시간 말 안 하고 그냥 말함)</b><br />
+          → 지금 상태가 중요하므로<br />
+          <b>✓ I have lost my key. (그래서 지금도 없다)</b>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 3. Noticing 활동 -->
+  <div class="section">
+    <h2>3. Noticing 활동: 문장 묶음에서 규칙 찾기</h2>
+    <div class="item">
+      <p class="question">① 아래 문장을 두 가지 그룹으로 나눠 보세요.</p>
+      <ol class="example-list">
+        <li>I have finished my homework.</li>
+        <li>I finished my homework an hour ago.</li>
+        <li>She has broken her glasses.</li>
+        <li>She broke her glasses yesterday.</li>
+        <li>We have just arrived home.</li>
+        <li>We arrived home at 7 o’clock.</li>
+        <li>Have you ever tried sushi?</li>
+        <li>Did you try sushi last night?</li>
+      </ol>
+      <p>▶ A그룹: <input type="text" style="width:60%;" /> (동사 모양 공통점 적기)</p>
+      <p>▶ B그룹: <input type="text" style="width:60%;" /></p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p><b>A그룹 (1, 3, 5, 7)</b>: have/has + 과거분사 → 현재완료</p>
+        <p><b>B그룹 (2, 4, 6, 8)</b>: 동사 과거형 → 과거시제</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">② 어떤 그룹이 “지금과 연결되는 느낌”인가요?</p>
+      <p>답: <input type="text" style="width:40%;" /></p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p>A그룹 (현재완료)이 지금 상태, 지금까지의 경험과 더 연결됩니다.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">③ 시간 표현에 주목해 보세요. 구체적인 과거 시간이 있는 문장은 어느 그룹인가요?</p>
+      <p>예: yesterday, an hour ago, at 7 o’clock, last night 등</p>
+      <p>답: <input type="text" style="width:40%;" /></p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p>B그룹 (2, 4, 6, 8)입니다. 이런 문장은 과거시제(did)를 사용합니다.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. 규칙 정리 & Retrieval -->
+  <div class="section">
+    <h2>4. 규칙 정리 + 회상 연습 (설명 안 보고 떠올리기)</h2>
+    <div class="item">
+      <p class="question">① 책을 덮는 느낌으로, 오늘 배운 규칙을 한글로 짧게 적어 보세요.</p>
+      <p>현재완료 (have done):<br />
+        <textarea style="width:100%;height:70px;"></textarea>
+      </p>
+      <p>과거시제 (did):<br />
+        <textarea style="width:100%;height:70px;"></textarea>
+      </p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer small">
+        <p><b>예시 정리</b> (비슷하게만 써도 OK)</p>
+        <ul>
+          <li>현재완료: 과거부터 지금까지의 경험·결과·계속을 말할 때 쓰고, have/has + p.p.를 쓴다. 구체적인 과거 시간은 보통 같이 말하지 않는다.</li>
+          <li>과거시제: 과거의 한 시점에 일어난 일을 말할 때 쓰고, 동사 과거형을 쓴다. yesterday, last year, ~ ago 같은 구체적인 과거 시간이 자주 따라온다.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">② 기억나는 영어 예문을 하나씩 써 보세요. (책을 안 보고!)</p>
+      <p>현재완료 예문: <input type="text" style="width:80%;" /></p>
+      <p>과거시제 예문: <input type="text" style="width:80%;" /></p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer small">
+        <p><b>예시</b></p>
+        <p>현재완료: I have finished my homework.</p>
+        <p>과거시제: I finished my homework yesterday.</p>
+        <p class="note">동사의 시제와 어순만 맞으면 정답으로 보셔도 좋습니다.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. 형태 연습: have/has/did 선택 -->
+  <div class="section">
+    <h2>5. 형태 연습: have/has/did 고르기</h2>
+    <p class="small">빈칸에 알맞은 동사를 넣으세요. (have / has / did)</p>
+    <ol class="example-list">
+      <li>
+        ____ you finished your homework yet?<br />
+        <input type="text" style="width:40%;" />
+        <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+        <div class="answer">have</div>
+      </li>
+      <li>
+        She ____ already eaten dinner.<br />
+        <input type="text" style="width:40%;" />
+        <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+        <div class="answer">has</div>
+      </li>
+      <li>
+        I ____ my homework an hour ago.<br />
+        <input type="text" style="width:40%;" />
+        <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+        <div class="answer">did</div>
+      </li>
+      <li>
+        ____ he ever been to Canada?<br />
+        <input type="text" style="width:40%;" />
+        <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+        <div class="answer">Has</div>
+      </li>
+      <li>
+        We ____ our project last week.<br />
+        <input type="text" style="width:40%;" />
+        <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+        <div class="answer">did</div>
+      </li>
+    </ol>
+    <p class="note">
+      채점 팁: 대문자/소문자는 크게 보지 말고, have/has/did를 올바르게 고르면 정답으로 보셔도 좋습니다.
+    </p>
+  </div>
+
+  <!-- 6. 의미/사용 연습: 현재완료 vs 과거시제 선택 -->
+  <div class="section">
+    <h2>6. 의미/사용 연습: 현재완료 vs 과거시제</h2>
+    <p class="small">
+      괄호 안 동사를 보고, 문맥에 맞게 <b>현재완료(have/has + p.p.)</b> 또는 <b>과거시제(과거형)</b>를 쓰세요.
+    </p>
+    <ol class="example-list">
+      <li>
+        I __________ just __________ my English homework. (finish)<br />
+        <input type="text" style="width:70%;" placeholder="예: have finished / finished" />
+        <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+        <div class="answer">
+          I <b>have finished</b> just my English homework. 또는<br />
+          보통 어순: I <b>have just finished</b> my English homework.<br />
+          <span class="small">just → 지금 막 끝난 결과, 현재완료가 자연스럽습니다.</span>
+        </div>
+      </li>
+      <li>
+        I __________ my English homework yesterday. (finish)<br />
+        <input type="text" style="width:70%;" />
+        <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+        <div class="answer">
+          I <b>finished</b> my English homework yesterday.<br />
+          <span class="small">yesterday → 구체적인 과거 시점 → 과거시제</span>
+        </div>
+      </li>
+      <li>
+        Have you ever __________ in a singing contest? (join)<br />
+        <input type="text" style="width:70%;" />
+        <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+        <div class="answer">
+          Have you ever <b>joined</b> in a singing contest?<br />
+          <span class="small">ever → 지금까지의 경험 → 현재완료</span>
+        </div>
+      </li>
+      <li>
+        We __________ a school trip last month. (have)<br />
+        <input type="text" style="width:70%;" />
+        <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+        <div class="answer">
+          We <b>had</b> a school trip last month.<br />
+          <span class="small">last month → 과거 한 시점 → 과거시제</span>
+        </div>
+      </li>
+      <li>
+        My brother __________ his phone, so he can’t call now. (lose)<br />
+        <input type="text" style="width:70%;" />
+        <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+        <div class="answer">
+          My brother <b>has lost</b> his phone, so he can’t call now.<br />
+          <span class="small">지금도 없는 상태(결과)가 중요 → 현재완료</span>
+        </div>
+      </li>
+    </ol>
+  </div>
+
+  <!-- 7. 한국어 → 영어 번역 (생활 연결) -->
+  <div class="section">
+    <h2>7. 한국어 → 영어 번역 연습</h2>
+    <p class="small">
+      문맥을 보고 현재완료 또는 과거시제를 골라 영어로 써 보세요.
+      (완벽한 철자보다 <b>시제</b>와 <b>어순</b>이 더 중요합니다.)
+    </p>
+    <ol class="example-list">
+      <li>
+        나는 <u>이미</u> 영어 숙제를 다 끝냈어. (지금은 자유!)<br />
+        → <input type="text" style="width:90%;" />
+        <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+        <div class="answer">
+          I <b>have already finished</b> my English homework.
+        </div>
+      </li>
+      <li>
+        나는 어제 친구랑 PC방에 갔어.<br />
+        → <input type="text" style="width:90%;" />
+        <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+        <div class="answer">
+          I <b>went</b> to a PC room with my friend yesterday.
+        </div>
+      </li>
+      <li>
+        너는 <u>지금까지</u> 핸드폰을 몇 번 잃어버린 적 있니?<br />
+        → <input type="text" style="width:90%;" />
+        <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+        <div class="answer">
+          How many times <b>have you lost</b> your phone so far?<br />
+          또는: Have you ever <b>lost</b> your phone?
+        </div>
+      </li>
+      <li>
+        나는 작년에 일본에 가 봤어.<br />
+        → <input type="text" style="width:90%;" />
+        <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+        <div class="answer">
+          I <b>went</b> to Japan last year.<br />
+          <span class="small">✗ I have been to Japan last year (X) → last year가 있으므로 과거시제!</span>
+        </div>
+      </li>
+      <li>
+        우리 반은 이번 주에 벌써 두 번 시험을 봤어. (지금까지 결과 강조)<br />
+        → <input type="text" style="width:90%;" />
+        <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+        <div class="answer">
+          Our class <b>has had</b> two tests this week.<br />
+          또는: Our class <b>has taken</b> two tests this week.
+        </div>
+      </li>
+    </ol>
+    <p class="note">
+      채점 팁: 문장의 핵심은 <b>시제 선택</b>입니다. 시간 표현과 함께 현재완료/과거시제를 적절히 선택했으면,
+      작은 철자 실수는 너무 엄격하게 보지 않아도 좋습니다.
+    </p>
+  </div>
+
+  <!-- 8. 변형 연습 & 오류 고치기 -->
+  <div class="section">
+    <h2>8. 변형 연습 & 오류 고치기</h2>
+    <div class="item">
+      <h3>① 문장 바꾸기</h3>
+      <p class="small">과거시제로 된 문장을 지금까지의 경험·결과 느낌이 나도록 현재완료로 바꾸세요.</p>
+      <ol class="example-list">
+        <li>
+          I watched this movie three times.<br />
+          → <input type="text" style="width:90%;" placeholder="현재완료로 바꾸기" />
+          <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+          <div class="answer">
+            I <b>have watched</b> this movie three times.
+          </div>
+        </li>
+        <li>
+          She lost her wallet, so she was very sad.<br />
+          (지금도 지갑이 없는 상태라고 생각하고 바꾸기)<br />
+          → <input type="text" style="width:90%;" />
+          <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+          <div class="answer">
+            She <b>has lost</b> her wallet, so she is very sad.
+          </div>
+        </li>
+      </ol>
+    </div>
+    <div class="item">
+      <h3>② 틀린 부분 고치기</h3>
+      <p class="small">문장에서 어색한 시제를 찾아 올바르게 고쳐 보세요.</p>
+      <ol class="example-list">
+        <li>
+          I have visited Busan last summer.<br />
+          → <input type="text" style="width:90%;" />
+          <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+          <div class="answer">
+            I <b>visited</b> Busan last summer.<br />
+            <span class="small">last summer → 구체적인 과거 시점 → 과거시제</span>
+          </div>
+        </li>
+        <li>
+          Did you ever been to Canada?<br />
+          → <input type="text" style="width:90%;" />
+          <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+          <div class="answer">
+            <b>Have</b> you ever <b>been</b> to Canada?<br />
+            <span class="small">ever + 경험 → 현재완료 의문문</span>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- 9. 짧은 글/대화 만들기 -->
+  <div class="section">
+    <h2>9. 짧은 대화 만들기 (게임/취미와 연결)</h2>
+    <p class="small">
+      아래 한국어 상황을 보고, 두 친구 A와 B의 대화를 영어로 만들어 보세요.
+      현재완료와 과거시제를 최소 1번씩 사용해 보세요.
+    </p>
+    <div class="item">
+      <p>
+        상황: A와 B가 게임(또는 취미)에 대해 이야기합니다.<br />
+        - 지금까지 이 게임을 해 본 적이 있는지 묻기<br />
+        - 어제 어떤 스테이지/레벨을 깼는지 말하기
+      </p>
+      <p>
+        예시 틀:<br />
+        A: Have you ever ~ ?<br />
+        B: Yes, I have / No, I haven’t.<br />
+        A: When did you ~ ?<br />
+        B: I ~ yesterday / last week.
+      </p>
+      <p>
+        직접 완성해 보세요:<br />
+        A: <input type="text" style="width:95%;" /><br />
+        B: <input type="text" style="width:95%;" /><br />
+        A: <input type="text" style="width:95%;" /><br />
+        B: <input type="text" style="width:95%;" />
+      </p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">예시 답안 보기</button>
+      <div class="answer small">
+        <p><b>예시</b> (비슷한 구조면 OK)</p>
+        <p>A: Have you ever played this game?</p>
+        <p>B: Yes, I have. It’s really fun.</p>
+        <p>A: When did you finish level 5?</p>
+        <p>B: I finished it yesterday.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 10. 다음 날 복습용 미니 세트 -->
+  <div class="section">
+    <h2>10. 다음 날 복습용 미니 세트 (Spaced Repetition)</h2>
+    <p class="small">내일 또는 며칠 뒤에 다시 풀어 보면 좋아요. (정답은 오늘 바로 체크하지 않아도 됩니다.)</p>
+    <ol class="example-list">
+      <li>
+        (현재완료 또는 과거시제) 알맞게 고치기<br />
+        a) I have watched that movie yesterday.<br />
+        b) Did you ever try sushi?<br />
+        <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+        <div class="answer small">
+          a) I <b>watched</b> that movie yesterday.<br />
+          b) <b>Have</b> you ever tried sushi?
+        </div>
+      </li>
+      <li>
+        한국어 → 영어<br />
+        ① 나는 벌써 저녁을 먹었어.<br />
+        ② 우리는 지난주에 시험을 봤어.<br />
+        <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+        <div class="answer small">
+          ① I <b>have already eaten</b> dinner.<br />
+          ② We <b>had</b> a test last week. / We <b>took</b> a test last week.
+        </div>
+      </li>
+      <li>
+        빈칸 채우기<br />
+        a) She __________ just __________ her homework. (finish)<br />
+        b) We __________ a school trip in 2022. (have)<br />
+        <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+        <div class="answer small">
+          a) She <b>has just finished</b> her homework.<br />
+          b) We <b>had</b> a school trip in 2022.
+        </div>
+      </li>
+      <li>
+        스스로 문장 만들기<br />
+        - 현재완료 문장 1개 (경험)<br />
+        - 과거시제 문장 1개 (구체적인 시간 넣기)<br />
+        <button class="answer-toggle" onclick="toggleAnswer(this)">예시 보기</button>
+        <div class="answer small">
+          현재완료: I <b>have visited</b> Jeju Island twice.<br />
+          과거시제: I <b>visited</b> Jeju Island last year.
+        </div>
+      </li>
+    </ol>
+  </div>
+
+  <!-- 11. 자기 점검 & 동기부여 -->
+  <div class="section">
+    <h2>11. 자기 점검 & 응원</h2>
+    <p class="question">오늘 공부를 마친 후, 아래 체크리스트를 보고 스스로 점검해 보세요.</p>
+    <ul class="checklist">
+      <li>현재완료(have/has + p.p.)와 과거시제(과거형)의 모양 차이를 설명할 수 있다.</li>
+      <li>yesterday, last year, ~ ago 같은 표현이 나오면 과거시제를 써야 한다는 것을 안다.</li>
+      <li>ever, never, just, already, yet 같은 말이 나오면 현재완료가 잘 어울린다는 것을 안다.</li>
+      <li>한국어 문장을 보고, “지금과 연결되는지 / 과거 한 시점인지” 생각하며 시제를 고를 수 있다.</li>
+      <li>게임, 친구, 학교생활에 대해 현재완료와 과거시제를 섞어서 2~3문장 말할 수 있다.</li>
+    </ul>
+    <p class="note">
+      여기까지 풀었다면 정말 잘하고 있는 거예요! 😊<br />
+      오늘은 완벽하게 외우는 것보다, “<span class="highlight">언제 현재완료를 쓰고 언제 과거시제를 쓰는지</span>”를
+      <b>느끼는 것</b>이 더 중요합니다. 내일은 10번 미니 세트만 다시 풀어 보면서 가볍게 복습해 보세요.
+    </p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Grammar in Use 학습 자료</title>
+  <style>
+    /* 인쇄/화면 공통 기본 스타일 */
+	body {
+	  font-family: "Comic Sans MS", "Nanum Gothic", "Arial Rounded MT", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+	  line-height: 1.7;
+	  max-width: 900px;
+	  margin: 0 auto;
+	  padding: 24px;
+	  font-size: 17px;
+	  background-color: #fffaf5; /* 밝은 크림색 배경 */
+	  color: #333;
+	}
+
+	/* 제목들 */
+	h1, h2, h3 {
+	  margin-top: 1.2em;
+	  margin-bottom: 0.5em;
+	  font-weight: 700;
+	}
+
+	h1 {
+	  font-size: 1.9rem;
+	  color: #ff7b7b; /* 따뜻한 핑크 톤 */
+	  text-align: center;
+	}
+
+	h2 {
+	  font-size: 1.5rem;
+	  color: #3a7bd5; /* 파란색 포인트 */
+	  border-left: 8px solid #ffd86b;
+	  padding-left: 10px;
+	}
+
+	h3 {
+	  font-size: 1.25rem;
+	  color: #e67e22; /* 주황 계열 */
+	}
+
+	/* 섹션 카드 스타일 */
+	.section {
+	  margin-bottom: 24px;
+	  padding: 20px;
+	  border: 2px solid #f5d5a3; /* 연한 주황 테두리 */
+	  border-radius: 18px;
+	  background: #ffffff;
+	  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.05);
+	  page-break-inside: avoid;
+	}
+
+	/* 메타 정보 */
+	.meta {
+	  font-size: 0.95em;
+	  color: #666;
+	  margin-bottom: 12px;
+	  padding: 10px 14px;
+	  border-radius: 12px;
+	  background: #fff3c4;
+      display: none !important;
+	}
+
+	/* 아이템 간 간격 */
+	.item {
+	  margin-bottom: 14px;
+	}
+
+	/* 질문 텍스트 강조 */
+	.question {
+	  font-weight: 600;
+	  margin-bottom: 6px;
+	}
+
+	/* 정답 보기 버튼 */
+	.answer-toggle {
+	  margin-top: 4px;
+	  margin-bottom: 4px;
+	  padding: 6px 14px;
+	  font-size: 0.95em;
+	  cursor: pointer;
+	  background: #ffd86b;
+	  border: none;
+	  border-radius: 16px;
+	  font-weight: 700;
+	  color: #333;
+	  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+	  transition: background 0.2s, transform 0.1s, box-shadow 0.1s;
+	}
+
+	.answer-toggle:hover {
+	  background: #ffca3a;
+	}
+
+	.answer-toggle:active {
+	  transform: translateY(1px);
+	  box-shadow: 0 0 0 rgba(0, 0, 0, 0.1);
+	}
+
+	/* 정답 박스 */
+	.answer {
+	  display: none;
+	  margin-top: 6px;
+	  padding: 10px 12px;
+	  border-left: 5px solid #6fcf97;
+	  background: #e7f9e7;
+	  font-size: 0.95em;
+	  border-radius: 10px;
+	}
+
+	.answer.visible {
+	  display: block;
+	}
+
+	/* 굵은 레이블 */
+	.label {
+	  font-weight: 700;
+	}
+
+	/* 설명/노트 */
+	.note {
+	  font-size: 0.9em;
+	  color: #555;
+	  margin-top: 6px;
+	}
+
+	/* 체크리스트 (자기 점검) */
+	.checklist {
+	  list-style: none;
+	  padding-left: 0;
+	  margin-top: 8px;
+	}
+
+	.checklist li {
+	  margin-bottom: 4px;
+	}
+
+	.checklist li::before {
+	  content: "☐ ";
+	  color: #ff7b7b;
+	  font-weight: 700;
+	}
+
+	/* 작은 글씨 */
+	.small {
+	  font-size: 0.9em;
+	}
+
+	/* 소제목 스타일 */
+	.subheading {
+	  font-weight: 700;
+	  margin-top: 8px;
+	  margin-bottom: 4px;
+	  color: #3a7bd5;
+	}
+
+	/* 예문 리스트 */
+	.example-list {
+	  margin-left: 22px;
+	  padding-left: 4px;
+	}
+
+	.example-list li {
+	  margin-bottom: 4px;
+	}
+
+	/* 리스트 번호 색깔 */
+	.example-list li::marker {
+	  color: #f39c12;
+	  font-weight: 700;
+	}
+
+	/* 하이라이트 텍스트 (중요 포인트) */
+	.highlight {
+	  font-weight: 700;
+	  color: #333;
+	  background: #fff3b0;
+	  padding: 2px 6px;
+	  border-radius: 6px;
+	}
+
+	/* 인쇄용 설정 */
+	@media print {
+	  body {
+		padding: 0;
+		background-color: #ffffff;
+	  }
+
+	  .section {
+		box-shadow: none;
+		border-radius: 0;
+	  }
+
+	  .answer-toggle {
+		display: none; /* 인쇄 시 버튼 숨기기 */
+	  }
+
+	  .answer {
+		display: none !important; /* 인쇄 시 정답 숨기기 */
+	  }
+	}
+	
+	.meta {
+		display: none !important;
+	}
+  </style>
+  <script>
+    function toggleAnswer(button) {
+      const answer = button.nextElementSibling;
+      if (!answer) return;
+      const isVisible = answer.classList.contains('visible');
+      if (isVisible) {
+        answer.classList.remove('visible');
+        button.textContent = '정답 보기';
+      } else {
+        answer.classList.add('visible');
+        button.textContent = '정답 숨기기';
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>Unit 18 - for / since / ago (시간 표현)</h1>
+  <div class="meta">
+    학습자: 한국어 모국어, 초등학교 6학년 / 수준: 문장은 읽을 수 있으나 문법 지식 부족 / 목표: for, since, ago와 시제 연결 이해 &amp; 말하기·쓰기에서 사용해 보기 (약 30분)
+  </div>
+
+  <!-- 1. 오늘의 목표 & 개요 -->
+  <div class="section">
+    <h2>1. 오늘의 목표</h2>
+    <div class="item">
+      <p>
+        오늘은 <span class="highlight">for / since / ago</span>를 배워요.
+      </p>
+      <ul>
+        <li><span class="highlight">for</span> = &quot;~동안&quot; (기간)</li>
+        <li><span class="highlight">since</span> = &quot;~이래로, ~부터 쭉&quot; (시작한 시점)</li>
+        <li><span class="highlight">ago</span> = &quot;~전에&quot; (지금보다 앞의 &quot;과거 한 지점&quot;)</li>
+      </ul>
+      <p>
+        그리고 <span class="highlight">어떤 시제와 같이 쓰는지</span>도 함께 연습합니다.
+      </p>
+    </div>
+    <div class="item note small">
+      *중요 포인트: <span class="highlight">for / since</span>는 보통 <span class="highlight">현재완료 (have/has + p.p.)</span>와 잘 어울리고,<br>
+      <span class="highlight">ago</span>는 <span class="highlight">과거시제 (did / went / was, were 등)</span>와 같이 씁니다.
+    </div>
+  </div>
+
+  <!-- 2. 쉬운 문법 설명 -->
+  <div class="section">
+    <h2>2. 문법 설명 (형식 + 의미 + 사용)</h2>
+
+    <div class="item">
+      <h3>2-1. for (기간, 얼마나 오래)</h3>
+      <p>
+        <span class="highlight">for + 기간</span> = &quot;~동안&quot;이라는 뜻입니다.
+      </p>
+      <ul>
+        <li>I have lived here <span class="highlight">for 5 years</span>. <br>→ 나는 여기에서 <u>5년 동안</u> 살아왔다.</li>
+        <li>She has studied English <span class="highlight">for 3 hours</span>. <br>→ 그녀는 영어를 <u>3시간 동안</u> 공부해 왔다.</li>
+      </ul>
+      <p class="note">
+        보통 <span class="highlight">현재완료</span>와 같이 쓰지만, 다른 시제와도 쓰일 수 있어요. 이 단원에서는
+        <span class="highlight">현재완료 + for</span>에 집중해서 연습해요.
+      </p>
+    </div>
+
+    <div class="item">
+      <h3>2-2. since (언제부터 시작했는지)</h3>
+      <p>
+        <span class="highlight">since + 시점(언제부터)</span> = &quot;~이래로, ~부터 계속&quot;이라는 뜻입니다.
+      </p>
+      <ul>
+        <li>I have known Mina <span class="highlight">since 3rd grade</span>. <br>→ 나는 민아를 <u>3학년 때부터</u> 알고 지냈다.</li>
+        <li>He has lived in Seoul <span class="highlight">since 2020</span>. <br>→ 그는 <u>2020년부터</u> 서울에 살아 왔다.</li>
+      </ul>
+      <p class="note">
+        <span class="highlight">since</span> 뒤에는 보통
+        <span class="highlight">특정한 시작 시점</span>(2020, last year, I was 5, Monday, July 등)이 옵니다.
+      </p>
+    </div>
+
+    <div class="item">
+      <h3>2-3. ago (과거 한 지점, 지금과 끝난 관계)</h3>
+      <p>
+        <span class="highlight">기간 + ago</span> = &quot;~전에&quot;라는 뜻입니다.
+      </p>
+      <ul>
+        <li>I moved here <span class="highlight">three years ago</span>. <br>→ 나는 <u>3년 전에</u> 여기로 이사 왔다.</li>
+        <li>We met <span class="highlight">two days ago</span>. <br>→ 우리는 <u>이틀 전에</u> 만났다.</li>
+      </ul>
+      <p class="note">
+        <span class="highlight">ago</span>는 보통 <span class="highlight">과거시제 (moved, met, was, were, did ...)</span>와 같이 쓰입니다.
+        <br>현재완료 (<span class="highlight">have/has + p.p.</span>)와는 <span class="highlight">같이 쓰지 않습니다!</span>
+      </p>
+    </div>
+
+    <div class="item">
+      <h3>2-4. 한국어 화자가 자주 하는 실수</h3>
+      <ul>
+        <li>✗ I have lived here <span class="highlight">since 3 years</span>. (기간과 since 함께 사용 → 틀림)</li>
+        <li>✓ I have lived here <span class="highlight">for 3 years</span>.</li>
+        <li>✗ I have met him <span class="highlight">two days ago</span>. (ago + 현재완료 → 틀림)</li>
+        <li>✓ I met him <span class="highlight">two days ago</span>.</li>
+      </ul>
+      <p class="note">
+        → <span class="highlight">기간</span>에는 for, <span class="highlight">시작한 시점</span>에는 since, <span class="highlight">과거 한 지점</span>에는 ago!
+      </p>
+    </div>
+  </div>
+
+  <!-- 3. Noticing 활동 -->
+  <div class="section">
+    <h2>3. Noticing 활동: 규칙 스스로 발견하기</h2>
+
+    <div class="item">
+      <p class="subheading">[1] 예문 눈으로 보기</p>
+      <ol class="example-list">
+        <li>I have played the piano <b>for six years</b>.</li>
+        <li>She has lived in Busan <b>since 2019</b>.</li>
+        <li>We moved to this town <b>five years ago</b>.</li>
+        <li>He has watched that YouTuber <b>for a long time</b>.</li>
+        <li>They have been friends <b>since kindergarten</b>.</li>
+        <li>I met my best friend <b>three months ago</b>.</li>
+      </ol>
+    </div>
+
+    <div class="item">
+      <p class="question">
+        (1) 위 문장에서 <span class="highlight">for</span> 뒤에는 어떤 말(기간/시점)이 오나요?
+      </p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p>
+          <span class="label">정답:</span>
+          <span class="highlight">기간(얼마 동안)</span>이 옵니다. (six years, a long time 등)
+        </p>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">
+        (2) 위 문장에서 <span class="highlight">since</span> 뒤에는 어떤 말(기간/시점)이 오나요?
+      </p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p>
+          <span class="label">정답:</span>
+          <span class="highlight">시점(언제부터)</span>이 옵니다. (2019, kindergarten 등)
+        </p>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">
+        (3) <span class="highlight">for / since</span>가 들어간 문장의 동사는 보통 어떤 시제인가요?
+        (힌트: have/has + p.p.)
+      </p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p>
+          <span class="label">정답:</span>
+          <span class="highlight">현재완료 시제 (have/has + p.p.)</span> 입니다.
+        </p>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">
+        (4) <span class="highlight">ago</span>가 들어간 문장의 동사는 어떤 시제인가요?
+      </p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p>
+          <span class="label">정답:</span>
+          <span class="highlight">과거시제 (moved, met 등)</span> 입니다.
+        </p>
+      </div>
+    </div>
+
+    <div class="item note small">
+      *스스로 규칙을 발견하면 기억이 더 오래 갑니다. 답을 보기 전에 꼭 생각해 보세요!
+    </div>
+  </div>
+
+  <!-- 4. Very Easy Check -->
+  <div class="section">
+    <h2>4. 아주 쉬운 이해 확인 (for / since / ago 고르기)</h2>
+    <p>빈칸에 들어갈 알맞은 말을 고르세요. (for / since / ago)</p>
+
+    <div class="item">
+      <p class="question">1) I have played soccer ______ two years.</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p><span class="label">정답:</span> for → &quot;2년 동안&quot; 이므로 기간 = for</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">2) She has lived here ______ 2021.</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p><span class="label">정답:</span> since → &quot;2021년부터&quot; 시작 시점 = since</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">3) We met in this school two years ______.</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p><span class="label">정답:</span> ago → &quot;2년 전에&quot; = ago + 과거시제 met</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">4) He has watched that show ______ last summer.</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p><span class="label">정답:</span> since → last summer = 시작 시점</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">5) I started this game three days ______.</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p><span class="label">정답:</span> ago → 3일 전에 = ago</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. Retrieval Practice -->
+  <div class="section">
+    <h2>5. Retrieval Practice (설명 안 보고 떠올리기)</h2>
+    <p class="note">
+      이 부분은 위로 올라가서 설명을 <u>보지 말고</u> 풀어 보세요.
+      기억이 잘 안 나도 괜찮아요. 떠올리려고 노력하는 것 자체가 공부입니다.
+    </p>
+
+    <div class="item">
+      <p class="question">1) for, since, ago의 차이를 한국어로 짧게 정리해 보세요.</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p>
+          <span class="label">예시 답:</span><br>
+          for = &quot;~동안&quot; (기간),<br>
+          since = &quot;~이래로, ~부터 계속&quot; (시작 시점),<br>
+          ago = &quot;~전에&quot; (지금보다 예전에 있었던 한 시점).
+        </p>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">2) 현재완료와 잘 어울리는 것은 무엇인가요? (for / since / ago 중 두 개)</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p><span class="label">정답:</span> for, since</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">3) 과거시제와 잘 어울리는 것은 무엇인가요? (for / since / ago)</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p><span class="label">정답:</span> ago</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">4) 기억나는 예문을 <b>for</b>를 사용해서 1문장 써 보세요. (영어)</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p>
+          <span class="label">예시 답:</span>
+          I have played the guitar for three years.
+          <br>(*기간 표현과 for만 잘 쓰면 정답으로 봐도 좋아요.)
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. Production: 한-영 번역 -->
+  <div class="section">
+    <h2>6. 문장 만들기 1: 한국어 → 영어 (for / since / ago)</h2>
+    <p>힌트를 보고 영어로 문장을 만들어 보세요.</p>
+
+    <div class="item">
+      <p class="question">1) 나는 5년 동안 이 도시에서 살고 있어.<br>(힌트: live, this city, 5 years)</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p>
+          <span class="label">예시 정답:</span>
+          I have lived in this city for five years.
+        </p>
+        <p class="note small">
+          *have lived (현재완료) + for five years (기간) 구조 확인하기.
+        </p>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">2) 그는 2020년부터 서울에 살고 있어.<br>(힌트: since 2020)</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p><span class="label">예시 정답:</span> He has lived in Seoul since 2020.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">3) 우리는 2년 전에 처음 만났어.<br>(힌트: met, two years ago)</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p><span class="label">예시 정답:</span> We met for the first time two years ago.</p>
+        <p class="note small">*과거시제 met + 두 years ago (과거 한 지점).</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">4) 나는 작년부터 이 게임을 해 왔어.<br>(힌트: have played, since last year)</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p><span class="label">예시 정답:</span> I have played this game since last year.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">5) 내 여동생은 세 시간 동안 숙제를 했어.<br>(힌트: has done, homework, for three hours)</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p><span class="label">예시 정답:</span> My sister has done her homework for three hours.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">6) 나는 10분 전에 간식을 먹었어.<br>(힌트: ate, snack, ten minutes ago)</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p><span class="label">예시 정답:</span> I ate a snack ten minutes ago.</p>
+      </div>
+    </div>
+
+    <p class="note small">
+      *채점 팁: 동사의 시제(현재완료/과거)와 for/since/ago가 알맞게 쓰였는지,
+      어순(주어-동사-목적어)을 중심으로 봐 주세요. 단어 하나 정도 틀려도 괜찮습니다.
+    </p>
+  </div>
+
+  <!-- 7. Production 2: 문장 변형 -->
+  <div class="section">
+    <h2>7. 문장 변형 연습: ago ↔ for / since 바꿔 보기</h2>
+    <p>아래 문장을 보기처럼 다른 표현으로 바꾸어 보세요.</p>
+
+    <div class="item">
+      <p class="question">
+        예) I met Jisoo three years ago.<br>
+        → I have known Jisoo <u>for three years</u>.
+      </p>
+    </div>
+
+    <div class="item">
+      <p class="question">1) I started this club two months ago.<br>
+        → (&quot;두 달 동안 이 동아리를 하고 있다&quot;라는 뜻이 되게 바꾸기)
+      </p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p>
+          <span class="label">예시 정답:</span>
+          I have been in this club for two months.
+        </p>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">2) We moved here five years ago.<br>
+        → (&quot;5년 동안 여기 살아왔다&quot;라는 뜻이 되게 바꾸기)
+      </p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p><span class="label">예시 정답:</span> We have lived here for five years.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">3) I have studied English since 4th grade.<br>
+        → (&quot;4학년 때 영어 공부를 시작했다&quot;라는 뜻이 되게 바꾸기, ago 사용)
+      </p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p>
+          <span class="label">예시 정답:</span>
+          I started studying English two years ago. (학년 차이는 상황에 맞게 조정 가능)
+        </p>
+        <p class="note small">
+          *정확한 몇 년 전인지는 다를 수 있으니, 아이가 스스로 연도를 계산해 써도 좋습니다.
+        </p>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">4) He has played this game for a long time.<br>
+        → (&quot;오래 전에 이 게임을 시작했다&quot;라는 뜻이 되게 바꾸기, ago 사용)</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p>
+          <span class="label">예시 정답:</span>
+          He started this game a long time ago.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. 아이의 실제 생활과 연결 -->
+  <div class="section">
+    <h2>8. 나와 관련된 문장 쓰기</h2>
+    <p>자신의 학교생활, 친구, 취미, 게임과 연결해서 써 보세요.</p>
+
+    <div class="item">
+      <p class="question">
+        1) 나는 (어떤 게임)을 몇 년/몇 달 동안 해 왔는지 for를 사용해서 써 보세요.
+      </p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p>
+          <span class="label">예시 답:</span>
+          I have played Minecraft for three years.
+        </p>
+        <p class="note small">*게임 이름과 기간은 자유롭게 바꾸면 됩니다.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">
+        2) 가장 친한 친구를 언제부터 알고 지냈는지 since를 사용해서 써 보세요.
+      </p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p><span class="label">예시 답:</span> I have known my best friend since 2nd grade.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">
+        3) 최근에 새로 시작한 취미/게임/활동이 있다면, 언제 시작했는지 ago를 사용해서 써 보세요.
+      </p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p><span class="label">예시 답:</span> I started drawing two weeks ago.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 9. Spaced Repetition 미니 복습 세트 -->
+  <div class="section">
+    <h2>9. 내일 다시 풀어보기: 미니 복습 세트</h2>
+    <p class="small">
+      이 문제들은 내일 또는 며칠 뒤에 다시 풀어 보세요. (정답은 바로 아래에 있지만, 먼저 스스로 생각해 보세요.)
+    </p>
+
+    <div class="item">
+      <p class="question">1) (for / since / ago) 중 &quot;~동안&quot;이라는 뜻을 가진 것은?</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer"><p><span class="label">정답:</span> for</p></div>
+    </div>
+
+    <div class="item">
+      <p class="question">2) (for / since / ago) 중 &quot;~이래로, ~부터 계속&quot;이라는 뜻을 가진 것은?</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer"><p><span class="label">정답:</span> since</p></div>
+    </div>
+
+    <div class="item">
+      <p class="question">3) (for / since / ago) 중 과거시제(was, did, went...)와 잘 어울리는 것은?</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer"><p><span class="label">정답:</span> ago</p></div>
+    </div>
+
+    <div class="item">
+      <p class="question">4) 빈칸에 알맞은 말을 쓰세요.<br>
+        I have had this phone ______ two years.
+      </p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer"><p><span class="label">정답:</span> for</p></div>
+    </div>
+
+    <div class="item">
+      <p class="question">5) 빈칸에 알맞은 말을 쓰세요.<br>
+        She has lived in Jeju ______ last winter.
+      </p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer"><p><span class="label">정답:</span> since</p></div>
+    </div>
+
+    <div class="item">
+      <p class="question">6) 문장을 영어로 쓰세요.<br>
+        &quot;우리는 1년 전에 같은 반이었어.&quot;</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p><span class="label">예시 정답:</span> We were in the same class one year ago.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 10. 자기 점검 & 동기부여 -->
+  <div class="section">
+    <h2>10. 자기 점검 &amp; 칭찬 한 마디</h2>
+
+    <p class="subheading">오늘 공부를 마친 후, 스스로 체크해 보세요.</p>
+    <ul class="checklist">
+      <li>&quot;for = ~동안&quot;, &quot;since = ~이래로&quot;, &quot;ago = ~전에&quot;를 설명할 수 있다.</li>
+      <li>for 뒤에 &quot;기간&quot;, since 뒤에 &quot;시점&quot;이 온다는 것을 알고 있다.</li>
+      <li>현재완료 문장에 for / since를, 과거시제 문장에 ago를 대부분 잘 쓸 수 있다.</li>
+      <li>나의 생활(학교, 친구, 게임 등)에 대해 for / since / ago를 써서 2~3문장 만들 수 있다.</li>
+    </ul>
+
+    <p class="note">
+      여기까지 열심히 공부했다면 정말 잘하고 있는 거예요! 😊<br>
+      오늘 다 완벽하게 외우지 못해도 괜찮아요. 며칠 뒤에
+      <span class="highlight">9번 &quot;미니 복습 세트&quot;</span>만 다시 풀어 보면서 천천히 익혀 보세요.
+    </p>
+  </div>
+</body>
+</html>

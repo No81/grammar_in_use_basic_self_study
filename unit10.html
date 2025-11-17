@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Grammar in Use 학습 자료</title>
+  <style>
+	body {
+	  font-family: "Comic Sans MS", "Nanum Gothic", "Arial Rounded MT", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+	  line-height: 1.7;
+	  max-width: 900px;
+	  margin: 0 auto;
+	  padding: 24px;
+	  font-size: 17px;
+	  background-color: #fffaf5;
+	  color: #333;
+	}
+	h1, h2, h3 {
+	  margin-top: 1.2em;
+	  margin-bottom: 0.5em;
+	  font-weight: 700;
+	}
+	h1 {
+	  font-size: 1.9rem;
+	  color: #ff7b7b;
+	  text-align: center;
+	}
+	h2 {
+	  font-size: 1.5rem;
+	  color: #3a7bd5;
+	  border-left: 8px solid #ffd86b;
+	  padding-left: 10px;
+	}
+	h3 {
+	  font-size: 1.25rem;
+	  color: #e67e22;
+	}
+	.section {
+	  margin-bottom: 24px;
+	  padding: 20px;
+	  border: 2px solid #f5d5a3;
+	  border-radius: 18px;
+	  background: #ffffff;
+	  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.05);
+	  page-break-inside: avoid;
+	}
+	.meta {
+	  font-size: 0.95em;
+	  color: #666;
+	  margin-bottom: 12px;
+	  padding: 10px 14px;
+	  border-radius: 12px;
+	  background: #fff3c4;
+      display: none !important;
+	}
+	.item {
+	  margin-bottom: 14px;
+	}
+	.question {
+	  font-weight: 600;
+	  margin-bottom: 6px;
+	}
+	.answer-toggle {
+	  margin-top: 4px;
+	  margin-bottom: 4px;
+	  padding: 6px 14px;
+	  font-size: 0.95em;
+	  cursor: pointer;
+	  background: #ffd86b;
+	  border: none;
+	  border-radius: 16px;
+	  font-weight: 700;
+	  color: #333;
+	  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+	  transition: background 0.2s, transform 0.1s, box-shadow 0.1s;
+	}
+	.answer-toggle:hover {
+	  background: #ffca3a;
+	}
+	.answer-toggle:active {
+	  transform: translateY(1px);
+	  box-shadow: 0 0 0 rgba(0, 0, 0, 0.1);
+	}
+	.answer {
+	  display: none;
+	  margin-top: 6px;
+	  padding: 10px 12px;
+	  border-left: 5px solid #6fcf97;
+	  background: #e7f9e7;
+	  font-size: 0.95em;
+	  border-radius: 10px;
+	}
+	.answer.visible {
+	  display: block;
+	}
+	.label {
+	  font-weight: 700;
+	}
+	.note {
+	  font-size: 0.9em;
+	  color: #555;
+	  margin-top: 6px;
+	}
+	.checklist {
+	  list-style: none;
+	  padding-left: 0;
+	  margin-top: 8px;
+	}
+	.checklist li {
+	  margin-bottom: 4px;
+	}
+	.checklist li::before {
+	  content: "☐ ";
+	  color: #ff7b7b;
+	  font-weight: 700;
+	}
+	.small {
+	  font-size: 0.9em;
+	}
+	.subheading {
+	  font-weight: 700;
+	  margin-top: 8px;
+	  margin-bottom: 4px;
+	  color: #3a7bd5;
+	}
+	.example-list {
+	  margin-left: 22px;
+	  padding-left: 4px;
+	}
+	.example-list li {
+	  margin-bottom: 4px;
+	}
+	.example-list li::marker {
+	  color: #f39c12;
+	  font-weight: 700;
+	}
+	.highlight {
+	  font-weight: 700;
+	  color: #333;
+	  background: #fff3b0;
+	  padding: 2px 6px;
+	  border-radius: 6px;
+	}
+	@media print {
+	  body {
+		padding: 0;
+		background-color: #ffffff;
+	  }
+	  .section {
+		box-shadow: none;
+		border-radius: 0;
+	  }
+	  .answer-toggle {
+		display: none;
+	  }
+	  .answer {
+		display: none !important;
+	  }
+	}
+	.meta {
+		display: none !important;
+	}
+  </style>
+  <script>
+    function toggleAnswer(button) {
+      const answer = button.nextElementSibling;
+      if (!answer) return;
+      const isVisible = answer.classList.contains('visible');
+      if (isVisible) {
+        answer.classList.remove('visible');
+        button.textContent = '정답 보기';
+      } else {
+        answer.classList.add('visible');
+        button.textContent = '정답 숨기기';
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>Unit 10 - was / were (be동사의 과거형)</h1>
+
+  <div class="meta">
+    대상: 한국어 모국어, 초6 / 수준: 문장 읽기는 가능, 문법 지식 부족<br />
+    학습 시간: 약 30분 / 분량: A4 2장 정도
+  </div>
+
+  <div class="section">
+    <h2>1. 개념 정리: was / were가 뭐예요?</h2>
+    <div class="item">
+      <p>
+        우리가 이미 아는 <span class="highlight">be 동사</span>는 <span class="highlight">am / is / are</span> 입니다.<br />
+        이것은 <span class="highlight">현재(지금)</span>를 말할 때 쓰는 말이에요.
+      </p>
+      <p>그런데 <span class="highlight">어제, 작년처럼 “과거(지나간 시간)”</span>을 말하고 싶을 때는 이렇게 바뀝니다.</p>
+      <ul class="example-list">
+        <li><span class="highlight">I / he / she / it</span> → <span class="highlight">was</span></li>
+        <li><span class="highlight">you / we / they</span> → <span class="highlight">were</span></li>
+      </ul>
+      <p>예:</p>
+      <ul class="example-list">
+        <li>I <span class="highlight">am</span> happy. (나는 <strong>지금</strong> 행복해.)</li>
+        <li>I <span class="highlight">was</span> happy yesterday. (나는 <strong>어제</strong> 행복했어.)</li>
+      </ul>
+    </div>
+    <div class="item">
+      <div class="subheading">형태(모양) 정리</div>
+      <ul class="example-list">
+        <li>긍정문: I <span class="highlight">was</span> / You <span class="highlight">were</span> ...</li>
+        <li>부정문: I <span class="highlight">was not (wasn’t)</span> / You <span class="highlight">were not (weren’t)</span></li>
+        <li>의문문: <span class="highlight">Was</span> I ...? / <span class="highlight">Were</span> you ...?</li>
+      </ul>
+    </div>
+    <div class="item">
+      <div class="subheading">언제 쓰나요?</div>
+      <p>과거의 <span class="highlight">상태, 장소, 기분, 나이, 날씨</span> 등을 말할 때 써요.</p>
+      <ul class="example-list">
+        <li>상태: She was tired yesterday. (그녀는 어제 피곤했어.)</li>
+        <li>장소: We were at the park. (우리는 공원에 있었어.)</li>
+        <li>기분: They were excited. (그들은 신이 났었어.)</li>
+        <li>나이: I was ten last year. (나는 작년에 10살이었어.)</li>
+        <li>날씨: It was rainy. (비 오는 날이었어.)</li>
+      </ul>
+    </div>
+    <div class="item">
+      <div class="subheading">한국어 학습자가 많이 하는 실수</div>
+      <ul class="example-list">
+        <li><span class="highlight">I were</span> happy. (X) → I <span class="highlight">was</span> happy. (O)</li>
+        <li><span class="highlight">They was</span> at home. (X) → They <span class="highlight">were</span> at home. (O)</li>
+        <li><span class="highlight">Did he was…?</span> (X) → <span class="highlight">Was he…?</span> (O)</li>
+        <li><span class="highlight">There was three dogs.</span> (X) → <span class="highlight">There were</span> three dogs. (O)</li>
+      </ul>
+      <p class="note">
+        be동사 과거(was/were)에는 <span class="highlight">did를 같이 쓰지 않아요.</span><br />
+        “Did he was?” 대신 “Was he?”가 맞습니다.
+      </p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>2. Noticing 활동: 공통점 찾기</h2>
+    <p class="small">예문을 먼저 소리 내어 읽고, 공통점을 스스로 찾아보세요.</p>
+    <ol class="example-list">
+      <li>Yesterday, I <span class="highlight">was</span> very sleepy.</li>
+      <li>My friends <span class="highlight">were</span> in the classroom.</li>
+      <li>It <span class="highlight">was</span> cold last night.</li>
+      <li>You <span class="highlight">were</span> late for school.</li>
+      <li>We <span class="highlight">were</span> happy at the party.</li>
+      <li>He <span class="highlight">was</span> sick on Monday.</li>
+      <li>They <span class="highlight">were</span> noisy at lunch.</li>
+      <li>Our teacher <span class="highlight">was</span> kind to us.</li>
+    </ol>
+
+    <div class="item">
+      <div class="question">1) 위 문장에서 <span class="highlight">시간</span>을 나타내는 단어(어제, 지난밤 등)를 찾아보세요.</div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <div><span class="label">예시 정답:</span> yesterday, last night, on Monday (모두 과거를 나타내는 표현)</div>
+        <div class="note">과거를 말할 때는 보통 이렇게 “언제”를 알려주는 단어가 함께 나와요.</div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="question">2) 어떤 주어(I, you, we, they, he, she, it) 뒤에는 <span class="highlight">was</span>가 오고, 어떤 주어 뒤에는 <span class="highlight">were</span>가 오나요? 한국어로 짧게 적어보세요.</div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <div>
+          <span class="label">정답 예:</span><br />
+          I, he, she, it → was<br />
+          you, we, they → were
+        </div>
+        <div class="note">
+          I는 혼자지만 특별히 <span class="highlight">was</span>를 써요. you는 한 명, 여러 명 모두 <span class="highlight">were</span>를 많이 씁니다(과거).
+        </div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="question">3) 위 문장들은 “하고 있다” 동작인가요, “어떤 상태였다” 인가요? 한국어로 적어보세요.</div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <div>
+          <span class="label">정답 예:</span> 모두 “어떤 상태였다 / 어디에 있었다”를 말하는 문장입니다.
+        </div>
+        <div class="note">
+          was / were는 과거의 <span class="highlight">상태, 장소, 기분</span>을 말할 때 주로 사용합니다. (예: 행복했다, 피곤했다, ~에 있었다)
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>3. 기초 확인: was / were 고르기</h2>
+    <p class="small">빈칸에 알맞은 be동사의 과거형을 넣어보세요. (was 또는 were)</p>
+
+    <div class="item">
+      <div class="question">1) I ______ tired yesterday.</div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <div><span class="label">정답:</span> was</div>
+        <div class="note">I 뒤에는 과거형 be동사로 <span class="highlight">was</span>를 씁니다.</div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="question">2) They ______ at the basketball court.</div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <div><span class="label">정답:</span> were</div>
+        <div class="note">They(그들)는 복수이므로 <span class="highlight">were</span>를 사용합니다.</div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="question">3) She ______ very hungry after PE class.</div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <div><span class="label">정답:</span> was</div>
+        <div class="note">She(3인칭 단수) → 과거형 be동사는 <span class="highlight">was</span>.</div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="question">4) You ______ not in the music room.</div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <div><span class="label">정답:</span> were</div>
+        <div class="note">You는 과거에 보통 <span class="highlight">were</span>를 씁니다. (You were not ...)</div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="question">5) It ______ very hot last summer.</div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <div><span class="label">정답:</span> was</div>
+        <div class="note">It(날씨, 상황)은 단수이므로 <span class="highlight">was</span>를 사용합니다.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>4. 부정문·의문문 연습 (wasn’t / weren’t / Was ~? / Were ~?)</h2>
+    <p class="small">괄호 안의 단어를 바꾸어 문장을 완성해 보세요.</p>
+
+    <div class="item">
+      <div class="question">1) I was happy. (부정문으로 바꾸기)</div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <div><span class="label">정답 예:</span> I was not happy. / I wasn’t happy.</div>
+        <div class="note">부정은 <span class="highlight">was not (wasn’t)</span>를 사용합니다.</div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="question">2) They were at the PC room. (부정문으로 바꾸기)</div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <div><span class="label">정답 예:</span> They were not at the PC room. / They weren’t at the PC room.</div>
+        <div class="note"><span class="highlight">were not (weren’t)</span>로 부정문을 만들어요.</div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="question">3) He was at home yesterday. (의문문으로 바꾸기)</div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <div><span class="label">정답:</span> Was he at home yesterday?</div>
+        <div class="note">
+          be동사(was)를 앞으로 보내서 질문을 만듭니다.<br />
+          <span class="highlight">Was he ~ ?</span> 순서를 꼭 확인해요.
+        </div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="question">4) You were sleepy in class. (의문문으로 바꾸기)</div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <div><span class="label">정답:</span> Were you sleepy in class?</div>
+        <div class="note"><span class="highlight">Were you ~ ?</span> 순서를 기억하세요.</div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="question">5) (질문 만들기) ______ it rainy yesterday? (예/아니오 질문)</div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <div>
+          <span class="label">정답:</span> Was it rainy yesterday?<br />
+          <span class="label">짧은 대답 예:</span> Yes, it was. / No, it wasn’t.
+        </div>
+        <div class="note">
+          It(날씨)이 단수이므로 <span class="highlight">Was it ~?</span><br />
+          짧게 대답할 때도 be동사의 과거형을 그대로 씁니다.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>5. Retrieval Practice: 규칙 떠올리기</h2>
+    <p class="small">책이나 위 설명을 보지 말고, 머릿속에서 떠올려서 적어보세요.</p>
+
+    <div class="item">
+      <div class="question">1) “언제 was / were를 쓰는지” 한국어로 한 문장으로 적어보세요.</div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <div>
+          <span class="label">예시 답:</span> 어제, 지난주처럼 <span class="highlight">과거의 상태나 장소</span>를 말할 때 am/is/are 대신 was/were를 쓴다.
+        </div>
+        <div class="note">핵심 단어만 들어가면 정답으로 봐도 좋아요. (과거, 상태/장소, am/is/are 대신)</div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="question">2) “어떤 주어와 같이 was를 쓰는지, 어떤 주어와 같이 were를 쓰는지” 한국어로 정리해보세요.</div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <div>
+          <span class="label">예시 답:</span> I, he, she, it 뒤에는 was, you, we, they 뒤에는 were를 쓴다.
+        </div>
+        <div class="note">이 정도로만 정리해도 충분합니다.</div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="question">3) 기억나는 영어 예문을 <strong>직접 하나</strong> 써 보세요. (was / were 둘 중 하나 사용)</div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <div>
+          <span class="label">예시 답:</span> I was nervous before the test.<br />
+          (학생이 만든 다른 문장도 was / were 사용이 맞으면 정답으로 인정해주세요.)
+        </div>
+        <div class="note">부모님께서는 <span class="highlight">주어 + was/were + 나머지</span> 순서가 맞으면 정답 처리해주세요.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>6. 한국어 → 영어 번역 (생활과 연결하기)</h2>
+    <p class="small">자신의 학교·친구·취미와 관련된 문장입니다. 우리말을 보고 영어로 써 보세요.</p>
+
+    <div class="item">
+      <div class="question">1) 나는 어제 정말 피곤했어.</div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <div><span class="label">정답 예:</span> I was really tired yesterday.</div>
+        <div class="note">I + was + 형용사 + yesterday 순서만 맞으면 정답으로 봅니다.</div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="question">2) 우리는 어제 컴퓨터실에 있었어.</div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <div><span class="label">정답 예:</span> We were in the computer room yesterday.</div>
+        <div class="note">
+          전치사 in, at 등을 틀려도 <span class="highlight">We were + 장소</span> 구조가 맞으면 부분 정답으로 인정해 주세요.
+        </div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="question">3) 어제 수학 시험은 정말 어려웠어.</div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <div><span class="label">정답 예:</span> The math test was really difficult yesterday.</div>
+        <div class="note">
+          The math test(단수 명사) → was 사용. really, very 같은 부사는 없어도 괜찮습니다.
+        </div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="question">4) 내 친구들은 점심시간에 너무 시끄러웠어.</div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <div><span class="label">정답 예:</span> My friends were very noisy at lunch.</div>
+        <div class="note">friends(복수) → were. 어순은 My friends were + 형용사 + (시간/장소).</div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="question">5) 나는 작년에 11살이었어.</div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <div><span class="label">정답 예:</span> I was eleven last year.</div>
+        <div class="note">나이를 말할 때도 be동사를 사용합니다. I was eleven (years old) last year.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>7. 변형 연습: 현재형 → 과거형</h2>
+    <p class="small">현재형 문장을 보고, 과거형으로 바꿔 쓰세요. (am / is / are → was / were)</p>
+
+    <div class="item">
+      <div class="question">1) I am nervous now. → (어제였다면?)</div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <div><span class="label">정답 예:</span> I was nervous yesterday.</div>
+        <div class="note">am → was, now → yesterday 등으로 바꾸어 과거 상황을 만들어요.</div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="question">2) They are at the library now. → (지난 토요일이었다면?)</div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <div><span class="label">정답 예:</span> They were at the library last Saturday.</div>
+        <div class="note">are → were, now → last Saturday 로 바꾸면 자연스러운 과거 문장이 됩니다.</div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="question">3) Our teacher is angry now. → (어제였다면?)</div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <div><span class="label">정답 예:</span> Our teacher was angry yesterday.</div>
+        <div class="note">Our teacher(단수) → was 사용, now → yesterday.</div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="question">4) You are very busy today. → (어제였다면?)</div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <div><span class="label">정답 예:</span> You were very busy yesterday.</div>
+        <div class="note">You + were 조합을 익혀 두면 좋습니다.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>8. 짧은 글 쓰기: 어제의 나를 소개하기</h2>
+    <p>어제 학교나 집에서의 나를 떠올리며, was / were를 사용해 3~4문장을 써 보세요.</p>
+    <ul class="example-list">
+      <li>첫 문장: 어제의 기분 (happy, tired, angry 등)</li>
+      <li>둘째 문장: 어디에 있었는지 (at school, at home, at the park 등)</li>
+      <li>셋째 문장: 누구와 있었는지 (with my friends, with my family 등)</li>
+      <li>넷째 문장(선택): 날씨나 분위기 (It was sunny, The classroom was noisy 등)</li>
+    </ul>
+
+    <div class="item">
+      <div class="question">직접 영어로 3~4문장 써 보세요.</div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <div>
+          <span class="label">예시 답:</span><br />
+          Yesterday, I was very happy.<br />
+          I was at school with my friends.<br />
+          Our classroom was noisy but fun.<br />
+          It was a great day.
+        </div>
+        <div class="note">
+          <span class="label">채점 팁 (학부모용):</span><br />
+          - 모든 문장에 was / were가 들어가 있는지 확인합니다.<br />
+          - 주어와 was / were 짝(I was / We were 등)이 맞으면 큰 틀에서 정답으로 봐 주세요.<br />
+          - 철자(spelling) 실수는 너무 엄격하게 보지 않아도 괜찮습니다.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>9. Spaced Repetition: 내일 다시 풀어볼 미니 복습</h2>
+    <p class="small">다음 날, 혹은 며칠 뒤에 다시 풀어보면 좋아요. 핵심만 모아 둔 문제입니다.</p>
+
+    <div class="item">
+      <div class="question">1) (빈칸 채우기) I ______ in the garden yesterday. (was / were)</div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <span class="label">정답:</span> was
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="question">2) (빈칸 채우기) They ______ very quiet in class. (was / were)</div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <span class="label">정답:</span> were
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="question">3) (부정문) It was sunny. → (비가 오지 않았어.) It ______ ______ rainy.</div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <span class="label">정답:</span> It was not rainy. / It wasn’t rainy.
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="question">4) (의문문) You were late for school. → 질문으로 바꾸기</div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <span class="label">정답:</span> Were you late for school?
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="question">5) (한국어 → 영어) 우리는 어제 체육관에 있었어.</div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <span class="label">정답 예:</span> We were in the gym yesterday.
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="question">6) (간단 설명) was / were를 언제 쓰는지 한 문장으로 한국어로 적어보세요.</div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <span class="label">예시 답:</span> 과거의 상태나 장소를 말할 때 am / is / are 대신 was / were를 쓴다.
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>10. 자기 점검 & 칭찬 한마디</h2>
+    <p>아래 체크리스트를 보면서 오늘 공부를 스스로 점검해 보세요.</p>
+    <ul class="checklist">
+      <li>I / he / she / it 뒤에는 was, you / we / they 뒤에는 were를 쓸 수 있다.</li>
+      <li>현재형(am / is / are)을 과거형(was / were)으로 바꿀 수 있다.</li>
+      <li>wasn’t / weren’t를 사용해서 부정문을 만들 수 있다.</li>
+      <li>Was / Were를 앞으로 보내서 의문문을 만들 수 있다.</li>
+      <li>어제의 나를 was / were를 사용해 2문장 이상 말하거나 쓸 수 있다.</li>
+    </ul>
+    <p class="note">
+      여기까지 했다면 정말 훌륭해요!<br />
+      아직 헷갈리더라도 괜찮아요. was / were는 많이 보고, 많이 써볼수록 자동으로 익숙해집니다.<br />
+      다음에 영어 문장을 읽을 때, was / were가 나오면 “아, 과거구나!” 하고 한 번씩 떠올려 보세요.
+    </p>
+  </div>
+</body>
+</html>

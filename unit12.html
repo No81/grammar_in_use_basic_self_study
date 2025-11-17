@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Grammar in Use 학습 자료</title>
+  <style>
+	body {
+	  font-family: "Comic Sans MS", "Nanum Gothic", "Arial Rounded MT", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+	  line-height: 1.7;
+	  max-width: 900px;
+	  margin: 0 auto;
+	  padding: 24px;
+	  font-size: 17px;
+	  background-color: #fffaf5;
+	  color: #333;
+	}
+
+	h1, h2, h3 {
+	  margin-top: 1.2em;
+	  margin-bottom: 0.5em;
+	  font-weight: 700;
+	}
+
+	h1 {
+	  font-size: 1.9rem;
+	  color: #ff7b7b;
+	  text-align: center;
+	}
+
+	h2 {
+	  font-size: 1.5rem;
+	  color: #3a7bd5;
+	  border-left: 8px solid #ffd86b;
+	  padding-left: 10px;
+	}
+
+	h3 {
+	  font-size: 1.25rem;
+	  color: #e67e22;
+	}
+
+	.section {
+	  margin-bottom: 24px;
+	  padding: 20px;
+	  border: 2px solid #f5d5a3;
+	  border-radius: 18px;
+	  background: #ffffff;
+	  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.05);
+	  page-break-inside: avoid;
+	}
+
+	.meta {
+	  font-size: 0.95em;
+	  color: #666;
+	  margin-bottom: 12px;
+	  padding: 10px 14px;
+	  border-radius: 12px;
+	  background: #fff3c4;
+      display: none !important;
+	}
+
+	.item {
+	  margin-bottom: 14px;
+	}
+
+	.question {
+	  font-weight: 600;
+	  margin-bottom: 6px;
+	}
+
+	.answer-toggle {
+	  margin-top: 4px;
+	  margin-bottom: 4px;
+	  padding: 6px 14px;
+	  font-size: 0.95em;
+	  cursor: pointer;
+	  background: #ffd86b;
+	  border: none;
+	  border-radius: 16px;
+	  font-weight: 700;
+	  color: #333;
+	  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+	  transition: background 0.2s, transform 0.1s, box-shadow 0.1s;
+	}
+
+	.answer-toggle:hover {
+	  background: #ffca3a;
+	}
+
+	.answer-toggle:active {
+	  transform: translateY(1px);
+	  box-shadow: 0 0 0 rgba(0, 0, 0, 0.1);
+	}
+
+	.answer {
+	  display: none;
+	  margin-top: 6px;
+	  padding: 10px 12px;
+	  border-left: 5px solid #6fcf97;
+	  background: #e7f9e7;
+	  font-size: 0.95em;
+	  border-radius: 10px;
+	}
+
+	.answer.visible {
+	  display: block;
+	}
+
+	.label {
+	  font-weight: 700;
+	}
+
+	.note {
+	  font-size: 0.9em;
+	  color: #555;
+	  margin-top: 6px;
+	}
+
+	.checklist {
+	  list-style: none;
+	  padding-left: 0;
+	  margin-top: 8px;
+	}
+
+	.checklist li {
+	  margin-bottom: 4px;
+	}
+
+	.checklist li::before {
+	  content: "☐ ";
+	  color: #ff7b7b;
+	  font-weight: 700;
+	}
+
+	.small {
+	  font-size: 0.9em;
+	}
+
+	.subheading {
+	  font-weight: 700;
+	  margin-top: 8px;
+	  margin-bottom: 4px;
+	  color: #3a7bd5;
+	}
+
+	.example-list {
+	  margin-left: 22px;
+	  padding-left: 4px;
+	}
+
+	.example-list li {
+	  margin-bottom: 4px;
+	}
+
+	.example-list li::marker {
+	  color: #f39c12;
+	  font-weight: 700;
+	}
+
+	.highlight {
+	  font-weight: 700;
+	  color: #333;
+	  background: #fff3b0;
+	  padding: 2px 6px;
+	  border-radius: 6px;
+	}
+
+	@media print {
+	  body {
+		padding: 0;
+		background-color: #ffffff;
+	  }
+
+	  .section {
+		box-shadow: none;
+		border-radius: 0;
+	  }
+
+	  .answer-toggle {
+		display: none;
+	  }
+
+	  .answer {
+		display: none !important;
+	  }
+	}
+
+	.meta {
+		display: none !important;
+	}
+  </style>
+  <script>
+    function toggleAnswer(button) {
+      const answer = button.nextElementSibling;
+      if (!answer) return;
+      const isVisible = answer.classList.contains('visible');
+      if (isVisible) {
+        answer.classList.remove('visible');
+        button.textContent = '정답 보기';
+      } else {
+        answer.classList.add('visible');
+        button.textContent = '정답 숨기기';
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>Unit 12 - I didn't ... / Did you ... ? (과거시제 부정문과 의문문)</h1>
+  <div class="meta">
+    대상: 한국어 모국어 초등 6학년 / 학습 시간: 약 30분 / 분량: A4 약 2장
+  </div>
+
+  <!-- 1. 학습 목표 & 전체 안내 -->
+  <div class="section">
+    <h2>1. 오늘의 학습 목표</h2>
+    <div class="item">
+      <p>
+        오늘은 <span class="highlight">과거의 부정문과 의문문</span>을 연습합니다.
+        <br />
+        과거: <span class="highlight">didn’t + 동사원형</span>, <span class="highlight">Did + 주어 + 동사원형 ... ?</span>
+      </p>
+    </div>
+    <div class="item">
+      <ul class="example-list">
+        <li>나는 어제 숙제를 <span class="highlight">하지 않았다</span>. → I <span class="highlight">didn’t do</span> my homework yesterday.</li>
+        <li>너는 어제 게임을 했니? → <span class="highlight">Did</span> you <span class="highlight">play</span> games yesterday?</li>
+      </ul>
+    </div>
+    <div class="item small">
+      ✔ 목표
+      <ul class="example-list">
+        <li>과거 부정문: didn’t + 동사원형 을 말하고 쓸 수 있다.</li>
+        <li>과거 의문문: Did + 주어 + 동사원형 ... ? 을 만들고 대답할 수 있다.</li>
+        <li>자주 하는 실수(예: <span class="highlight">didn’t went</span>, <span class="highlight">don’t yesterday</span>)를 피할 수 있다.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 2. 문법 설명 -->
+  <div class="section">
+    <h2>2. 문법 설명: 과거 부정 & 과거 의문 (didn’t / Did ... ?)</h2>
+
+    <h3>2-1. 형태(형식)</h3>
+    <div class="item">
+      <p class="subheading">① 과거 부정문 (하지 않았다)</p>
+      <p>
+        <span class="highlight">주어 + didn’t + 동사원형 + ...</span>
+      </p>
+      <ul class="example-list">
+        <li>I <span class="highlight">didn’t eat</span> breakfast this morning. (나는 오늘 아침을 먹지 않았다.)</li>
+        <li>She <span class="highlight">didn’t watch</span> TV yesterday. (그녀는 어제 TV를 보지 않았다.)</li>
+      </ul>
+      <p class="note">
+        ⚠ <b>주의</b>: 한 문장에 <span class="highlight">과거형 동사</span>와 <span class="highlight">didn’t</span>가 같이 오지 않습니다.
+        <br />
+        ❌ I didn’t <u>ate</u> breakfast. → ✅ I didn’t <b>eat</b> breakfast.
+      </p>
+    </div>
+
+    <div class="item">
+      <p class="subheading">② 과거 의문문 (했니?)</p>
+      <p>
+        <span class="highlight">Did + 주어 + 동사원형 + ... ?</span>
+      </p>
+      <ul class="example-list">
+        <li><span class="highlight">Did</span> you <span class="highlight">do</span> your homework yesterday?</li>
+        <li><span class="highlight">Did</span> they <span class="highlight">go</span> to the park last Sunday?</li>
+      </ul>
+      <p class="note">
+        대답할 때:
+        <br />
+        → Yes, 주어 + <span class="highlight">did</span>. / No, 주어 + <span class="highlight">didn’t</span>.
+        <br />
+        예: Did you do your homework? → Yes, I did. / No, I didn’t.
+      </p>
+    </div>
+
+    <h3>2-2. 의미 & 사용</h3>
+    <div class="item">
+      <p class="subheading">언제 쓰나요?</p>
+      <ul class="example-list">
+        <li><b>어제, 지난주, 작년</b>처럼 <b>이미 끝난 일</b>에 대해 “하지 않았다 / 했니?”라고 말할 때 사용합니다.</li>
+        <li>시간 표현: yesterday, last night, last week, two days ago, in 2020 등과 자주 함께 나옵니다.</li>
+      </ul>
+    </div>
+
+    <h3>2-3. 비슷한 문법과 비교</h3>
+    <div class="item">
+      <p class="subheading">현재 vs 과거</p>
+      <ul class="example-list">
+        <li>현재 부정: I <b>don’t</b> play soccer on Mondays. (월요일마다 안 한다.)</li>
+        <li>과거 부정: I <b>didn’t</b> play soccer yesterday. (어제는 안 했다.)</li>
+      </ul>
+      <p class="note">
+        한국어에서는 둘 다 “안 한다 / 안 했다”로 비슷하게 느껴져서
+        <br />
+        “어제”가 있는데도 <b>don’t</b>를 쓰는 실수를 많이 합니다.
+        <br />
+        → <span class="highlight">어제 / 지난주 / ~ago</span>가 보이면 <b>didn’t / Did</b>를 떠올리기!
+      </p>
+    </div>
+
+    <div class="item">
+      <p class="subheading">자주 하는 실수 정리</p>
+      <ul class="example-list">
+        <li>❌ I didn’t <u>went</u> to school. → ✅ I didn’t <b>go</b> to school.</li>
+        <li>❌ Did you <u>went</u> to the park? → ✅ Did you <b>go</b> to the park?</li>
+        <li>❌ I don’t play games yesterday. → ✅ I <b>didn’t</b> play games yesterday.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 3. Noticing 활동 -->
+  <div class="section">
+    <h2>3. Noticing 활동: 규칙 스스로 발견하기</h2>
+
+    <div class="item">
+      <p class="question">
+        (1) 아래 문장을 읽어 보고, <span class="highlight">과거 부정문(didn’t)과 과거 의문문(Did ... ?)</span>을 찾아 동그라미 해 보세요.
+      </p>
+      <ol class="example-list">
+        <li>I didn’t eat lunch at school yesterday.</li>
+        <li>Did you watch the movie last night?</li>
+        <li>My sister didn’t go to the party.</li>
+        <li>Did they play soccer after school?</li>
+        <li>We didn’t study English on Sunday.</li>
+        <li>Did your dad cook dinner yesterday?</li>
+      </ol>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p>
+          ①, ③, ⑤ → 과거 <b>부정문</b> (didn’t + 동사원형)<br />
+          ②, ④, ⑥ → 과거 <b>의문문</b> (Did + 주어 + 동사원형 ... ?)
+        </p>
+        <p class="note small">
+          채점 팁: 아이가 문장 전체를 다 쓰지 않아도, didn’t / Did 부분만 잘 표시해도 푼 것으로 봐 주세요.
+        </p>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">
+        (2) 위 문장에서 <b>동사</b>(eat, watch, go, play, study, cook)를 살펴보고,
+        <span class="highlight">didn’t / Did</span> 뒤에 오는 동사의 공통점을 말해 보세요.
+      </p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p>
+          → 모두 <b>동사원형</b>입니다. (eat, watch, go, play, study, cook 처럼 기본 형태)
+        </p>
+        <p class="note small">
+          “didn’t + 과거형”이 아니라, 항상 “didn’t + 동사원형”이라는 것을 자연스럽게 눈치채면 됩니다.
+        </p>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">
+        (3) 언제 이 문장들을 사용하나요? 맞는 것을 모두 골라 보세요.
+      </p>
+      <ul class="example-list">
+        <li>A. 지금 하고 있는 일을 말할 때</li>
+        <li>B. 어제, 지난주, 지난해처럼 이미 끝난 일을 말할 때</li>
+        <li>C. 내일 할 일을 말할 때</li>
+      </ul>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p>→ 정답: <b>B</b></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. Retrieval Practice (회상 연습) -->
+  <div class="section">
+    <h2>4. 회상 연습: 책을 덮고 떠올려 보기</h2>
+
+    <div class="item">
+      <p class="question">
+        (1) 책을 잠깐 덮고, 과거 부정문 규칙을 <b>한국어로 한 줄</b>로 써 보세요.
+        <br />
+        힌트: “주어 + … + 동사원형”
+      </p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p>예시 답: “과거에 안 했다를 말할 때는 주어 + didn’t + 동사원형을 쓴다.”</p>
+        <p class="note small">
+          문장이 조금 달라도 괜찮습니다. ‘과거’, ‘didn’t’, ‘동사원형’ 이 세 가지가 들어가면 OK입니다.
+        </p>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">
+        (2) 과거 의문문 규칙을 <b>영어로</b> 짧게 써 보세요.
+        <br />
+        힌트: “Did + 주어 …” 로 시작해 보세요.
+      </p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p>예시 답: “Did + subject + verb (base form) + ... ?”</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">
+        (3) 기억나는 예문을 하나 골라 <b>아무것이나 영어로 다시 써 보세요.</b>
+        <br />
+        (직접 새로 만들어도 좋아요!)
+      </p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p>예시: I didn’t play games yesterday. / Did you watch TV last night?</p>
+        <p class="note small">
+          아이가 자신의 문장을 만들었다면, 시제(어제/지난주 등)와 didn’t / Did 사용이 맞는지 위주로 봐 주세요.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. Scaffolding 연습: 이해 확인 → 빈칸 → 변형 -->
+  <div class="section">
+    <h2>5. 단계별 연습 ①: 형식 연습</h2>
+
+    <h3>5-1. 선택 문제</h3>
+    <div class="item">
+      <p class="question">
+        (1) 괄호 안에서 알맞은 것을 골라 문장을 완성하세요.
+      </p>
+      <ol class="example-list">
+        <li>I (don’t / <b>didn’t</b>) play soccer yesterday.</li>
+        <li>(Do / <b>Did</b>) you watch the video last night?</li>
+        <li>She (doesn’t / <b>didn’t</b>) eat breakfast this morning.</li>
+        <li>(Do / <b>Did</b>) they go to Busan last year?</li>
+        <li>We (don’t / <b>didn’t</b>) study English on Sunday.</li>
+      </ol>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p>
+          1. didn’t<br />
+          2. Did<br />
+          3. didn’t<br />
+          4. Did<br />
+          5. didn’t
+        </p>
+        <p class="note small">
+          채점 팁: <b>yesterday / last / morning / Sunday</b> 같은 시간 표현이 보이면
+          did/didn’t를 떠올리는지 확인해 주세요.
+        </p>
+      </div>
+    </div>
+
+    <h3>5-2. 빈칸 채우기 (did / didn’t + 동사원형)</h3>
+    <div class="item">
+      <p class="question">
+        (2) 괄호 안 단어를 이용해 <b>과거 부정문 또는 의문문</b>을 만드세요.
+      </p>
+      <ol class="example-list">
+        <li>I __________ (eat / breakfast / yesterday).</li>
+        <li>__________ you __________ (do / your homework / last night)?</li>
+        <li>My brother __________ (play / games / yesterday).</li>
+        <li>__________ your mom __________ (cook / dinner / yesterday)?</li>
+        <li>We __________ (go / to the park / last Sunday).</li>
+      </ol>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p>
+          1. I <b>didn’t eat</b> breakfast yesterday.<br />
+          2. <b>Did</b> you <b>do</b> your homework last night?<br />
+          3. My brother <b>didn’t play</b> games yesterday.<br />
+          4. <b>Did</b> your mom <b>cook</b> dinner yesterday?<br />
+          5. We <b>didn’t go</b> to the park last Sunday.
+        </p>
+        <p class="note small">
+          핵심: didn’t / Did 뒤의 동사는 모두 <b>동사원형</b>(eat, do, play, cook, go) 인지 꼭 확인합니다.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. Production 연습: 문장 만들기 -->
+  <div class="section">
+    <h2>6. 단계별 연습 ②: 문장 만들기 (한국어 → 영어)</h2>
+
+    <h3>6-1. 한국어를 보고 영어로 쓰기</h3>
+    <div class="item">
+      <p class="question">
+        (1) 다음 문장을 <b>과거 부정문 또는 과거 의문문</b>으로 영어로 써 보세요.
+      </p>
+      <ol class="example-list">
+        <li>나는 어제 숙제를 하지 않았어.</li>
+        <li>너는 어제 TV를 봤니?</li>
+        <li>우리는 지난 일요일에 공원에 가지 않았어.</li>
+        <li>너희 엄마는 어제 저녁을 직접 요리하셨니?</li>
+        <li>그들은 어제 게임을 하지 않았어.</li>
+      </ol>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p>
+          1. I <b>didn’t do</b> my homework yesterday.<br />
+          2. <b>Did</b> you <b>watch</b> TV yesterday?<br />
+          3. We <b>didn’t go</b> to the park last Sunday. / last Sunday → 지난 일요일<br />
+          4. <b>Did</b> your mom <b>cook</b> dinner yesterday?<br />
+          5. They <b>didn’t play</b> games yesterday.
+        </p>
+        <p class="note small">
+          아이가 yesterday, last Sunday 같은 시간 표현을 다른 걸로 바꿔 써도 괜찮습니다.
+          <br />
+          동사원형과 did / didn’t 사용이 맞으면 정답으로 봐 주세요.
+        </p>
+      </div>
+    </div>
+
+    <h3>6-2. 문장 변형하기</h3>
+    <div class="item">
+      <p class="question">
+        (2) 아래의 <b>긍정문</b>을 보고, 지시에 따라 <b>부정문 또는 의문문</b>으로 고쳐 쓰세요.
+      </p>
+      <ol class="example-list">
+        <li>
+          원문: I played games yesterday.
+          <br />
+          → “어제 게임을 하지 않았다”로 바꾸기
+        </li>
+        <li>
+          원문: She studied English last night.
+          <br />
+          → “어제 밤에 영어를 공부하지 않았다”로 바꾸기
+        </li>
+        <li>
+          원문: They went to the park yesterday.
+          <br />
+          → “어제 공원에 갔니?”로 <b>질문문</b>으로 바꾸기
+        </li>
+        <li>
+          원문: He watched a movie last weekend.
+          <br />
+          → “지난 주말에 영화를 보지 않았다”로 바꾸기
+        </li>
+      </ol>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p>
+          1. I <b>didn’t play</b> games yesterday.<br />
+          2. She <b>didn’t study</b> English last night.<br />
+          3. <b>Did</b> they <b>go</b> to the park yesterday?<br />
+          4. He <b>didn’t watch</b> a movie last weekend.
+        </p>
+        <p class="note small">
+          ‘played → didn’t play’, ‘went → did go (질문문에서)’처럼, 과거형이 동사원형으로 바뀌는지 체크해 주세요.
+        </p>
+      </div>
+    </div>
+
+    <h3>6-3. 나의 실제 생활과 연결하기</h3>
+    <div class="item">
+      <p class="question">
+        (3) 아래 질문에 <b>진짜 나의 지난 시간</b>을 떠올리며 영어로 대답해 보세요.
+        <br />
+        Yes / No 대답 후, 한 문장 더 써도 좋습니다.
+      </p>
+      <ol class="example-list">
+        <li>Did you play games yesterday?</li>
+        <li>Did you watch YouTube last night?</li>
+        <li>Did you go to a hagwon (학원) yesterday?</li>
+      </ol>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p>예시:</p>
+        <ul class="example-list">
+          <li>Yes, I did. I played Minecraft.</li>
+          <li>No, I didn’t. I did my homework.</li>
+          <li>Yes, I did. / No, I didn’t.</li>
+        </ul>
+        <p class="note small">
+          아이가 실제 경험을 적는 것이 가장 중요합니다.
+          <br />
+          Yes / No + I did / I didn’t 만 정확하면 추가 문장은 자유롭게 쓰게 해 주세요.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. 짧은 글/대화 만들기 -->
+  <div class="section">
+    <h2>7. 짧은 대화/글 쓰기</h2>
+
+    <div class="item">
+      <p class="question">
+        (1) 친구와 어제 한 일을 묻고 답하는 <b>짧은 대화</b>를 만들어 보세요.
+      </p>
+      <p>
+        예시 틀:
+      </p>
+      <ul class="example-list">
+        <li>A: Did you ______ yesterday?</li>
+        <li>B: Yes, I did. / No, I didn’t. I ______.</li>
+      </ul>
+      <p>게임, 유튜브, 숙제, 축구, 학원 등 자유롭게 넣어 보세요.</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p>예시:</p>
+        <p>
+          A: Did you play games yesterday?<br />
+          B: Yes, I did. I played Roblox.
+        </p>
+        <p class="note small">
+          아이가 여러 개의 질문을 만들면 더 좋습니다. did / didn’t / 동사원형 사용에만 초점을 두고 칭찬을 많이 해 주세요.
+        </p>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">
+        (2) “어제 하루”에 대해 과거 부정문을 <b>2문장 이상</b> 포함하여 짧은 일기(3~4문장)를 써 보세요.
+      </p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p>예시:</p>
+        <p>
+          Yesterday was Sunday. I didn’t get up early. I didn’t go to hagwon.
+          I played games and watched YouTube at home.
+        </p>
+        <p class="note small">
+          문법이 조금 틀려도 “과거 부정문을 사용해 보려는 시도” 자체를 크게 칭찬해 주세요.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. Spaced Repetition용 미니 복습 세트 -->
+  <div class="section">
+    <h2>8. 내일 다시 풀어 보는 미니 복습 세트</h2>
+    <p class="small">
+      👉 오늘 다 풀었다면, 내일 또는 며칠 뒤에 이 부분만 다시 풀어 보세요.
+    </p>
+
+    <div class="item">
+      <p class="question">(1) 다음 문장을 과거 부정문으로 고쳐 쓰세요.</p>
+      <ol class="example-list">
+        <li>I played basketball yesterday.</li>
+        <li>She went to the library last Sunday.</li>
+      </ol>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p>
+          1. I <b>didn’t play</b> basketball yesterday.<br />
+          2. She <b>didn’t go</b> to the library last Sunday.
+        </p>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">(2) 과거 의문문으로 바꾸세요.</p>
+      <ol class="example-list">
+        <li>You watched TV last night.</li>
+        <li>They studied English yesterday.</li>
+      </ol>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p>
+          1. <b>Did</b> you <b>watch</b> TV last night?<br />
+          2. <b>Did</b> they <b>study</b> English yesterday?
+        </p>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">(3) 한국어를 보고 영어로 쓰세요.</p>
+      <ol class="example-list">
+        <li>나는 어제 운동을 하지 않았어.</li>
+        <li>너는 어제 친구를 만났니?</li>
+      </ol>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p>
+          1. I <b>didn’t exercise</b> yesterday. / I didn’t work out yesterday.<br />
+          2. <b>Did</b> you <b>meet</b> your friend yesterday?
+        </p>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">(4) 빈칸에 did / didn’t 를 넣으세요.</p>
+      <ol class="example-list">
+        <li>_____ you go to school yesterday?</li>
+        <li>I _____ watch YouTube last night.</li>
+      </ol>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p>
+          1. <b>Did</b><br />
+          2. <b>didn’t</b>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 9. 자기 점검 & 동기부여 -->
+  <div class="section">
+    <h2>9. 자기 점검 & 칭찬 카드</h2>
+
+    <div class="item">
+      <p class="subheading">✔ 오늘 나는...</p>
+      <ul class="checklist">
+        <li>“주어 + didn’t + 동사원형”을 보고 과거 부정문이라는 걸 알 수 있다.</li>
+        <li>“Did + 주어 + 동사원형 ... ?”을 보고 과거 의문문이라는 걸 알 수 있다.</li>
+        <li>didn’t / Did 뒤에 <b>항상 동사원형</b>이 온다는 것을 기억할 수 있다.</li>
+        <li>어제 한 일, 하지 않은 일을 과거 부정문과 의문문으로 2문장 이상 말할 수 있다.</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <p class="subheading">🌟 한 줄 다짐</p>
+      <p class="question">
+        “다음 번에는 과거 부정/의문문을 이렇게 써 보겠다!”라는 다짐을 한국어 또는 영어로 한 줄 써 보세요.
+      </p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p>예시: “어제 한 일을 말할 때는 꼭 did / didn’t 를 떠올리겠다!”</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="note">
+        💌 <b>격려 메시지</b><br />
+        여기까지 열심히 공부했다면 정말 잘하고 있는 거예요!<br />
+        과거형은 처음에 헷갈리기 쉬운 부분이지만,
+        <span class="highlight">“didn’t + 동사원형 / Did + 주어 + 동사원형?”</span>만 기억하면
+        훨씬 쉬워집니다. 내일 한 번 더 복습 세트를 풀어 보면서
+        내 것으로 만들어 봅시다. 👍
+      </p>
+    </div>
+  </div>
+</body>
+</html>

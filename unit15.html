@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Grammar in Use 학습 자료</title>
+  <style>
+	body {
+	  font-family: "Comic Sans MS", "Nanum Gothic", "Arial Rounded MT", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+	  line-height: 1.7;
+	  max-width: 900px;
+	  margin: 0 auto;
+	  padding: 24px;
+	  font-size: 17px;
+	  background-color: #fffaf5;
+	  color: #333;
+	}
+	h1, h2, h3 {
+	  margin-top: 1.2em;
+	  margin-bottom: 0.5em;
+	  font-weight: 700;
+	}
+	h1 {
+	  font-size: 1.9rem;
+	  color: #ff7b7b;
+	  text-align: center;
+	}
+	h2 {
+	  font-size: 1.5rem;
+	  color: #3a7bd5;
+	  border-left: 8px solid #ffd86b;
+	  padding-left: 10px;
+	}
+	h3 {
+	  font-size: 1.25rem;
+	  color: #e67e22;
+	}
+	.section {
+	  margin-bottom: 24px;
+	  padding: 20px;
+	  border: 2px solid #f5d5a3;
+	  border-radius: 18px;
+	  background: #ffffff;
+	  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.05);
+	  page-break-inside: avoid;
+	}
+	.meta {
+	  font-size: 0.95em;
+	  color: #666;
+	  margin-bottom: 12px;
+	  padding: 10px 14px;
+	  border-radius: 12px;
+	  background: #fff3c4;
+      display: none !important;
+	}
+	.item {
+	  margin-bottom: 14px;
+	}
+	.question {
+	  font-weight: 600;
+	  margin-bottom: 6px;
+	}
+	.answer-toggle {
+	  margin-top: 4px;
+	  margin-bottom: 4px;
+	  padding: 6px 14px;
+	  font-size: 0.95em;
+	  cursor: pointer;
+	  background: #ffd86b;
+	  border: none;
+	  border-radius: 16px;
+	  font-weight: 700;
+	  color: #333;
+	  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+	  transition: background 0.2s, transform 0.1s, box-shadow 0.1s;
+	}
+	.answer-toggle:hover {
+	  background: #ffca3a;
+	}
+	.answer-toggle:active {
+	  transform: translateY(1px);
+	  box-shadow: 0 0 0 rgba(0, 0, 0, 0.1);
+	}
+	.answer {
+	  display: none;
+	  margin-top: 6px;
+	  padding: 10px 12px;
+	  border-left: 5px solid #6fcf97;
+	  background: #e7f9e7;
+	  font-size: 0.95em;
+	  border-radius: 10px;
+	}
+	.answer.visible {
+	  display: block;
+	}
+	.label {
+	  font-weight: 700;
+	}
+	.note {
+	  font-size: 0.9em;
+	  color: #555;
+	  margin-top: 6px;
+	}
+	.checklist {
+	  list-style: none;
+	  padding-left: 0;
+	  margin-top: 8px;
+	}
+	.checklist li {
+	  margin-bottom: 4px;
+	}
+	.checklist li::before {
+	  content: "☐ ";
+	  color: #ff7b7b;
+	  font-weight: 700;
+	}
+	.small {
+	  font-size: 0.9em;
+	}
+	.subheading {
+	  font-weight: 700;
+	  margin-top: 8px;
+	  margin-bottom: 4px;
+	  color: #3a7bd5;
+	}
+	.example-list {
+	  margin-left: 22px;
+	  padding-left: 4px;
+	}
+	.example-list li {
+	  margin-bottom: 4px;
+	}
+	.example-list li::marker {
+	  color: #f39c12;
+	  font-weight: 700;
+	}
+	.highlight {
+	  font-weight: 700;
+	  color: #333;
+	  background: #fff3b0;
+	  padding: 2px 6px;
+	  border-radius: 6px;
+	}
+	@media print {
+	  body {
+		padding: 0;
+		background-color: #ffffff;
+	  }
+	  .section {
+		box-shadow: none;
+		border-radius: 0;
+	  }
+	  .answer-toggle {
+		display: none;
+	  }
+	  .answer {
+		display: none !important;
+	  }
+	}
+	.meta {
+		display: none !important;
+	}
+  </style>
+  <script>
+    function toggleAnswer(button) {
+      const answer = button.nextElementSibling;
+      if (!answer) return;
+      const isVisible = answer.classList.contains('visible');
+      if (isVisible) {
+        answer.classList.remove('visible');
+        button.textContent = '정답 보기';
+      } else {
+        answer.classList.add('visible');
+        button.textContent = '정답 숨기기';
+      }
+    }
+  </script>
+</head>
+<body>
+  <div class="section">
+    <h1>Unit 15 - I used to … (과거의 습관/상태 말하기)</h1>
+    <div class="meta">
+      한국어 모국어 · 초6 · 학습 시간 약 30분 · 분량 A4 2쪽 정도
+    </div>
+    <p>
+      이 학습지는 <span class="highlight">used to + 동사원형</span>을 사용해서
+      “예전에는 그랬는데 지금은 아니다”를 말하는 연습을 합니다.
+    </p>
+  </div>
+
+  <div class="section">
+    <h2>1. 문법 설명: <span class="highlight">used to</span>가 뭐예요?</h2>
+
+    <div class="item">
+      <div class="subheading">1) 형식 (모양)</div>
+      <p>
+        <span class="highlight">used to + 동사원형</span><br />
+        예) I used to <u>play</u> soccer. (예전에 축구를 자주 했어.)
+      </p>
+      <ul class="example-list">
+        <li><span class="highlight">긍정</span>: 주어 + used to + 동사원형</li>
+        <li><span class="highlight">부정</span>: 주어 + didn’t use to + 동사원형</li>
+        <li><span class="highlight">의문</span>: Did + 주어 + use to + 동사원형?</li>
+      </ul>
+      <p class="note">
+        ❗ 주의: <span class="highlight">did</span>가 있으면 뒤에는 <span class="highlight">use</span> (d 없음) 를 씁니다.<br />
+        ✗ Did you <u>used</u> to play? → ✓ Did you <u>use</u> to play?
+      </p>
+    </div>
+
+    <div class="item">
+      <div class="subheading">2) 의미 (뉘앙스)</div>
+      <p>
+        <span class="highlight">used to</span>는
+        “<span class="highlight">예전에 자주 했던 습관/상태</span>인데,
+        <span class="highlight">지금은 그렇지 않다</span>”는 느낌입니다.
+      </p>
+      <ul class="example-list">
+        <li>I used to live in Busan. (예전에 부산에 살았지만, 지금은 아님.)</li>
+        <li>He used to be shy. (예전에는 부끄러움을 많이 탔지만, 지금은 아님.)</li>
+        <li>We used to go to the park every Sunday. (예전에 매주 일요일마다 갔지만, 지금은 안 감.)</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <div class="subheading">3) 언제/왜 쓰나요?</div>
+      <ul class="example-list">
+        <li>어릴 때 습관 말할 때: I used to watch cartoons every morning.</li>
+        <li>이전 학교/동네 이야기: I used to go to another school.</li>
+        <li>성격 변화 이야기: She used to be quiet, but now she is talkative.</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <div class="subheading">4) 비슷한 표현과 차이</div>
+      <ul class="example-list">
+        <li>
+          <span class="highlight">과거 시제 (did, went, played …)</span><br />
+          → 그냥 과거에 <u>한 번(또는 여러 번) 있었던 일</u>을 말함.<br />
+          예) I played soccer yesterday. (어제 축구함, 습관 느낌 X)
+        </li>
+        <li>
+          <span class="highlight">used to</span><br />
+          → 과거에 <u>습관처럼 자주</u> 했고, <u>지금은 안 함</u>을 나타냄.<br />
+          예) I used to play soccer every day. (예전에는 매일 했다, 지금은 안 함)
+        </li>
+        <li>
+          <span class="highlight">usually</span><br />
+          → <u>지금도</u> 보통 ~한다.<br />
+          예) I usually play soccer after school. (지금도 보통 방과 후에 함)
+        </li>
+      </ul>
+      <p class="note">
+        한국어 화자는 보통<br />
+        ① “I was play soccer.” 처럼 <span class="highlight">be동사 + 동사원형</span>을 섞어서 틀리거나,<br />
+        ② “I used to play soccer now.” 처럼 <span class="highlight">지금도 한다</span>는 뜻일 때 used to를 써서 틀리는 경우가 많습니다.
+      </p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>2. Noticing 활동: 규칙 스스로 발견하기</h2>
+
+    <div class="item">
+      <p class="subheading">① 예문 읽기</p>
+      <ul class="example-list">
+        <li>A. I used to have long hair. Now my hair is short.</li>
+        <li>B. We used to live in an apartment. Now we live in a house.</li>
+        <li>C. My dad used to smoke, but he doesn’t smoke now.</li>
+        <li>D. Mina used to be lazy, but now she studies hard.</li>
+        <li>E. I used to play computer games every day, but I don’t play much now.</li>
+        <li>F. Did you use to go to this school?</li>
+        <li>G. I didn’t use to like vegetables.</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <p class="subheading">② 관찰 질문</p>
+      <p class="question">
+        1) 위 문장에서 <span class="highlight">used to</span>가 들어간 부분을 밑줄로 표시해 보세요.
+      </p>
+      <p class="question">
+        2) used to가 쓰인 문장들은 <br />과거의 “한 번 있었던 일”인가요, “예전에 자주 그랬던 상태/습관”인가요?
+      </p>
+      <p class="question">
+        3) 지금도 그 행동/상태가 계속되고 있나요, 아니면 지금은 달라졌나요?
+      </p>
+      <p class="question">
+        4) 부정문과 의문문에서는 <span class="highlight">used to / use to / didn’t / did</span> 중 뭐가 같이 쓰이나요?
+      </p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p>
+          1) 모두 <span class="highlight">used to / use to</span> 부분에 밑줄을 긋습니다.<br />
+          2) “예전에 자주 그랬던 상태/습관”을 말합니다.<br />
+          3) 지금은 <span class="highlight">달라졌음</span>을 뜻합니다.<br />
+          4) 부정/의문문에서는 <span class="highlight">did / didn’t + use to</span> 형태를 씁니다.
+        </p>
+        <p class="note">
+          채점 팁: 아이가 “예전에 자주 했고 지금은 아니다”는 의미만 잘 말해도 정답으로 봐 주세요.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>3. Retrieval Practice: 방금 배운 내용 떠올리기</h2>
+
+    <div class="item">
+      <p class="question">
+        1) 책을 덮고, <span class="highlight">used to</span>가 어떤 뜻인지 한국어로 짧게 써 보세요.
+      </p>
+      <p class="small">(예: “예전에는 ~했지만 지금은 안 한다” 처럼 자기 말로 쓰기)</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p>예시 답:</p>
+        <ul class="example-list">
+          <li>예전에 자주 했던 습관이나 상태인데 지금은 그렇지 않을 때 쓰는 표현.</li>
+        </ul>
+        <p class="note">
+          문장이 조금 달라도, “예전에 ~했지만 지금은 안 해요/달라요” 느낌만 들어 있으면 정답으로 보세요.
+        </p>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">
+        2) 기억나는 <span class="highlight">used to</span> 예문을 영어로 1문장 써 보세요. (스스로 만들어도 되고, 아까 본 문장을 기억해서 써도 됩니다.)
+      </p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p>예시 답:</p>
+        <ul class="example-list">
+          <li>I used to watch cartoons every morning.</li>
+          <li>I used to live in Seoul.</li>
+        </ul>
+        <p class="note">
+          주어, 동사가 달라도 <span class="highlight">used to + 동사원형</span> 형태만 맞으면 정답입니다.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>4. 형식 연습 1: 어떤 문장이 맞을까요?</h2>
+    <p>괄호 안에서 알맞은 것을 골라 문장을 완성하세요.</p>
+
+    <div class="item">
+      <ol class="example-list">
+        <li>I (used to / use to) play the piano every day.</li>
+        <li>We didn’t (used to / use to) have a computer.</li>
+        <li>(Did / Do) you (used to / use to) live in Japan?</li>
+        <li>My brother (used to / use to) be very noisy.</li>
+        <li>She (used to / use to) go to this academy, but she doesn’t now.</li>
+        <li>I (used to / use to) eat a lot of candy, but I don’t now.</li>
+      </ol>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p><span class="label">정답</span></p>
+        <ol class="example-list">
+          <li>I <u>used to</u> play the piano every day.</li>
+          <li>We didn’t <u>use to</u> have a computer.</li>
+          <li><u>Did</u> you <u>use to</u> live in Japan?</li>
+          <li>My brother <u>used to</u> be very noisy.</li>
+          <li>She <u>used to</u> go to this academy, but she doesn’t now.</li>
+          <li>I <u>used to</u> eat a lot of candy, but I don’t now.</li>
+        </ol>
+        <p class="note">
+          채점 팁: ① used / use 위치, ② Did / didn’t와 함께 쓸 때는 꼭 <span class="highlight">use to</span>가 되었는지만 확인해 주세요. 단어 철자가 조금 틀려도 괜찮습니다.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>5. 형식 연습 2: 빈칸 채우기</h2>
+    <p>빈칸에 <span class="highlight">used to / didn’t use to / Did … use to</span>를 알맞게 넣으세요.</p>
+
+    <div class="item">
+      <ol class="example-list">
+        <li>I __________ drink coffee, but now I drink it every morning.</li>
+        <li>My sister __________ be afraid of dogs, but now she loves them.</li>
+        <li>We __________ go to Jeju every summer, but now we are too busy.</li>
+        <li>__________ you __________ play any sports?</li>
+        <li>They __________ have a smartphone, so they wrote letters.</li>
+      </ol>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p><span class="label">정답 예시</span></p>
+        <ol class="example-list">
+          <li>I <u>didn’t use to</u> drink coffee, but now I drink it every morning.</li>
+          <li>My sister <u>used to</u> be afraid of dogs, but now she loves them.</li>
+          <li>We <u>used to</u> go to Jeju every summer, but now we are too busy.</li>
+          <li><u>Did</u> you <u>use to</u> play any sports?</li>
+          <li>They <u>didn’t use to</u> have a smartphone, so they wrote letters.</li>
+        </ol>
+        <p class="note">
+          문장 뒤쪽 내용(접속사 부분 등)이 조금 달라도, <span class="highlight">used to / didn’t use to / Did … use to</span>가 맞으면 정답으로 봐도 좋습니다.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>6. Production 연습 1: 한국어 → 영어</h2>
+    <p>다음 문장을 <span class="highlight">used to</span>를 사용해 영어로 써 보세요.</p>
+
+    <div class="item">
+      <ol class="example-list">
+        <li>나는 예전에 안경을 썼지만, 지금은 안 써요.</li>
+        <li>우리는 예전에 이 동네에 살았지만, 지금은 다른 곳에 살아요.</li>
+        <li>내 동생은 예전에 야채를 싫어했지만, 지금은 좋아해요.</li>
+        <li>너는 예전에 컴퓨터 게임을 많이 했니?</li>
+        <li>우리 반 친구들은 예전에 축구를 자주 했지만, 지금은 농구를 더 많이 해요.</li>
+        <li>나는 예전에 밤늦게까지 깨어 있었지만, 지금은 일찍 자요.</li>
+      </ol>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p><span class="label">예시 정답</span> (다른 표현도 가능)</p>
+        <ol class="example-list">
+          <li>I used to wear glasses, but I don’t wear them now.</li>
+          <li>We used to live in this neighborhood, but now we live somewhere else.</li>
+          <li>My younger brother (or sister) used to hate vegetables, but now he (she) likes them.</li>
+          <li>Did you use to play computer games a lot?</li>
+          <li>My classmates used to play soccer a lot, but now they play basketball more.</li>
+          <li>I used to stay up late, but now I go to bed early.</li>
+        </ol>
+        <p class="note">
+          채점 팁: ① used to + 동사원형, ② “but now …” 등 지금은 다르다는 내용이 있으면 거의 정답으로 봐 주세요. 인칭(he/she) 혼동, 철자 실수는 너무 엄격하게 보지 않아도 됩니다.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>7. Production 연습 2: 문장 변형하기</h2>
+
+    <div class="item">
+      <p class="subheading">① 현재 문장을 과거 습관 문장으로 바꾸기</p>
+      <p>아래 문장을 보고, “예전에는 그랬지만 지금은 아니다”라는 뜻이 되도록 <span class="highlight">used to</span>를 사용해 다시 써 보세요.</p>
+      <ol class="example-list">
+        <li>Now I play soccer every day. (예전에는 축구 대신 컴퓨터 게임을 했다고 상상해 보세요.)</li>
+        <li>Now she studies English every evening. (예전에는 TV만 봤다고 상상)</li>
+      </ol>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p><span class="label">예시 정답</span></p>
+        <ol class="example-list">
+          <li>
+            I used to play computer games every day, but now I play soccer every day.
+          </li>
+          <li>
+            She used to watch TV every evening, but now she studies English every evening.
+          </li>
+        </ol>
+        <p class="note">
+          “예전에 무엇을 했는지”는 아이가 자유롭게 상상해서 바꿔 써도 됩니다. <span class="highlight">used to + 동사원형</span>만 정확하면 OK입니다.
+        </p>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="subheading">② 나의 변화 이야기</p>
+      <p class="question">
+        아래 질문에 대해 <span class="highlight">used to</span>를 사용해서 영어로 2~3문장씩 써 보세요.
+      </p>
+      <ul class="example-list">
+        <li>When you were in 3rd grade, what did you use to do after school?</li>
+        <li>What food did you use to hate, but now you like?</li>
+      </ul>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p>예시 답:</p>
+        <ul class="example-list">
+          <li>
+            When I was in 3rd grade, I used to watch cartoons after school.
+            I also used to play outside with my friends.
+          </li>
+          <li>
+            I used to hate kimchi, but now I like it.
+            I used to hate spicy food, but now I can eat it.
+          </li>
+        </ul>
+        <p class="note">
+          아이가 자기 경험을 써 보도록 격려해 주세요. 내용이 사실이 아니어도 괜찮습니다.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>8. 짧은 글 쓰기: “When I was younger …”</h2>
+
+    <div class="item">
+      <p class="question">
+        어렸을 때(예: 초1~3학년, 유치원 등)를 떠올리며, <span class="highlight">used to</span>를 사용해서 3~5문장의 짧은 글을 써 보세요.
+      </p>
+      <p>도움 되는 질문:</p>
+      <ul class="example-list">
+        <li>Where did you use to live?</li>
+        <li>What games did you use to play?</li>
+        <li>What did you use to eat a lot?</li>
+        <li>What cartoons did you use to watch?</li>
+      </ul>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p>예시 글:</p>
+        <p>
+          When I was younger, I used to live in Incheon. I used to play with my toy cars every day. I used to watch many cartoons in the morning. I used to eat a lot of chocolate, but now I don’t eat it so much.
+        </p>
+        <p class="note">
+          채점 팁: 문장 수(3~5문장)와 <span class="highlight">used to</span>를 2번 이상 사용했는지만 확인해 주세요. 문법이 완벽하지 않아도, “과거 습관/상태 + 지금은 다름” 느낌이 있으면 잘한 것입니다.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>9. Spaced Repetition용 미니 복습 세트</h2>
+    <p class="small">▶ 다음 날, 또는 며칠 뒤에 다시 풀어보면 좋아요.</p>
+
+    <div class="item">
+      <ol class="example-list">
+        <li>(빈칸) I __________ play soccer every weekend, but I don’t play now.</li>
+        <li>(고르기) We (used to / use to) live in a small town.</li>
+        <li>(한국어 → 영어) 나는 예전에 우유를 싫어했지만, 지금은 좋아해요.</li>
+        <li>(문장 고치기) ✗ Did you used to have a dog?</li>
+        <li>(O/X) “used to”는 지금도 계속하는 습관을 말할 때 쓴다.</li>
+      </ol>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p><span class="label">정답</span></p>
+        <ol class="example-list">
+          <li>I <u>used to</u> play soccer every weekend, but I don’t play now.</li>
+          <li>We <u>used to</u> live in a small town.</li>
+          <li>I used to hate milk, but now I like it.</li>
+          <li>✓ <u>Did you use to</u> have a dog?</li>
+          <li>X (지금도 하는 습관은 보통 <u>usually</u>를 사용합니다.)</li>
+        </ol>
+        <p class="note">
+          복습할 때는 정답을 가리고 먼저 스스로 풀어 본 뒤, 버튼을 눌러 확인하도록 도와주세요.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>10. 자기 점검 & 동기 부여</h2>
+
+    <div class="item">
+      <p class="subheading">오늘 나는 얼마나 이해했나요?</p>
+      <ul class="checklist">
+        <li><span class="highlight">used to + 동사원형</span>이 어떤 뜻인지 한국어로 설명할 수 있다.</li>
+        <li>현재 습관과 과거 습관을 영어 문장으로 구별해서 쓸 수 있다.</li>
+        <li>부정문과 의문문에서 <span class="highlight">didn’t use to / Did … use to</span>를 쓸 수 있다.</li>
+        <li>내 어린 시절 습관을 used to를 사용해 3문장 이상 쓸 수 있다.</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <p class="subheading">한 줄 다짐 써 보기</p>
+      <p class="question">
+        오늘 배운 걸 활용해서, 영어로 한 줄 다짐을 써 보세요.<br />
+        (예: I used to be scared of English, but now I will study hard!)
+      </p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <p>예시 다짐:</p>
+        <p>
+          I used to think English was difficult, but now I will practice every day!
+        </p>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="note">
+        여기까지 풀었다면 정말 잘하고 있어요! 🎉<br />
+        “예전에는 그랬지만 지금은 안 그래요”라는 말을 영어로 할 수 있다는 건
+        <span class="highlight">시간에 따라 변하는 나</span>를 영어로 표현할 수 있다는 뜻이에요. 앞으로도 작은 문장부터 계속 써 보세요!
+      </p>
+    </div>
+  </div>
+</body>
+</html>
