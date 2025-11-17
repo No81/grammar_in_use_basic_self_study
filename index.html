@@ -121,6 +121,44 @@
 	  border-radius: 6px;
 	}
 
+	/* 아코디언 헤더 */
+	.accordion-header {
+	  cursor: pointer;
+	  user-select: none;
+	  display: flex;
+	  align-items: center;
+	  justify-content: space-between;
+	  padding-right: 10px;
+	  transition: color 0.3s;
+	}
+
+	.accordion-header:hover {
+	  color: #2563c9;
+	}
+
+	.accordion-icon {
+	  font-size: 1.3em;
+	  transition: transform 0.3s ease;
+	  color: #ffd86b;
+	}
+
+	.accordion-header.collapsed .accordion-icon {
+	  transform: rotate(-90deg);
+	}
+
+	/* 아코디언 콘텐츠 */
+	.accordion-content {
+	  max-height: 2000px;
+	  overflow: hidden;
+	  transition: max-height 0.4s ease-out, opacity 0.4s ease-out;
+	  opacity: 1;
+	}
+
+	.accordion-content.collapsed {
+	  max-height: 0;
+	  opacity: 0;
+	}
+
 	/* 인쇄용 설정 */
 	@media print {
 	  body {
@@ -136,8 +174,30 @@
 	  .toc-link {
 		box-shadow: none;
 	  }
+
+	  .accordion-content {
+		max-height: none !important;
+		opacity: 1 !important;
+	  }
+
+	  .accordion-icon {
+		display: none;
+	  }
 	}
   </style>
+  <script>
+	document.addEventListener('DOMContentLoaded', function() {
+	  const headers = document.querySelectorAll('.accordion-header');
+
+	  headers.forEach(header => {
+		header.addEventListener('click', function() {
+		  this.classList.toggle('collapsed');
+		  const content = this.nextElementSibling;
+		  content.classList.toggle('collapsed');
+		});
+	  });
+	});
+  </script>
 </head>
 <body>
   <h1>Grammar in Use Basic</h1>
@@ -149,8 +209,11 @@
   </p>
 
   <div class="section">
-    <h2>📗 Present (현재 시제)</h2>
-    <ul class="toc-list">
+    <h2 class="accordion-header collapsed">
+      <span>📗 Present (현재 시제)</span>
+      <span class="accordion-icon">▼</span>
+    </h2>
+    <ul class="toc-list accordion-content collapsed">
       <li>
         <a href="unit3_4.html" class="toc-link">
           <span class="unit-title">Unit 3/4</span>
@@ -187,12 +250,21 @@
           <span class="unit-desc">I have ... / I've got ... (소유 표현하기)</span>
         </a>
       </li>
+      <li>
+        <a href="group/Present.html" class="toc-link" style="background: linear-gradient(135deg, #a7f3d0 0%, #6ee7b7 100%);">
+          <span class="unit-title">✨ Present 복습</span>
+          <span class="unit-desc">현재 시제 전체 복습 자료</span>
+        </a>
+      </li>
     </ul>
   </div>
 
   <div class="section">
-    <h2>📘 Past (과거 시제)</h2>
-    <ul class="toc-list">
+    <h2 class="accordion-header collapsed">
+      <span>📘 Past (과거 시제)</span>
+      <span class="accordion-icon">▼</span>
+    </h2>
+    <ul class="toc-list accordion-content collapsed">
       <li>
         <a href="unit10.html" class="toc-link">
           <span class="unit-title">Unit 10</span>
@@ -229,12 +301,21 @@
           <span class="unit-desc">I used to … (과거의 습관/상태 말하기)</span>
         </a>
       </li>
+      <li>
+        <a href="group/Past.html" class="toc-link" style="background: linear-gradient(135deg, #a7f3d0 0%, #6ee7b7 100%);">
+          <span class="unit-title">✨ Past 복습</span>
+          <span class="unit-desc">과거 시제 전체 복습 자료</span>
+        </a>
+      </li>
     </ul>
   </div>
 
   <div class="section">
-    <h2>📙 Present Perfect (현재완료)</h2>
-    <ul class="toc-list">
+    <h2 class="accordion-header collapsed">
+      <span>📙 Present Perfect (현재완료)</span>
+      <span class="accordion-icon">▼</span>
+    </h2>
+    <ul class="toc-list accordion-content collapsed">
       <li>
         <a href="unit16.html" class="toc-link">
           <span class="unit-title">Unit 16</span>
@@ -257,6 +338,12 @@
         <a href="unit19.html" class="toc-link">
           <span class="unit-title">Unit 19</span>
           <span class="unit-desc">I have done & I did (현재완료와 과거시제 비교)</span>
+        </a>
+      </li>
+      <li>
+        <a href="group/Present_perfect.html" class="toc-link" style="background: linear-gradient(135deg, #a7f3d0 0%, #6ee7b7 100%);">
+          <span class="unit-title">✨ Present Perfect 복습</span>
+          <span class="unit-desc">현재완료 전체 복습 자료</span>
         </a>
       </li>
     </ul>

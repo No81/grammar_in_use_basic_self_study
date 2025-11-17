@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Grammar in Use 학습 자료</title>
+  <style>
+    /* 인쇄/화면 공통 기본 스타일 */
+	body {
+	  font-family: "Comic Sans MS", "Nanum Gothic", "Arial Rounded MT", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+	  line-height: 1.7;
+	  max-width: 900px;
+	  margin: 0 auto;
+	  padding: 24px;
+	  font-size: 17px;
+	  background-color: #fffaf5; /* 밝은 크림색 배경 */
+	  color: #333;
+	}
+
+	/* 제목들 */
+	h1, h2, h3 {
+	  margin-top: 1.2em;
+	  margin-bottom: 0.5em;
+	  font-weight: 700;
+	}
+
+	h1 {
+	  font-size: 1.9rem;
+	  color: #ff7b7b; /* 따뜻한 핑크 톤 */
+	  text-align: center;
+	}
+
+	h2 {
+	  font-size: 1.5rem;
+	  color: #3a7bd5; /* 파란색 포인트 */
+	  border-left: 8px solid #ffd86b;
+	  padding-left: 10px;
+	}
+
+	h3 {
+	  font-size: 1.25rem;
+	  color: #e67e22; /* 주황 계열 */
+	}
+
+	/* 섹션 카드 스타일 */
+	.section {
+	  margin-bottom: 24px;
+	  padding: 20px;
+	  border: 2px solid #f5d5a3; /* 연한 주황 테두리 */
+	  border-radius: 18px;
+	  background: #ffffff;
+	  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.05);
+	  page-break-inside: avoid;
+	}
+
+	/* 메타 정보 */
+	.meta {
+	  font-size: 0.95em;
+	  color: #666;
+	  margin-bottom: 12px;
+	  padding: 10px 14px;
+	  border-radius: 12px;
+	  background: #fff3c4;
+      display: none !important;
+	}
+
+	/* 아이템 간 간격 */
+	.item {
+	  margin-bottom: 14px;
+	}
+
+	/* 질문 텍스트 강조 */
+	.question {
+	  font-weight: 600;
+	  margin-bottom: 6px;
+	}
+
+	/* 정답 보기 버튼 */
+	.answer-toggle {
+	  margin-top: 4px;
+	  margin-bottom: 4px;
+	  padding: 6px 14px;
+	  font-size: 0.95em;
+	  cursor: pointer;
+	  background: #ffd86b;
+	  border: none;
+	  border-radius: 16px;
+	  font-weight: 700;
+	  color: #333;
+	  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+	  transition: background 0.2s, transform 0.1s, box-shadow 0.1s;
+	}
+
+	.answer-toggle:hover {
+	  background: #ffca3a;
+	}
+
+	.answer-toggle:active {
+	  transform: translateY(1px);
+	  box-shadow: 0 0 0 rgba(0, 0, 0, 0.1);
+	}
+
+	/* 정답 박스 */
+	.answer {
+	  display: none;
+	  margin-top: 6px;
+	  padding: 10px 12px;
+	  border-left: 5px solid #6fcf97;
+	  background: #e7f9e7;
+	  font-size: 0.95em;
+	  border-radius: 10px;
+	}
+
+	.answer.visible {
+	  display: block;
+	}
+
+	/* 굵은 레이블 */
+	.label {
+	  font-weight: 700;
+	}
+
+	/* 설명/노트 */
+	.note {
+	  font-size: 0.9em;
+	  color: #555;
+	  margin-top: 6px;
+	}
+
+	/* 체크리스트 (자기 점검) */
+	.checklist {
+	  list-style: none;
+	  padding-left: 0;
+	  margin-top: 8px;
+	}
+
+	.checklist li {
+	  margin-bottom: 4px;
+	}
+
+	.checklist li::before {
+	  content: "☐ ";
+	  color: #ff7b7b;
+	  font-weight: 700;
+	}
+
+	/* 작은 글씨 */
+	.small {
+	  font-size: 0.9em;
+	}
+
+	/* 소제목 스타일 */
+	.subheading {
+	  font-weight: 700;
+	  margin-top: 8px;
+	  margin-bottom: 4px;
+	  color: #3a7bd5;
+	}
+
+	/* 예문 리스트 */
+	.example-list {
+	  margin-left: 22px;
+	  padding-left: 4px;
+	}
+
+	.example-list li {
+	  margin-bottom: 4px;
+	}
+
+	/* 리스트 번호 색깔 */
+	.example-list li::marker {
+	  color: #f39c12;
+	  font-weight: 700;
+	}
+
+	/* 하이라이트 텍스트 (중요 포인트) */
+	.highlight {
+	  font-weight: 700;
+	  color: #333;
+	  background: #fff3b0;
+	  padding: 2px 6px;
+	  border-radius: 6px;
+	}
+
+	/* 인쇄용 설정 */
+	@media print {
+	  body {
+		padding: 0;
+		background-color: #ffffff;
+	  }
+
+	  .section {
+		box-shadow: none;
+		border-radius: 0;
+	  }
+
+	  .answer-toggle {
+		display: none; /* 인쇄 시 버튼 숨기기 */
+	  }
+
+	  .answer {
+		display: none !important; /* 인쇄 시 정답 숨기기 */
+	  }
+	}
+	
+	.meta {
+		display: none !important;
+	}
+  </style>
+  <script>
+    function toggleAnswer(button) {
+      const answer = button.nextElementSibling;
+      if (!answer) return;
+      const isVisible = answer.classList.contains('visible');
+      if (isVisible) {
+        answer.classList.remove('visible');
+        button.textContent = '정답 보기';
+      } else {
+        answer.classList.add('visible');
+        button.textContent = '정답 숨기기';
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>Past 그룹 복습 · 퀴즈</h1>
+
+  <div class="meta">
+    <div><span class="label">그룹 이름:</span> Past (Unit 10~15)</div>
+    <div><span class="label">포함 단원:</span> 10 was/were · 11 worked/got/went (simple past) · 12 I didn’t ... / Did you ... ? · 13~14 past continuous &amp; simple past · 15 used to</div>
+    <div><span class="label">대상:</span> 한국어 모국어, 초등학교 6학년</div>
+    <div><span class="label">추천 학습 시간:</span> 약 30분 (A4 2쪽 분량)</div>
+  </div>
+
+  <!-- 1. 그룹 전체 한눈에 정리 -->
+  <div class="section">
+    <h2>1. Past 그룹 한눈에 정리</h2>
+    <p class="small">※ 자세한 설명보다는, 큰 그림만 빠르게 보고 넘어가세요.</p>
+
+    <div class="item">
+      <h3>① was / were (과거 be 동사)</h3>
+      <p><span class="highlight">형식</span> : <strong>was / were + 명사/형용사/장소</strong></p>
+      <p><span class="highlight">뜻</span> : “~이었다 / ~였다 / ~에 있었다” (과거 상태·기분·장소)</p>
+      <p><span class="highlight">언제?</span> 사람·물건의 <strong>상태, 신분, 장소</strong>를 과거에 말할 때</p>
+      <ul class="example-list">
+        <li>I <strong>was</strong> tired yesterday. (어제 나는 피곤했어.)</li>
+        <li>They <strong>were</strong> at the park. (그들은 공원에 있었어.)</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <h3>② simple past (과거 동사: worked / went / got ...)</h3>
+      <p><span class="highlight">형식</span> : <strong>동사의 과거형</strong> (규칙: -ed / 불규칙: went, got, had 등)</p>
+      <p><span class="highlight">뜻</span> : 과거에 <strong>한 번 끝난 행동</strong>을 말할 때</p>
+      <p><span class="highlight">언제?</span> 어제, 지난주, 작년 등 <strong>완료된 행동</strong>을 말할 때</p>
+      <ul class="example-list">
+        <li>She <strong>watched</strong> a movie last night.</li>
+        <li>We <strong>went</strong> to Busan in summer.</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <h3>③ simple past 부정/의문 (didn’t / Did ... ?)</h3>
+      <p><span class="highlight">형식</span> :</p>
+      <ul class="example-list">
+        <li><strong>부정</strong>: did not(didn’t) + 동사원형</li>
+        <li><strong>의문</strong>: Did + 주어 + 동사원형 ... ?</li>
+      </ul>
+      <p><span class="highlight">뜻</span> : “~하지 않았다 / ~했니?”</p>
+      <p><span class="highlight">중요 포인트</span> : <strong>did/didn’t 뒤에는 항상 동사원형</strong></p>
+      <ul class="example-list">
+        <li>I <strong>didn’t play</strong> games yesterday.</li>
+        <li><strong>Did</strong> you <strong>finish</strong> your homework?</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <h3>④ past continuous (과거 진행: was/were ~ing)</h3>
+      <p><span class="highlight">형식</span> : <strong>was / were + 동사-ing</strong></p>
+      <p><span class="highlight">뜻</span> : “(그때) ~하고 있는 중이었다”</p>
+      <p><span class="highlight">언제?</span> 과거의 <strong>어느 순간에 진행 중이던 긴 행동</strong>을 말할 때</p>
+      <ul class="example-list">
+        <li>I <strong>was doing</strong> my homework at 8 p.m.</li>
+        <li>They <strong>were playing</strong> soccer when I arrived.</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <h3>⑤ past continuous vs. simple past</h3>
+      <p><span class="highlight">패턴</span> : 긴 행동은 <strong>was/were ~ing</strong>, 그 사이에 끼어든 짧은 행동은 <strong>과거형</strong></p>
+      <ul class="example-list">
+        <li>I <strong>was reading</strong> a book when my friend <strong>called</strong> me.</li>
+      </ul>
+      <p class="note">“~하고 있는 중에” = was/were ~ing, “갑자기 일어난 일” = 과거형</p>
+    </div>
+
+    <div class="item">
+      <h3>⑥ used to (과거의 습관/상태)</h3>
+      <p><span class="highlight">형식</span> : <strong>used to + 동사원형</strong></p>
+      <p><span class="highlight">뜻</span> : 예전에는 자주 했지만, <strong>지금은 안 하는 습관/상태</strong></p>
+      <ul class="example-list">
+        <li>I <strong>used to</strong> watch cartoons every day. (예전에 그랬지만, 지금은 아님 느낌)</li>
+        <li>He <strong>used to</strong> live in Seoul.</li>
+      </ul>
+      <p class="note">단순 과거와의 차이: used to = “예전엔 자주/보통 그랬어”라는 <strong>습관 느낌</strong>이 강함.</p>
+    </div>
+
+    <div class="item">
+      <h3>⑦ 헷갈리기 쉬운 것 비교</h3>
+      <p>
+        <span class="highlight">was / were</span> = 상태/장소/기분<br/>
+        <span class="highlight">simple past</span> = 한 번의 행동<br/>
+        <span class="highlight">past continuous</span> = 그때 하고 있던 <strong>긴 행동</strong><br/>
+        <span class="highlight">used to</span> = 예전엔 자주 했지만 지금은 보통 안 하는 습관
+      </p>
+    </div>
+  </div>
+
+  <!-- 2. Noticing & 비교 활동 -->
+  <div class="section">
+    <h2>2. Noticing &amp; 비교 활동</h2>
+    <p class="note">아래 문장들을 <strong>소리 내서</strong> 읽고, 어떤 시제를 쓰는지 스스로 눈치채 보세요.</p>
+
+    <div class="item">
+      <ol class="example-list">
+        <li>I was sleepy in class yesterday.</li>
+        <li>We played basketball after school.</li>
+        <li>They were eating dinner when I called.</li>
+        <li>He used to go to hagwon every day.</li>
+        <li>My sister was in the library at 3 p.m.</li>
+        <li>I didn’t finish my homework.</li>
+        <li>Did you watch the game last night?</li>
+        <li>She was listening to music and drawing.</li>
+        <li>I used to be afraid of dogs.</li>
+        <li>The lights went out while we were watching TV.</li>
+      </ol>
+    </div>
+
+    <div class="item">
+      <p class="question">1) 위 문장 중에서 <span class="highlight">상태나 장소</span>를 말하는 과거 be 동사(was/were)를 쓴 문장은 번호가 무엇인가요?</p>
+      <p class="small">→ 번호 2~3개를 써 보세요.</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <span class="label">가능한 정답:</span> 1, 5, 9<br/>
+        <span class="note">was/were 뒤에 tired, in the library, afraid 같은 상태/장소/기분이 나오는지 확인해 보세요.</span>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">2) <span class="highlight">과거에 한 번 끝난 행동(simple past)</span>만 있는 문장은 어떤 것인가요?</p>
+      <p class="small">→ 번호 2개 이상 골라 보세요.</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <span class="label">가능한 정답:</span> 2, 6, 7, 10(일부)<br/>
+        <span class="note">play, finish, watch, went처럼 과거형 동사만 있고, was/were ~ing가 없는 문장입니다. 10번은 went가 “갑자기 일어난 짧은 행동”이에요.</span>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">3) <span class="highlight">was/were ~ing (과거 진행)</span>을 쓴 문장은 어떤 것인가요?</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <span class="label">정답:</span> 3, 8, 10(일부: were watching)<br/>
+        <span class="note">“그때 하고 있는 중이던 행동”을 말할 때 was/were + -ing가 쓰입니다.</span>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">4) <span class="highlight">used to</span>를 쓴 문장은 어떤 것인가요? 느낌이 어떻게 다른가요? 한국어로 짧게 써 보세요.</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <span class="label">정답:</span> 4, 9<br/>
+        <span class="note">예: “예전에는 그랬는데 지금은 잘 안 그런다는 느낌이 난다.” / “옛날 습관이나 상태를 말하는 표현이다.”</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Retrieval Practice (회상 + 혼합 퀴즈) -->
+  <div class="section">
+    <h2>3. 회상 연습 &amp; 혼합 퀴즈</h2>
+
+    <div class="item">
+      <h3>① 기억 떠올리기 (책 보지 말고!)</h3>
+      <p class="question">1) 이번 Past 그룹에서 배운 문법을 한국어로 3개 적어 보세요.</p>
+      <p class="small">예: “과거 be 동사” 이런 식으로만 적어도 괜찮아요.</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <span class="label">예시 정답:</span>
+        <ul>
+          <li>과거 be 동사 (was/were)</li>
+          <li>과거 시제 (동사의 과거형)</li>
+          <li>과거 부정·의문 (didn’t / Did ~ ?)</li>
+          <li>과거 진행 (was/were ~ing)</li>
+          <li>used to (옛날 습관)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">2) “어제 했던 일”을 말할 때 쓸 수 있는 시제 이름을 영어로 1~2개 적어 보세요.</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <span class="label">예시 정답:</span> simple past, past continuous<br/>
+        <span class="note">simple past = 어제 한 일을 한 번 말할 때 / past continuous = 어제 “그때 하고 있던 중”을 말할 때</span>
+      </div>
+    </div>
+
+    <hr/>
+
+    <h3>② 혼합 퀴즈 (단원 섞어서)</h3>
+    <p class="small">3~12번까지, 단원 구분 없이 섞여 있습니다. 시제와 어순에 집중해 보세요.</p>
+
+    <div class="item">
+      <p class="question">3) 빈칸에 알맞은 단어를 넣으세요. (was / were)</p>
+      <p>My friends ______ very happy yesterday.</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <span class="label">정답:</span> were<br/>
+        <span class="note">주어가 my friends (복수)이므로 were를 사용합니다.</span>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">4) 괄호 안 동사를 simple past로 바꾸세요.</p>
+      <p>She (go) to the museum last Saturday.</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <span class="label">정답:</span> went<br/>
+        <span class="note">go의 과거형은 went입니다 (불규칙 동사).</span>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">5) 아래 문장을 과거 부정문으로 바꾸세요.</p>
+      <p>I watched TV last night.</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <span class="label">예시 정답:</span> I didn’t watch TV last night.<br/>
+        <span class="note">didn’t 뒤에는 watch처럼 동사원형을 써야 합니다.</span>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">6) 아래 문장을 과거 의문문으로 바꾸세요.</p>
+      <p>You played basketball yesterday.</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <span class="label">정답:</span> Did you play basketball yesterday?<br/>
+        <span class="note">Did + 주어 + 동사원형 + ... ? 의 순서를 꼭 기억하세요.</span>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">7) 과거 진행형(was/were ~ing)으로 고치세요.</p>
+      <p>We studied in the classroom at 9 p.m. → (그때 공부하는 중이었다)</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <span class="label">예시 정답:</span> We were studying in the classroom at 9 p.m.<br/>
+        <span class="note">과거의 특정 시간에 “~하는 중이었다” ⇒ were studying.</span>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">8) 빈칸에 알맞은 동사를 쓰세요. (과거 진행)</p>
+      <p>They ______ (play) games when the teacher came in.</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <span class="label">정답:</span> were playing<br/>
+        <span class="note">긴 행동(게임을 하는 중) ⇒ were playing, 짧은 행동(선생님이 들어오셨다) ⇒ came.</span>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">9) used to를 사용해 문장을 완성하세요.</p>
+      <p>I ___________________________(예전에는 매일 피아노를 쳤다).</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <span class="label">예시 정답:</span> I used to play the piano every day.<br/>
+        <span class="note">예전의 습관 ⇒ used to + 동사원형.</span>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">10) 다음 우리말을 영어로 쓰세요. (simple past 사용)</p>
+      <p>어제 나는 늦게 잤다.</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <span class="label">예시 정답:</span> I went to bed late yesterday. / I slept late yesterday.<br/>
+        <span class="note">went, slept처럼 과거형 동사를 사용하면 됩니다. 어순이 맞으면 정답으로 봐도 좋아요.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. 오개념 진단 & 오류 고치기 -->
+  <div class="section">
+    <h2>4. 자주 하는 실수 찾기 &amp; 고치기</h2>
+    <p class="note">틀린 문장을 찾아 고쳐 보세요. 왜 틀렸는지도 한글로 짧게 써 보면 더 좋아요.</p>
+
+    <div class="item">
+      <p class="question">1) I <span class="highlight">didn’t went</span> to school yesterday.</p>
+      <p>→ 올바른 문장으로 고치기:</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <span class="label">정답:</span> I didn’t go to school yesterday.<br/>
+        <span class="note">didn’t 뒤에는 항상 동사원형(go)을 씁니다. “didn’t went”는 이중 과거라서 X.</span>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">2) She <span class="highlight">was study</span> English when I called her.</p>
+      <p>→ 올바른 문장으로 고치기:</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <span class="label">정답:</span> She was studying English when I called her.<br/>
+        <span class="note">과거 진행 = was/were + 동사-ing 형태가 되어야 합니다.</span>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">3) We <span class="highlight">used to went</span> to the same school.</p>
+      <p>→ 올바른 문장으로 고치기:</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <span class="label">정답:</span> We used to go to the same school.<br/>
+        <span class="note">used to 뒤에도 동사원형(go)을 씁니다. “used to went”는 잘못된 표현입니다.</span>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">4) They <span class="highlight">were play</span> soccer yesterday.</p>
+      <p>→ 올바른 문장으로 고치기:</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <span class="label">정답:</span> They were playing soccer yesterday.<br/>
+        <span class="note">were + playing (동사-ing)이어야 과거 진행이 됩니다.</span>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">5) I <span class="highlight">was hungry and I ate</span> dinner at 6 p.m. → 자연스럽게 두 시제를 섞어 고쳐 보세요.</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <span class="label">예시 정답:</span> I was hungry, so I ate dinner at 6 p.m.<br/>
+        <span class="note">was hungry(상태) + ate(행동)처럼 섞어서 쓰면 더 자연스럽습니다.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. Production 연습 -->
+  <div class="section">
+    <h2>5. 직접 만들어 보기 (짧은 문장 중심)</h2>
+    <p class="note">너무 길게 쓰지 말고, <strong>짧은 문장 여러 개</strong>를 만들어 보세요.</p>
+
+    <div class="item">
+      <h3>① 한국어 → 영어 (단문)</h3>
+      <p class="question">1) 어제 우리 반은 시끄러웠다. (was/were 사용)</p>
+      <p class="question">2) 어제 나는 숙제를 안 했다. (didn’t 사용)</p>
+      <p class="question">3) 내가 집에 왔을 때, 엄마는 요리하는 중이었다. (과거 진행 + simple past)</p>
+      <p class="question">4) 나는 예전에는 만화를 많이 봤다. (used to 사용)</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <span class="label">예시 정답:</span>
+        <ol class="example-list">
+          <li>Our class was noisy yesterday.</li>
+          <li>I didn’t do my homework yesterday.</li>
+          <li>When I came home, my mom was cooking.</li>
+          <li>I used to watch cartoons a lot.</li>
+        </ol>
+        <span class="note">어순과 시제가 비슷하면 정답으로 봐도 괜찮습니다.</span>
+      </div>
+    </div>
+
+    <div class="item">
+      <h3>② 나에 대해 말해 보기</h3>
+      <p class="question">다음 안내를 보고 각 항목마다 영어 문장을 1문장씩 써 보세요.</p>
+      <ol class="example-list">
+        <li><strong>어제 했던 일</strong> 한 가지 (simple past 사용)</li>
+        <li><strong>어제 밤 9시에 하고 있던 일</strong> (past continuous 사용)</li>
+        <li><strong>어릴 때 자주 했던 일</strong> (used to 사용)</li>
+      </ol>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <span class="label">예시 정답:</span>
+        <ul>
+          <li>I played games with my friend yesterday.</li>
+          <li>I was studying English at 9 p.m.</li>
+          <li>I used to ride my bike every day.</li>
+        </ul>
+        <span class="note">아이의 실제 생활에 맞게 단어만 바꿔도 좋습니다.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. 그룹 마무리 미니 테스트 -->
+  <div class="section">
+    <h2>6. Past 그룹 마무리 미니 테스트</h2>
+    <p class="small">※ 이 부분만 따로 시간 재고 풀어 보면 “모의 시험” 느낌으로 연습할 수 있어요.</p>
+
+    <div class="item">
+      <h3>① 객관식 &amp; 단답형</h3>
+
+      <p class="question">1) 빈칸에 알맞은 말을 고르세요. (was / were)</p>
+      <p>He ______ late for school yesterday.</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <span class="label">정답:</span> was<br/>
+        <span class="note">He는 단수 주어이므로 was를 사용합니다.</span>
+      </div>
+
+      <p class="question">2) 괄호 안 동사를 simple past로 바꾸세요.</p>
+      <p>They (have) a test last Friday.</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <span class="label">정답:</span> had<br/>
+        <span class="note">have의 과거형은 had입니다.</span>
+      </div>
+
+      <p class="question">3) 다음 중 <span class="highlight">과거 진행형</span> 문장은 어느 것인가요?</p>
+      <ol class="example-list">
+        <li>She watched a movie last night.</li>
+        <li>She was watching a movie last night.</li>
+        <li>She didn’t watch a movie last night.</li>
+      </ol>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <span class="label">정답:</span> 2번<br/>
+        <span class="note">was watching = 과거 진행 시제입니다.</span>
+      </div>
+    </div>
+
+    <div class="item">
+      <h3>② 문장 고치기</h3>
+
+      <p class="question">4) 틀린 부분을 고쳐 바르게 쓰세요.</p>
+      <p>Did you <span class="highlight">went</span> to the party?</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <span class="label">정답:</span> Did you go to the party?<br/>
+        <span class="note">Did 뒤에는 go처럼 동사원형을 씁니다.</span>
+      </div>
+
+      <p class="question">5) 틀린 부분을 고쳐 바르게 쓰세요.</p>
+      <p>We were play basketball when it rained.</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <span class="label">정답:</span> We were playing basketball when it rained.<br/>
+        <span class="note">were + playing (동사-ing)이어야 합니다.</span>
+      </div>
+    </div>
+
+    <div class="item">
+      <h3>③ 짧은 작문</h3>
+      <p class="question">6) “너가 집에 왔을 때, 나는 게임하는 중이었다.”를 영어로 써 보세요.</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <span class="label">예시 정답:</span> When you came home, I was playing a game.<br/>
+        <span class="note">came(짧은 행동) + was playing(그때 하고 있던 행동)을 함께 사용합니다.</span>
+      </div>
+
+      <p class="question">7) “예전에는 매운 음식을 못 먹었다.”를 영어로 써 보세요. (used to 사용)</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <span class="label">예시 정답:</span> I used to not eat spicy food. / I didn’t use to eat spicy food.<br/>
+        <span class="note">used to의 부정형은 두 가지 표현이 모두 쓰입니다. 의미가 통하면 정답으로 봐 주세요.</span>
+      </div>
+    </div>
+
+    <div class="item">
+      <h3>④ 점수 매기기</h3>
+      <p class="small">총 7문제 중 맞힌 개수: ______ / 7</p>
+      <p class="small">
+        6~7개: 다음 그룹으로 넘어갈 준비가 거의 다 됐어요! 🎉<br/>
+        4~5개: 잘하고 있어요. 헷갈린 문제의 단원을 표시하고 다시 복습해 보세요.<br/>
+        3개 이하: Past 그룹에서 특히 어려웠던 단원(번호)을 체크하고, 해당 단원을 다시 연습해요.
+      </p>
+    </div>
+  </div>
+
+  <!-- 7. Spaced Repetition용 미니 복습 세트 -->
+  <div class="section">
+    <h2>7. 퀵 퀴즈 (다음 공부 전에 5분 복습용)</h2>
+    <p class="small">※ 다음 날 또는 다음 주에 다시 풀어 보세요. 빠르게 체크하는 용도입니다.</p>
+
+    <div class="item">
+      <p class="question">1) 빈칸에 was / were를 쓰세요.</p>
+      <p>a) I ______ at home last night.<br/>b) They ______ very busy yesterday.</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <span class="label">정답:</span> a) was  b) were</span><br/>
+        <span class="note">I에는 was, 복수 They에는 were를 씁니다.</span>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">2) 동사를 simple past로 바꾸세요.</p>
+      <p>a) play → ______  (어제)<br/>b) see → ______  (지난주)</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <span class="label">정답:</span> a) played  b) saw</span><br/>
+        <span class="note">play는 규칙동사, see는 불규칙동사입니다.</span>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">3) 과거 부정문 만들기</p>
+      <p>I did my homework. → (부정문)</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <span class="label">정답:</span> I didn’t do my homework.<br/>
+        <span class="note">didn’t + 동사원형(do)의 형태를 꼭 기억하세요.</span>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">4) 과거 진행형 만들기</p>
+      <p>We (watch) TV at 10 p.m. → 과거에 “보는 중이었다”라고 말해 보세요.</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <span class="label">정답:</span> We were watching TV at 10 p.m.<br/>
+        <span class="note">과거 진행 = was/were + watching.</span>
+      </div>
+    </div>
+
+    <div class="item">
+      <p class="question">5) used to를 사용해 한 문장 써 보세요. (예: 예전에는 좋아했지만 지금은 안 하는 것)</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <span class="label">예시 정답:</span> I used to play soccer every weekend. / I used to drink milk every morning.<br/>
+        <span class="note">“예전에 자주 했던 습관”을 떠올려 보세요.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. 자기 점검 및 동기부여 -->
+  <div class="section">
+    <h2>8. 자기 점검 체크리스트</h2>
+    <p class="small">아래 문장을 읽고, 스스로 “할 수 있다”고 느끼면 체크해 보세요.</p>
+
+    <ul class="checklist">
+      <li>어제 있었던 일 한 가지를 simple past로 말할 수 있다.</li>
+      <li>과거 부정문(didn’t)과 의문문(Did ~ ?)을 만들 수 있다.</li>
+      <li>“~하는 중이었다”라는 말을 과거 진행형(was/were ~ing)으로 말할 수 있다.</li>
+      <li>used to를 사용해서 “옛날 습관”을 한 문장으로 말할 수 있다.</li>
+      <li>was/were, simple past, past continuous의 차이를 한국어로 간단히 설명할 수 있다.</li>
+    </ul>
+
+    <p class="note">여기까지 풀었다면 정말 잘하고 있는 거예요! 🎉 Past 그룹을 멋지게 복습했어요. 헷갈리는 부분이 있다면, 그 단원 번호를 표시해 두고 다음에 다시 연습해 보면 좋아요.</p>
+  </div>
+
+  <!-- 9. 피드백 가이드 (학부모용) -->
+  <div class="section">
+    <h2>9. 피드백 가이드 (학부모용)</h2>
+    <p class="small">간단한 채점 기준과 지도 팁입니다.</p>
+
+    <div class="item">
+      <p class="subheading">① 채점 팁</p>
+      <ul class="example-list">
+        <li><span class="highlight">핵심만 보기</span>: 동사의 시제(was/were, 과거형, -ing)와 어순이 맞으면 정답으로 봐 주세요.</li>
+        <li><span class="highlight">철자 오류</span>: 큰 의미 차이가 없으면 0.5점 정도 부분 점수를 줄 수 있습니다.</li>
+        <li><span class="highlight">여러 정답 가능</span>: 예시 정답과 조금 달라도, 의미와 문법이 맞으면 정답으로 인정해 주세요.</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <p class="subheading">② 아이에게 해 줄 말</p>
+      <ul class="example-list">
+        <li>“과거 시제를 한 번에 정리하는 건 쉽지 않은데, 여기까지 푼 것만으로도 아주 잘하고 있어.”</li>
+        <li>“틀린 문제도 ‘내가 어디서 헷갈리는지 알게 해 주는 힌트’라고 생각해 보자.”</li>
+        <li>“다음에 공부 시작할 때 오늘 만든 퀵 퀴즈(7번)를 먼저 풀어 보자.”</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <p class="subheading">③ 추가 활동 아이디어</p>
+      <ul class="example-list">
+        <li>하루 중 아무 시간이나 골라서 “그 시간에 무엇을 하고 있었는지” 과거 진행형으로 한 문장 말해 보기.</li>
+        <li>아이와 함께 “예전에는 했지만 지금은 안 하는 것”을 서로 1개씩 말하면서 used to 연습하기.</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

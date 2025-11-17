@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Grammar in Use 학습 자료</title>
+  <style>
+    /* 인쇄/화면 공통 기본 스타일 */
+	body {
+	  font-family: "Comic Sans MS", "Nanum Gothic", "Arial Rounded MT", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+	  line-height: 1.7;
+	  max-width: 900px;
+	  margin: 0 auto;
+	  padding: 24px;
+	  font-size: 17px;
+	  background-color: #fffaf5; /* 밝은 크림색 배경 */
+	  color: #333;
+	}
+
+	/* 제목들 */
+	h1, h2, h3 {
+	  margin-top: 1.2em;
+	  margin-bottom: 0.5em;
+	  font-weight: 700;
+	}
+
+	h1 {
+	  font-size: 1.9rem;
+	  color: #ff7b7b; /* 따뜻한 핑크 톤 */
+	  text-align: center;
+	}
+
+	h2 {
+	  font-size: 1.5rem;
+	  color: #3a7bd5; /* 파란색 포인트 */
+	  border-left: 8px solid #ffd86b;
+	  padding-left: 10px;
+	}
+
+	h3 {
+	  font-size: 1.25rem;
+	  color: #e67e22; /* 주황 계열 */
+	}
+
+	/* 섹션 카드 스타일 */
+	.section {
+	  margin-bottom: 24px;
+	  padding: 20px;
+	  border: 2px solid #f5d5a3; /* 연한 주황 테두리 */
+	  border-radius: 18px;
+	  background: #ffffff;
+	  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.05);
+	  page-break-inside: avoid;
+	}
+
+	/* 메타 정보 */
+	.meta {
+	  font-size: 0.95em;
+	  color: #666;
+	  margin-bottom: 12px;
+	  padding: 10px 14px;
+	  border-radius: 12px;
+	  background: #fff3c4;
+      display: none !important;
+	}
+
+	/* 아이템 간 간격 */
+	.item {
+	  margin-bottom: 14px;
+	}
+
+	/* 질문 텍스트 강조 */
+	.question {
+	  font-weight: 600;
+	  margin-bottom: 6px;
+	}
+
+	/* 정답 보기 버튼 */
+	.answer-toggle {
+	  margin-top: 4px;
+	  margin-bottom: 4px;
+	  padding: 6px 14px;
+	  font-size: 0.95em;
+	  cursor: pointer;
+	  background: #ffd86b;
+	  border: none;
+	  border-radius: 16px;
+	  font-weight: 700;
+	  color: #333;
+	  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+	  transition: background 0.2s, transform 0.1s, box-shadow 0.1s;
+	}
+
+	.answer-toggle:hover {
+	  background: #ffca3a;
+	}
+
+	.answer-toggle:active {
+	  transform: translateY(1px);
+	  box-shadow: 0 0 0 rgba(0, 0, 0, 0.1);
+	}
+
+	/* 정답 박스 */
+	.answer {
+	  display: none;
+	  margin-top: 6px;
+	  padding: 10px 12px;
+	  border-left: 5px solid #6fcf97;
+	  background: #e7f9e7;
+	  font-size: 0.95em;
+	  border-radius: 10px;
+	}
+
+	.answer.visible {
+	  display: block;
+	}
+
+	/* 굵은 레이블 */
+	.label {
+	  font-weight: 700;
+	}
+
+	/* 설명/노트 */
+	.note {
+	  font-size: 0.9em;
+	  color: #555;
+	  margin-top: 6px;
+	}
+
+	/* 체크리스트 (자기 점검) */
+	.checklist {
+	  list-style: none;
+	  padding-left: 0;
+	  margin-top: 8px;
+	}
+
+	.checklist li {
+	  margin-bottom: 4px;
+	}
+
+	.checklist li::before {
+	  content: "☐ ";
+	  color: #ff7b7b;
+	  font-weight: 700;
+	}
+
+	/* 작은 글씨 */
+	.small {
+	  font-size: 0.9em;
+	}
+
+	/* 소제목 스타일 */
+	.subheading {
+	  font-weight: 700;
+	  margin-top: 8px;
+	  margin-bottom: 4px;
+	  color: #3a7bd5;
+	}
+
+	/* 예문 리스트 */
+	.example-list {
+	  margin-left: 22px;
+	  padding-left: 4px;
+	}
+
+	.example-list li {
+	  margin-bottom: 4px;
+	}
+
+	/* 리스트 번호 색깔 */
+	.example-list li::marker {
+	  color: #f39c12;
+	  font-weight: 700;
+	}
+
+	/* 하이라이트 텍스트 (중요 포인트) */
+	.highlight {
+	  font-weight: 700;
+	  color: #333;
+	  background: #fff3b0;
+	  padding: 2px 6px;
+	  border-radius: 6px;
+	}
+
+	/* 인쇄용 설정 */
+	@media print {
+	  body {
+		padding: 0;
+		background-color: #ffffff;
+	  }
+
+	  .section {
+		box-shadow: none;
+		border-radius: 0;
+	  }
+
+	  .answer-toggle {
+		display: none; /* 인쇄 시 버튼 숨기기 */
+	  }
+
+	  .answer {
+		display: none !important; /* 인쇄 시 정답 숨기기 */
+	  }
+	}
+	
+	.meta {
+		display: none !important;
+	}
+  </style>
+  <script>
+    function toggleAnswer(button) {
+      const answer = button.nextElementSibling;
+      if (!answer) return;
+      const isVisible = answer.classList.contains('visible');
+      if (isVisible) {
+        answer.classList.remove('visible');
+        button.textContent = '정답 보기';
+      } else {
+        answer.classList.add('visible');
+        button.textContent = '정답 숨기기';
+      }
+    }
+  </script>
+</head>
+<body>
+  <!-- 여기에 실제 '그룹 복습 및 퀴즈' 콘텐츠가 들어갑니다 -->
+
+  <h1>Present perfect 그룹 복습 · 퀴즈</h1>
+  <div class="meta">
+    그룹: Present perfect (Unit 16–19) · 대상: 초6 · 모국어: 한국어 · 1회 30분 · 복습/진단용
+  </div>
+
+  <!-- 1. 그룹 전체 한눈에 정리 -->
+  <div class="section" id="overview">
+    <h2>1. Present perfect 그룹 한눈에 보기</h2>
+    <p>
+      이번 그룹에서는 <span class="highlight">지금과 연결되는 경험, 기간, 변화</span>를 말하는
+      <span class="highlight">현재완료</span>와, <span class="highlight">과거 한 순간에 끝난 일</span>을 말하는
+      <span class="highlight">과거시제</span>를 함께 연습했습니다.
+    </p>
+
+    <div class="item">
+      <div class="subheading">① Have you ... ? (Unit 16)</div>
+      <ul class="example-list">
+        <li><span class="label">형식</span>: <span class="highlight">Have/Has + 주어 + p.p. ?</span> (Have you eaten? / Has she finished?)</li>
+        <li><span class="label">의미</span>: <span class="highlight">“해 본 적 있어?” “끝냈어?”</span>처럼 <u>경험</u>이나 <u>완료</u>를 묻는 질문</li>
+        <li><span class="label">언제 사용?</span>: 언제 했는지 <u>정확한 시간은 중요하지 않을 때</u>, 결과/경험이 지금과 연결될 때</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <div class="subheading">② How long have you ... ? (Unit 17)</div>
+      <ul class="example-list">
+        <li><span class="label">형식</span>: <span class="highlight">How long + have/has + 주어 + p.p. ?</span></li>
+        <li><span class="label">의미</span>: <span class="highlight">“얼마 동안 ~하고 있어?”</span> (시작 → 지금까지 계속)</li>
+        <li><span class="label">언제 사용?</span>: <u>지금도 계속되는 상태/행동의 기간</u>을 말할 때 (for, since와 자주 같이 사용)</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <div class="subheading">③ for / since / ago (Unit 18)</div>
+      <ul class="example-list">
+        <li><span class="highlight">for + 기간</span>: for three years, for a week (얼마 동안)</li>
+        <li><span class="highlight">since + 시작 시점</span>: since 2020, since last Monday (~부터 지금까지)</li>
+        <li><span class="highlight">ago</span>: two days ago (지금으로부터 ~전에, <u>과거시제와 같이</u>)</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <div class="subheading">④ I have done vs I did (Unit 19)</div>
+      <table style="width:100%; border-collapse:collapse; font-size:0.95em;">
+        <thead>
+          <tr>
+            <th style="border:1px solid #f5d5a3; padding:6px; background:#fff7e0;">현재완료<br>(have/has + p.p.)</th>
+            <th style="border:1px solid #f5d5a3; padding:6px; background:#fff7e0;">과거시제<br>(동사 과거형)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="border:1px solid #f5d5a3; padding:6px;">
+              <span class="highlight">지금과 연결</span>되는 경험, 변화, 계속된 상태<br>
+              <span class="small">I have visited Japan three times.</span>
+            </td>
+            <td style="border:1px solid #f5d5a3; padding:6px;">
+              <span class="highlight">과거의 한 시점</span>에 일어난 일, 끝난 일<br>
+              <span class="small">I visited Japan last year.</span>
+            </td>
+          </tr>
+          <tr>
+            <td style="border:1px solid #f5d5a3; padding:6px;">언제 했는지 <u>정확한 시간</u>은 중요하지 않음</td>
+            <td style="border:1px solid #f5d5a3; padding:6px;"><u>어제, 작년, 5분 전</u> 같은 <span class="highlight">과거 시간 표현</span>과 잘 어울림</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="note">
+      💡 <span class="highlight">핵심 기억 포인트</span> : “<b>지금과 연결</b>되면 <b>have/has + p.p.</b>, 
+      “<b>어느 과거 시점</b>에 끝난 일”이면 <b>과거형</b>을 먼저 떠올리기!
+    </p>
+  </div>
+
+  <!-- 2. Noticing & 비교 활동 -->
+  <div class="section" id="noticing">
+    <h2>2. Noticing & 비교 활동</h2>
+    <p>
+      아래 문장들을 소리 내서 천천히 읽어 보세요. 각 문장이 <span class="highlight">현재완료</span>인지,
+      <span class="highlight">과거시제</span>인지, 또 <span class="highlight">기간</span>을 말하는지 살펴보세요.
+    </p>
+
+    <div class="item">
+      <ol class="example-list">
+        <li>I have lost my pencil. Can you help me?</li>
+        <li>I visited my grandparents two weeks ago.</li>
+        <li>How long have you lived in this town?</li>
+        <li>She has finished her homework.</li>
+        <li>We played soccer after school yesterday.</li>
+        <li>They have known each other since 2019.</li>
+        <li>Have you ever eaten Thai food?</li>
+        <li>He moved to Seoul in 2020.</li>
+      </ol>
+    </div>
+
+    <div class="item">
+      <div class="question">
+        ① 위 문장들 중에서 <span class="highlight">현재완료 (have/has + p.p.)</span>인 문장의 번호를 모두 써 보세요.
+      </div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <div><span class="label">정답</span>: 1, 3, 4, 6, 7번</div>
+        <div class="note">
+          1, 3, 4, 6, 7번은 모두 <b>have/has + p.p.</b> 형태입니다.
+          “경험, 변화, 결과, 기간”처럼 <b>지금과 연결</b>된 느낌이 있어요.
+        </div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="question">
+        ② <span class="highlight">과거시제</span> (동사 과거형)만 사용한 문장의 번호를 써 보세요.
+      </div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <div><span class="label">정답</span>: 2, 5, 8번</div>
+        <div class="note">
+          2, 5, 8번은 <b>visited, played, moved</b>처럼 과거형 동사를 쓰고,
+          <b>two weeks ago, yesterday, in 2020</b>처럼 <u>과거의 특정 시간</u>이 함께 나옵니다.
+        </div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="question">
+        ③ <span class="highlight">기간</span>을 말하는 표현(for / since / How long)을 쓰는 문장의 번호를 써 보세요.
+      </div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <div><span class="label">정답</span>: 3번, 6번</div>
+        <div class="note">
+          3번: <b>How long</b> 으로 “얼마 동안?”을 묻고 있고,<br>
+          6번: <b>since 2019</b>로 “2019년부터 지금까지”를 말합니다.
+        </div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="question">
+        ④ 아래 두 문장의 느낌 차이를 한국어로 아주 짧게 써 보세요.<br>
+        &nbsp;&nbsp;A. I have visited Busan three times.<br>
+        &nbsp;&nbsp;B. I visited Busan last year.
+      </div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <div class="note">
+          예시 답: A는 “부산에 세 번 가 본 경험이 있고, 지금도 그 경험이 남아 있다”는 느낌,<br>
+          B는 “작년에 한 번 부산에 갔고, 그 일은 과거에 끝났다”는 느낌입니다.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Retrieval Practice & 혼합 퀴즈 -->
+  <div class="section" id="retrieval">
+    <h2>3. 회상 연습 & 혼합 퀴즈</h2>
+
+    <div class="item">
+      <div class="subheading">① 머릿속에서 꺼내 보기 (책 안 보고!)</div>
+      <div class="question">
+        1) 이번 Present perfect 그룹에서 배운 <span class="highlight">문법/표현 이름</span>을 한국어로 3개 적어 보세요.
+      </div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <div class="note">
+          예시: 현재완료(경험), 현재완료(얼마 동안 ~해 오다), for/since/ago, 현재완료 vs 과거시제 구별 등
+        </div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="question">
+        2) “얼마 동안 ~하고 있다”를 물어보고 싶을 때 쓸 수 있는 영어 질문 패턴을 떠올려 적어 보세요.
+      </div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <div class="note">
+          예시: <b>How long have you ~ ?</b>, <b>How long has she ~ ?</b> 와 같은 패턴
+        </div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="subheading">② 혼합 퀴즈 (단답형/선택형)</div>
+      <div class="question">
+        3) 빈칸에 알맞은 동사 형태를 쓰세요. (과거형 또는 현재완료)<br>
+        &nbsp;&nbsp;a) I ______ (finish) my project. Now I can play games.<br>
+        &nbsp;&nbsp;b) I ______ (finish) my project yesterday.<br>
+        &nbsp;&nbsp;c) Have you ______ (see) the new movie yet?<br>
+        &nbsp;&nbsp;d) We ______ (go) to Jeju Island last summer.
+      </div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <div><span class="label">정답</span>:</div>
+        <div class="note">
+          a) <b>have finished</b> (지금 막 끝난 결과 → 현재완료)<br>
+          b) <b>finished</b> (yesterday → 과거시제)<br>
+          c) <b>seen</b> → <b>Have you seen</b> (현재완료 질문)<br>
+          d) <b>went</b> (last summer → 과거시제)
+        </div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="question">
+        4) 알맞은 말을 골라 쓰세요. (for / since / ago)<br>
+        &nbsp;&nbsp;a) I have lived here ______ three years.<br>
+        &nbsp;&nbsp;b) She has studied English ______ 2021.<br>
+        &nbsp;&nbsp;c) We met in this class two years ______.
+      </div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <div><span class="label">정답</span>: a) for &nbsp;&nbsp; b) since &nbsp;&nbsp; c) ago</div>
+        <div class="note">
+          <b>for + 기간</b> (three years), <b>since + 시작 시점</b> (2021), <b>ago</b>는 “~전에”라서
+          <b>과거시제</b>와 같이 쓰입니다.
+        </div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="question">
+        5) 다음 중 <span class="highlight">틀린 문장</span>은 어느 것인가요? 번호를 고르고, 이유를 한국어로 간단히 적어 보세요.<br>
+        &nbsp;&nbsp;① I have seen that movie three times.<br>
+        &nbsp;&nbsp;② I have visited my uncle yesterday.<br>
+        &nbsp;&nbsp;③ She has lived here since last year.
+      </div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <div><span class="label">정답</span>: ②번</div>
+        <div class="note">
+          <b>yesterday</b> 같은 <u>과거의 정확한 시간</u>은 <b>현재완료</b>와 같이 쓰지 않습니다.<br>
+          → <b>I visited my uncle yesterday.</b>로 고쳐야 합니다.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. 오개념 진단 & 오류 고치기 -->
+  <div class="section" id="errors">
+    <h2>4. 자주 하는 실수 고치기</h2>
+    <p>
+      한국어 화자가 자주 헷갈리는 문장을 모았습니다. <span class="highlight">틀린 부분을 찾아 바르게 고쳐 쓰세요.</span>
+    </p>
+
+    <div class="item">
+      <div class="question">
+        6) 문장을 고쳐 쓰세요.<br>
+        &nbsp;&nbsp;a) I have seen her yesterday.<br>
+        &nbsp;&nbsp;b) We have moved here in 2022.<br>
+        &nbsp;&nbsp;c) How long do you live in this city?
+      </div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <div><span class="label">예시 정답</span>:</div>
+        <div class="note">
+          a) <b>I saw her yesterday.</b><br>
+          → <b>yesterday</b>는 과거 한 시점 → <b>과거형</b> 사용<br><br>
+          b) <b>We moved here in 2022.</b> 또는 <b>We have lived here since 2022.</b><br>
+          → <b>in 2022</b>는 과거 시점이라 과거형이 자연스럽고,<br>
+          “지금까지 살아 왔다”를 강조하면 <b>have lived ... since 2022</b>도 가능<br><br>
+          c) <b>How long have you lived in this city?</b><br>
+          → “얼마 동안 ~해 왔니?”는 <b>How long have you ~ ?</b> 패턴 사용
+        </div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="question">
+        7) 아래 문장들을 보고, <span class="highlight">왜 틀렸는지</span> 한국어로 한 줄씩 설명해 보세요.<br>
+        &nbsp;&nbsp;a) I am living here since last year.<br>
+        &nbsp;&nbsp;b) I have finished my homework one hour ago.
+      </div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <div class="note">
+          예시 설명:<br>
+          a) <b>since</b>와 함께 “작년부터 지금까지 계속”의 의미 → <b>현재완료</b>를 써야 함.<br>
+          &nbsp;&nbsp;&nbsp;→ <b>I have lived here since last year.</b><br><br>
+          b) <b>ago</b>는 과거 시점과 함께 쓰여 <b>과거형</b>과 어울림.<br>
+          &nbsp;&nbsp;&nbsp;→ <b>I finished my homework one hour ago.</b>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. Production 연습 -->
+  <div class="section" id="production">
+    <h2>5. 말하기 · 쓰기 연습 (실생활 중심)</h2>
+    <p>
+      이번에는 직접 문장을 만들어 보세요. 완벽하지 않아도 괜찮아요. 
+      <span class="highlight">현재완료</span>를 꼭 한 번씩 사용해 보세요.
+    </p>
+
+    <div class="item">
+      <div class="subheading">① 한국어 → 영어 번역</div>
+      <div class="question">
+        8) 아래 문장을 영어로 써 보세요. (힌트: have/has + p.p., for/since, 과거형)<br>
+        &nbsp;&nbsp;a) 나는 그 영화를 두 번 본 적 있어.<br>
+        &nbsp;&nbsp;b) 우리는 3년 동안 이 도시에서 살고 있어.<br>
+        &nbsp;&nbsp;c) 나는 어제 새 게임을 샀어.<br>
+        &nbsp;&nbsp;d) 너는 얼마나 오래 영어를 공부해 왔어?
+      </div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <div><span class="label">예시 정답</span> (다른 답도 가능)</div>
+        <div class="note">
+          a) <b>I have seen that movie twice.</b><br>
+          b) <b>We have lived in this city for three years.</b><br>
+          c) <b>I bought a new game yesterday.</b><br>
+          d) <b>How long have you studied English?</b> 또는
+             <b>How long have you been studying English?</b>
+        </div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="subheading">② 나의 하루와 경험 쓰기</div>
+      <div class="question">
+        9) 아래 내용을 참고해서 각 줄에 영어 문장을 1문장씩 써 보세요.<br>
+        &nbsp;&nbsp;① “올해 처음 해 본 일” 1가지 (현재완료 사용)<br>
+        &nbsp;&nbsp;② “어릴 때 했던 일 (지금은 안 함)” 1가지 (과거형 사용)<br>
+        &nbsp;&nbsp;③ “지금까지 계속 하고 있는 것” 1가지 (How long / for / since 사용)
+      </div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <div class="note">
+          예시 답:<br>
+          ① I have tried camping for the first time this year.<br>
+          ② I played the piano when I was younger.<br>
+          ③ I have played soccer since 2020. / I have learned English for six years.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. 그룹 마무리 미니 테스트 -->
+  <div class="section" id="mini-test">
+    <h2>6. 그룹 마무리 미니 테스트</h2>
+    <p>
+      아래 문제를 쭉 풀어 보고 스스로 점수를 매겨 보세요.
+      (각 문항 1점, 총 12점 만점)
+    </p>
+
+    <div class="item">
+      <div class="question">
+        10) 알맞은 시제를 골라 동사만 쓰세요. (과거형 또는 현재완료)<br>
+        &nbsp;&nbsp;a) I ______ (lose) my key. Can you help me look for it?<br>
+        &nbsp;&nbsp;b) I ______ (lose) my key yesterday.<br>
+        &nbsp;&nbsp;c) We ______ (be) friends since elementary school.<br>
+        &nbsp;&nbsp;d) We ______ (meet) for the first time in 2019.
+      </div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <div class="label">정답</div>
+        <div class="note">
+          a) have lost (지금 키가 없는 상태 → 현재완료)<br>
+          b) lost (yesterday → 과거형)<br>
+          c) have been (since ~ → 현재까지 이어짐 → 현재완료)<br>
+          d) met (in 2019 → 과거 시점)
+        </div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="question">
+        11) 빈칸에 for, since, ago 중 하나를 넣으세요.<br>
+        &nbsp;&nbsp;a) I have studied Korean ______ five years.<br>
+        &nbsp;&nbsp;b) She has lived here ______ last winter.<br>
+        &nbsp;&nbsp;c) We moved to this town three years ______.
+      </div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <div class="label">정답</div>
+        <div class="note">
+          a) for &nbsp;&nbsp; b) since &nbsp;&nbsp; c) ago
+        </div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="question">
+        12) 문장이 맞으면 O, 틀리면 X를 쓰고, 틀리면 고쳐 쓰세요.<br>
+        &nbsp;&nbsp;a) I have eaten breakfast an hour ago. ( )<br>
+        &nbsp;&nbsp;b) He has played the guitar since three years. ( )<br>
+        &nbsp;&nbsp;c) Have you ever been to Jeju Island? ( )
+      </div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <div class="label">정답 &amp; 해설</div>
+        <div class="note">
+          a) X → <b>I ate breakfast an hour ago.</b><br>
+          &nbsp;&nbsp;&nbsp;<b>ago</b>는 과거형과 사용<br><br>
+          b) X → <b>He has played the guitar for three years.</b><br>
+          &nbsp;&nbsp;&nbsp;<b>for + 기간</b> (three years)<br><br>
+          c) O (경험을 묻는 자연스러운 현재완료 질문)
+        </div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="question">
+        13) 짧은 작문 (각 1점)<br>
+        &nbsp;&nbsp;a) “너는 이 게임을 얼마나 오래 해 왔어?”를 영어로 쓰세요.<br>
+        &nbsp;&nbsp;b) “나는 작년에 그 책을 읽었어.”를 영어로 쓰세요.
+      </div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <div class="label">예시 정답</div>
+        <div class="note">
+          a) <b>How long have you played this game?</b> (또는 been playing)<br>
+          b) <b>I read that book last year.</b>
+        </div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="subheading">채점 가이드</div>
+      <p class="small">
+        ● 각 문항 1점, 총 12점 만점으로 계산해 보세요.<br>
+        ● <b>12~10점</b>: 다음 그룹으로 넘어갈 준비가 거의 다 됐어요! 🎉<br>
+        ● <b>9~7점</b>: 잘하고 있어요. 틀린 문제의 유형(예: for/since, 현재완료 vs 과거형)만 다시 복습해 주세요.<br>
+        ● <b>6점 이하</b>: 이번 그룹에서 특히 어려웠던 단원(16~19번 중)을 표시해 두고 다시 연습해 보세요.
+      </p>
+    </div>
+  </div>
+
+  <!-- 7. Spaced Repetition용 퀵 복습 세트 -->
+  <div class="section" id="spaced-review">
+    <h2>7. 다음 공부 시간용 퀵 복습 세트 (5분용)</h2>
+    <p class="small">
+      다음 날이나 다음 주에 공부를 시작하기 전에, 아래 문제만 빠르게 풀어 보세요.
+      (책 안 보고 풀기!)
+    </p>
+
+    <div class="item">
+      <div class="question">
+        1) “경험”을 물을 때 쓰는 질문 패턴을 영어로 적어 보세요. (예: ~해 본 적 있어?)
+      </div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <div class="note">
+          예시: <b>Have you ever ~ ?</b>, <b>Have you ~ ?</b>
+        </div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="question">
+        2) 빈칸에 알맞은 말을 쓰세요. (for / since / ago)<br>
+        &nbsp;&nbsp;a) I have known her ______ middle school.<br>
+        &nbsp;&nbsp;b) He came here two days ______.
+      </div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <div class="note">
+          a) since &nbsp;&nbsp; b) ago
+        </div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="question">
+        3) 다음 우리말을 영어로 간단히 써 보세요.<br>
+        &nbsp;&nbsp;a) 나는 5년 동안 영어를 공부했어.<br>
+        &nbsp;&nbsp;b) 우리는 작년에 일본에 갔어.
+      </div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <div class="note">
+          예시:<br>
+          a) <b>I have studied English for five years.</b><br>
+          b) <b>We went to Japan last year.</b>
+        </div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="question">
+        4) 아래 중 현재완료를 써야 하는 문장을 골라 번호를 쓰세요.<br>
+        &nbsp;&nbsp;① 나는 작년 겨울에 스키를 탔어.<br>
+        &nbsp;&nbsp;② 나는 스키를 세 번 타 본 적 있어.
+      </div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <div class="note">
+          답: <b>②번</b> (경험 → 현재완료)<br>
+          예: <b>I have skied three times.</b>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. 자기 점검 및 동기부여 -->
+  <div class="section" id="self-check">
+    <h2>8. 자기 점검 체크리스트</h2>
+    <p class="small">
+      아래 문장을 읽고, 스스로 “나는 할 수 있다!”고 느끼는 것에 체크해 보세요.
+    </p>
+    <ul class="checklist">
+      <li>“Have you ~ ?” 질문을 듣고, 경험을 말하는 질문인지 이해할 수 있다.</li>
+      <li>“How long have you ~ ?” 질문을 듣고, “얼마 동안 ~했니?”라는 뜻을 안다.</li>
+      <li>for / since / ago의 차이를 한국어로 간단히 설명할 수 있다.</li>
+      <li>I have done / I did의 느낌 차이를 예문 한 쌍으로 보여 줄 수 있다.</li>
+      <li>어제 한 일과 지금까지 계속 해 온 일을 영어로 각각 한 문장씩 말할 수 있다.</li>
+    </ul>
+    <p class="note">
+      🌟 여기까지 풀었다면 정말 잘하고 있는 거예요! Present perfect 그룹을 멋지게 마무리했습니다.
+      헷갈리는 문제가 있었다면, 그 문제와 비슷한 문장만 한 번 더 만들어 보세요.
+    </p>
+  </div>
+
+  <!-- 9. 학부모용 피드백 가이드 -->
+  <div class="section" id="parent-guide">
+    <h2>9. 학부모용 피드백 가이드</h2>
+    <p class="small">
+      아래 내용을 참고하여 자녀의 답을 채점하고, 간단히 피드백해 주세요.
+    </p>
+    <ul class="example-list">
+      <li>
+        <span class="label">① 정답 처리 기준</span><br>
+        &mdash; <b>동사의 시제(과거형, have/has + p.p.)</b>와 <b>어순</b>이 맞으면 정답으로 봐 주세요.<br>
+        &mdash; <b>철자(spelling)</b>는 크게 틀리지 않았다면 부분 점수(½점)도 괜찮습니다.
+      </li>
+      <li>
+        <span class="label">② 자주 틀리는 포인트</span><br>
+        &mdash; <b>yesterday, last~, in 2020, two days ago</b> 같은 표현이 있으면
+        보통 <b>과거형</b>을 써야 합니다.<br>
+        &mdash; <b>for + 기간</b>, <b>since + 시작 시점</b>은 대개 <b>현재완료</b>와 함께 쓰입니다.
+      </li>
+      <li>
+        <span class="label">③ 말로 확인하기</span><br>
+        &mdash; 자녀에게 “올해 처음 해 본 일 한 가지를 영어로 말해 볼래?”,
+        “얼마 동안 영어를 공부했는지 영어로 말해 볼래?”처럼 가볍게 질문해 주세요.<br>
+        &mdash; 내용이 조금 어색해도, <b>have/has + p.p.</b>를 사용하려고 노력하는지를 칭찬해 주세요.
+      </li>
+      <li>
+        <span class="label">④ 격려 멘트 예시</span><br>
+        &mdash; “과거와 지금을 나누어 말하는 게 점점 자연스러워지고 있어!”<br>
+        &mdash; “실수해도 괜찮아, 어려운 문법을 도전하고 있다는 게 훨씬 더 중요해.”
+      </li>
+    </ul>
+  </div>
+
+</body>
+</html>
