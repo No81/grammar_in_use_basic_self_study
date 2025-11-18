@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Grammar in Use 학습 자료</title>
+  <style>
+    /* 인쇄/화면 공통 기본 스타일 */
+	body {
+	  font-family: "Comic Sans MS", "Nanum Gothic", "Arial Rounded MT", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+	  line-height: 1.7;
+	  max-width: 900px;
+	  margin: 0 auto;
+	  padding: 24px;
+	  font-size: 17px;
+	  background-color: #fffaf5; /* 밝은 크림색 배경 */
+	  color: #333;
+	}
+
+	/* 제목들 */
+	h1, h2, h3 {
+	  margin-top: 1.2em;
+	  margin-bottom: 0.5em;
+	  font-weight: 700;
+	}
+
+	h1 {
+	  font-size: 1.9rem;
+	  color: #ff7b7b; /* 따뜻한 핑크 톤 */
+	  text-align: center;
+	}
+
+	h2 {
+	  font-size: 1.5rem;
+	  color: #3a7bd5; /* 파란색 포인트 */
+	  border-left: 8px solid #ffd86b;
+	  padding-left: 10px;
+	}
+
+	h3 {
+	  font-size: 1.25rem;
+	  color: #e67e22; /* 주황 계열 */
+	}
+
+	/* 섹션 카드 스타일 */
+	.section {
+	  margin-bottom: 24px;
+	  padding: 20px;
+	  border: 2px solid #f5d5a3; /* 연한 주황 테두리 */
+	  border-radius: 18px;
+	  background: #ffffff;
+	  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.05);
+	  page-break-inside: avoid;
+	}
+
+	/* 메타 정보 */
+	.meta {
+	  font-size: 0.95em;
+	  color: #666;
+	  margin-bottom: 12px;
+	  padding: 10px 14px;
+	  border-radius: 12px;
+	  background: #fff3c4;
+      display: none !important;
+	}
+
+	/* 아이템 간 간격 */
+	.item {
+	  margin-bottom: 14px;
+	}
+
+	/* 질문 텍스트 강조 */
+	.question {
+	  font-weight: 600;
+	  margin-bottom: 6px;
+	}
+
+	/* 정답 보기 버튼 */
+	.answer-toggle {
+	  margin-top: 4px;
+	  margin-bottom: 4px;
+	  padding: 6px 14px;
+	  font-size: 0.95em;
+	  cursor: pointer;
+	  background: #ffd86b;
+	  border: none;
+	  border-radius: 16px;
+	  font-weight: 700;
+	  color: #333;
+	  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+	  transition: background 0.2s, transform 0.1s, box-shadow 0.1s;
+	}
+
+	.answer-toggle:hover {
+	  background: #ffca3a;
+	}
+
+	.answer-toggle:active {
+	  transform: translateY(1px);
+	  box-shadow: 0 0 0 rgba(0, 0, 0, 0.1);
+	}
+
+	/* 정답 박스 */
+	.answer {
+	  display: none;
+	  margin-top: 6px;
+	  padding: 10px 12px;
+	  border-left: 5px solid #6fcf97;
+	  background: #e7f9e7;
+	  font-size: 0.95em;
+	  border-radius: 10px;
+	}
+
+	.answer.visible {
+	  display: block;
+	}
+
+	/* 굵은 레이블 */
+	.label {
+	  font-weight: 700;
+	}
+
+	/* 설명/노트 */
+	.note {
+	  font-size: 0.9em;
+	  color: #555;
+	  margin-top: 6px;
+	}
+
+	/* 체크리스트 (자기 점검) */
+	.checklist {
+	  list-style: none;
+	  padding-left: 0;
+	  margin-top: 8px;
+	}
+
+	.checklist li {
+	  margin-bottom: 4px;
+	}
+
+	.checklist li::before {
+	  content: "☐ ";
+	  color: #ff7b7b;
+	  font-weight: 700;
+	}
+
+	/* 작은 글씨 */
+	.small {
+	  font-size: 0.9em;
+	}
+
+	/* 소제목 스타일 */
+	.subheading {
+	  font-weight: 700;
+	  margin-top: 8px;
+	  margin-bottom: 4px;
+	  color: #3a7bd5;
+	}
+
+	/* 예문 리스트 */
+	.example-list {
+	  margin-left: 22px;
+	  padding-left: 4px;
+	}
+
+	.example-list li {
+	  margin-bottom: 4px;
+	}
+
+	/* 리스트 번호 색깔 */
+	.example-list li::marker {
+	  color: #f39c12;
+	  font-weight: 700;
+	}
+
+	/* 하이라이트 텍스트 (중요 포인트) */
+	.highlight {
+	  font-weight: 700;
+	  color: #333;
+	  background: #fff3b0;
+	  padding: 2px 6px;
+	  border-radius: 6px;
+	}
+
+	/* 인쇄용 설정 */
+	@media print {
+	  body {
+		padding: 0;
+		background-color: #ffffff;
+	  }
+
+	  .section {
+		box-shadow: none;
+		border-radius: 0;
+	  }
+
+	  .answer-toggle {
+		display: none; /* 인쇄 시 버튼 숨기기 */
+	  }
+
+	  .answer {
+		display: none !important; /* 인쇄 시 정답 숨기기 */
+	  }
+	}
+	
+	.meta {
+		display: none !important;
+	}
+  </style>
+  <script>
+    function toggleAnswer(button) {
+      const answer = button.nextElementSibling;
+      if (!answer) return;
+      const isVisible = answer.classList.contains('visible');
+      if (isVisible) {
+        answer.classList.remove('visible');
+        button.textContent = '정답 보기';
+      } else {
+        answer.classList.add('visible');
+        button.textContent = '정답 숨기기';
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>Present 그룹 복습 · 퀴즈</h1>
+
+  <div class="meta">
+    Present 그룹 (Unit 1~9) 복습 학습지 · 한국어 모국어 · 초6 · 약 30분 · A4 2p 분량
+  </div>
+
+  <!-- 1. 그룹 전체 한눈에 정리 -->
+  <div class="section">
+    <h2>1. Present 그룹 한눈에 보기 (요약 정리)</h2>
+    <p>
+      이 페이지는 이미 배운 내용을 <span class="highlight">간단히 정리</span>하고,
+      뒤의 문제를 풀기 전에 머릿속을 깨우는 코너예요.
+    </p>
+
+    <div class="subheading">① am / is / are (be동사)</div>
+    <ul class="example-list">
+      <li><span class="label">형식</span>: <code>I am ~ / You are ~ / He is ~ / They are ~</code></li>
+      <li><span class="label">의미</span>: ~이다, ~있다, 상태/직업/기분/위치를 말할 때.</li>
+      <li><span class="label">언제</span>: “나는 학생이다”, “그는 피곤하다”처럼 <span class="highlight">이름·상태·위치</span>를 말할 때.</li>
+    </ul>
+
+    <div class="subheading">② am / is / are (질문)</div>
+    <ul class="example-list">
+      <li><span class="label">형식</span>: <code>Am I ~? / Are you ~? / Is he ~?</code></li>
+      <li><span class="label">의미</span>: ~이니? ~이야? / 상태·직업·위치를 물어볼 때.</li>
+      <li><span class="label">언제</span>: “너 피곤해?”, “이것 네 가방이야?” 같은 질문.</li>
+    </ul>
+
+    <div class="subheading">③ 현재진행형 (present continuous: ~하고 있는 중)</div>
+    <ul class="example-list">
+      <li><span class="label">형식</span>: <code>am / is / are + 동사-ing</code> (예: I am reading.)</li>
+      <li><span class="label">의미</span>: (지금) ~하고 있는 중이다.</li>
+      <li><span class="label">언제</span>: 말하는 순간에 하고 있는 행동, “지금 하는 일” 말할 때.</li>
+    </ul>
+
+    <div class="subheading">④ 현재진행형 질문 (Are you doing...?)</div>
+    <ul class="example-list">
+      <li><span class="label">형식</span>: <code>Am / Is / Are + 주어 + 동사-ing ... ?</code></li>
+      <li><span class="label">의미</span>: 지금 ~하고 있니?</li>
+      <li><span class="label">언제</span>: “지금 뭐 해?”, “숙제 하고 있어?” 물어볼 때.</li>
+    </ul>
+
+    <div class="subheading">⑤ 단순현재 (simple present: 습관·사실)</div>
+    <ul class="example-list">
+      <li><span class="label">형식</span>: <code>I/You/We/They + 동사원형</code>, <code>He/She/It + 동사+s/es</code></li>
+      <li><span class="label">의미</span>: 습관, 반복되는 일, 항상 사실.</li>
+      <li><span class="label">언제</span>: “나는 매일 학교에 간다.”, “고양이는 우유를 좋아한다.”</li>
+    </ul>
+
+    <div class="subheading">⑥ 단순현재 부정 (I don’t ~ / He doesn’t ~)</div>
+    <ul class="example-list">
+      <li><span class="label">형식</span>: <code>don’t / doesn’t + 동사원형</code></li>
+      <li><span class="label">의미</span>: ~하지 않는다 (습관/사실의 부정).</li>
+      <li><span class="label">언제</span>: “나는 커피를 안 마신다.”, “그는 축구를 안 좋아한다.”</li>
+    </ul>
+
+    <div class="subheading">⑦ 단순현재 의문문 (Do you ~ ? / Does he ~ ?)</div>
+    <ul class="example-list">
+      <li><span class="label">형식</span>: <code>Do / Does + 주어 + 동사원형 ... ?</code></li>
+      <li><span class="label">의미</span>: ~하니?, ~해?</li>
+      <li><span class="label">언제</span>: 습관/취향 물어보기. “게임 좋아해?”, “피아노 쳐?”</li>
+    </ul>
+
+    <div class="subheading">⑧ 현재진행 vs 단순현재 (I am doing / I do)</div>
+    <table class="small" style="width:100%; border-collapse:collapse; margin-top:6px;">
+      <thead>
+        <tr>
+          <th style="border:1px solid #f2c48d; padding:6px;">현재진행형<br><span class="small">(am/is/are + ~ing)</span></th>
+          <th style="border:1px solid #f2c48d; padding:6px;">단순현재<br><span class="small">(동사원형 / 동사+s)</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="border:1px solid #f2c48d; padding:6px;">지금 하는 일</td>
+          <td style="border:1px solid #f2c48d; padding:6px;">습관, 반복, 사실</td>
+        </tr>
+        <tr>
+          <td style="border:1px solid #f2c48d; padding:6px;">예) I am eating now.</td>
+          <td style="border:1px solid #f2c48d; padding:6px;">예) I eat breakfast every day.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="subheading">⑨ have / have got (가지고 있다)</div>
+    <ul class="example-list">
+      <li><span class="label">형식</span>: <code>I have a pen.</code> / <code>I’ve got a pen.</code></li>
+      <li><span class="label">의미</span>: ~을 가지고 있다, ~이 있다.</li>
+      <li><span class="label">언제</span>: “나는 강아지가 있어.”, “그는 컴퓨터가 있어.”</li>
+    </ul>
+  </div>
+
+  <!-- 2. Noticing & 비교 활동 -->
+  <div class="section">
+    <h2>2. Noticing 활동: 어떤 시제를 쓰고 있을까?</h2>
+    <p>
+      아래 문장을 읽고, 번호만 보고도 <span class="highlight">어떤 문법</span>인지 눈치챌 수 있는지 확인해 보세요.
+    </p>
+
+    <div class="item">
+      <div class="question">[A] 문장 읽기</div>
+      <ol class="example-list">
+        <li>I am doing my homework now.</li>
+        <li>She goes to school by bus every day.</li>
+        <li>Are you playing a game?</li>
+        <li>They don’t like spicy food.</li>
+        <li>He is not watching TV. He is reading a book.</li>
+        <li>Do you have a cat?</li>
+        <li>We’ve got English class today.</li>
+        <li>Is he your brother?</li>
+      </ol>
+    </div>
+
+    <div class="item">
+      <div class="question">1) 위 문장 중, <u>지금 하고 있는 일</u>을 말하는 문장 번호를 모두 쓰세요.</div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <span class="label">정답</span>: 1, 3, 5<br>
+        <span class="note">현재진행형은 <span class="highlight">am/is/are + 동사-ing</span> 형태예요.</span>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="question">2) 위 문장 중, <u>습관·반복되는 일</u>을 말하는 문장 번호를 모두 쓰세요.</div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <span class="label">정답</span>: 2, 4<br>
+        <span class="note">“every day”, “like/doesn’t like”처럼 항상/자주 일어나는 행동은 단순현재입니다.</span>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="question">3) 위 문장 중, <u>가지고 있는 것</u>을 말하는 문장 번호를 모두 쓰세요.</div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <span class="label">정답</span>: 6, 7<br>
+        <span class="note"><span class="highlight">have / have got</span>은 “가지고 있다”라는 뜻이에요.</span>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="question">4) 위 문장 중, <u>be동사(am/is/are)를 써서 상태·관계</u>를 말하는 문장 번호를 쓰세요.</div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <span class="label">정답</span>: 8<br>
+        <span class="note">“Is he your brother?”처럼 누구/무엇인지(관계·정체)를 말할 때 be동사를 사용합니다.</span>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="question">5) 한국어로 짧게 써 보기</div>
+      <p>“지금 하고 있는 일”을 말할 때와 “습관”을 말할 때, 어떤 차이가 있는지 한국어로 짧게 써 보세요.</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">예시 답안 보기</button>
+      <div class="answer">
+        <span class="label">예시</span>:<br>
+        지금 하는 일은 “지금 이 순간에 하고 있는 행동”이고, 습관은 “평소에 자주 하는 행동”이다.<br>
+        <span class="note">아이의 말투대로 써도 괜찮아요. 핵심은 “지금 vs 평소/반복”을 구분하는 것!</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Retrieval Practice & 혼합 퀴즈 -->
+  <div class="section">
+    <h2>3. 회상·혼합 퀴즈 (Retrieval Practice)</h2>
+
+    <div class="item">
+      <div class="question">1) 이번 Present 그룹에서 배운 문법을 한국어로 3가지 적어 보세요.</div>
+      <p>예) “지금 ~하고 있는 중”, “습관”, “가지고 있다” 등</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">예시 답안 보기</button>
+      <div class="answer">
+        <span class="label">예시</span>:
+        <ul class="example-list">
+          <li>be동사 (am/is/are)</li>
+          <li>현재진행형 (지금 ~하는 중)</li>
+          <li>단순현재 (습관/사실)</li>
+          <li>have / have got (가지고 있다)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="question">2) 현재를 말할 때 쓸 수 있는 표현 두 가지를 써 보고, 각각 영어로 한 문장씩 만들어 보세요.</div>
+      <p>① “지금 하고 있는 일” / ② “평소 습관”</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">예시 문장 보기</button>
+      <div class="answer">
+        <span class="label">예시</span>:
+        <ul class="example-list">
+          <li>지금: I am studying English now.</li>
+          <li>습관: I play games after school.</li>
+        </ul>
+        <span class="note">단어를 바꾸어 자기 문장으로 만드는 것이 더 좋아요.</span>
+      </div>
+    </div>
+
+    <h3>혼합 퀴즈 (3~10번)</h3>
+
+    <div class="item">
+      <div class="question">3) 빈칸에 알맞은 말을 고르세요. (am / is / are)</div>
+      <p>
+        a) I ____ happy.<br>
+        b) They ____ in the classroom.<br>
+        c) He ____ my friend.
+      </p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <span class="label">정답</span>: a) am, b) are, c) is<br>
+        <span class="note">주어에 맞게 be동사가 바뀝니다: I am / you, we, they are / he, she, it is.</span>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="question">4) 현재진행형이 되도록 고치세요.</div>
+      <p>a) I read a book now. → I ______ a book now.</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <span class="label">정답</span>: I <span class="highlight">am reading</span> a book now.<br>
+        <span class="note">“now”가 있으므로 현재진행형으로 바꿔야 합니다. am + read → reading.</span>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="question">5) 아래 중 <u>단순현재</u> 문장을 모두 고르세요.</div>
+      <p>
+        ① She is playing the piano now.<br>
+        ② He goes to bed at 10.<br>
+        ③ I am eating breakfast.<br>
+        ④ We watch TV every weekend.
+      </p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <span class="label">정답</span>: ②, ④<br>
+        <span class="note">“goes”, “watch”처럼 -s / 동사원형이고, “every ~” 같은 말이 있으면 보통 단순현재입니다.</span>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="question">6) 부정문으로 고치세요.</div>
+      <p>a) He likes milk. → He ______ milk.</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <span class="label">정답</span>: He <span class="highlight">doesn’t like</span> milk.<br>
+        <span class="note">3인칭 단수(he/she/it)이므로 <span class="highlight">doesn’t + 동사원형</span>을 사용합니다.</span>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="question">7) 다음 한국어를 보고, 알맞은 형태를 골라 쓰세요.</div>
+      <p>“너는 숙제를 하니?” → (Do / Does) you (do / does) your homework?</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <span class="label">정답</span>: <span class="highlight">Do</span> you <span class="highlight">do</span> your homework?<br>
+        <span class="note">Do/Does 뒤에는 항상 <span class="highlight">동사원형</span>이 옵니다.</span>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="question">8) 빈칸에 알맞은 말을 쓰세요. (have / has / haven’t / hasn’t)</div>
+      <p>
+        a) I ______ a new bag.<br>
+        b) She ______ a cute dog.<br>
+        c) He ______ a computer. (가지고 있지 않다)
+      </p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <span class="label">정답</span>: a) have, b) has, c) hasn’t<br>
+        <span class="note">I/you/we/they &rarr; have / don’t have, he/she/it &rarr; has / hasn’t (has not).</span>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="question">9) 다음 중 <u>문장이 어색한 것</u>을 하나 고르고, 왜 그런지 한국어로 짧게 써 보세요.</div>
+      <p>
+        ① I am play soccer every Sunday.<br>
+        ② I play soccer every Sunday.
+      </p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답·해설 보기</button>
+      <div class="answer">
+        <span class="label">정답</span>: ①이 어색함<br>
+        <span class="note">“every Sunday”는 습관 → 단순현재를 써야 해서 <code>I play</code>가 맞아요. 현재진행형(am play)은 안 맞습니다.</span>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="question">10) “나는 강아지가 있어.” 를 두 가지 방식으로 써 보세요.</div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">예시 답안 보기</button>
+      <div class="answer">
+        <span class="label">예시</span>:
+        <ul class="example-list">
+          <li>I have a dog.</li>
+          <li>I’ve got a dog.</li>
+        </ul>
+        <span class="note">둘 다 “강아지가 있다”라는 같은 뜻이에요.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. 오개념 진단 & 오류 고치기 -->
+  <div class="section">
+    <h2>4. 자주 하는 실수 고치기</h2>
+    <p>한국어 화자가 많이 틀리는 문장을 모았어요. 틀린 곳을 찾아 바르게 고쳐 보세요.</p>
+
+    <div class="item">
+      <div class="question">1) I am go to school every day.</div>
+      <p>→ 올바른 문장:</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답·해설 보기</button>
+      <div class="answer">
+        <span class="label">정답</span>: I <span class="highlight">go</span> to school every day.<br>
+        <span class="note">“every day” = 습관 → 단순현재 사용. am go(X) 가 아니라 go만 써야 해요.</span>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="question">2) She don’t like math.</div>
+      <p>→ 올바른 문장:</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답·해설 보기</button>
+      <div class="answer">
+        <span class="label">정답</span>: She <span class="highlight">doesn’t</span> like math.<br>
+        <span class="note">3인칭 단수(she) → don’t(X), <span class="highlight">doesn’t</span>(O).</span>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="question">3) Are you like pizza?</div>
+      <p>→ 올바른 문장:</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답·해설 보기</button>
+      <div class="answer">
+        <span class="label">정답</span>: <span class="highlight">Do</span> you like pizza?<br>
+        <span class="note">“좋아하니?” = 습관/취향 → be동사 질문이 아니라 <span class="highlight">Do you ~ ?</span> 를 사용해요.</span>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="question">4) He is having a computer.</div>
+      <p>→ 올바른 문장:</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답·해설 보기</button>
+      <div class="answer">
+        <span class="label">정답</span>: He <span class="highlight">has</span> a computer. / He’s got a computer.<br>
+        <span class="note">“가지고 있다” 의미의 have는 보통 현재진행형으로 쓰지 않고, 그냥 has / has got을 씁니다.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. Production 연습 -->
+  <div class="section">
+    <h2>5. 짧은 문장 만들기 (실생활 중심)</h2>
+    <p>아래 한국어 문장을 보고, Present 그룹에서 배운 문법을 사용해서 영어로 써 보세요.</p>
+
+    <div class="item">
+      <div class="question">1) 나는 지금 영어를 공부하는 중이야.</div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">예시 답안 보기</button>
+      <div class="answer">
+        <span class="label">예시</span>: I am studying English now.<br>
+        <span class="note">지금 하는 행동 → 현재진행형 (am + 동사-ing).</span>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="question">2) 나는 보통 저녁에 게임을 해.</div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">예시 답안 보기</button>
+      <div class="answer">
+        <span class="label">예시</span>: I usually play games in the evening.<br>
+        <span class="note">습관 → 단순현재 (play).</span>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="question">3) 너는 지금 뭐 하고 있어?</div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">예시 답안 보기</button>
+      <div class="answer">
+        <span class="label">예시</span>: What are you doing now?<br>
+        <span class="note">“지금 뭐 하는 중이야?” → Are you doing ~? 패턴.</span>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="question">4) 나는 귀여운 고양이 한 마리가 있어.</div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">예시 답안 보기</button>
+      <div class="answer">
+        <span class="label">예시</span>:
+        <ul class="example-list">
+          <li>I have a cute cat.</li>
+          <li>I’ve got a cute cat.</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="note">
+      위 문장들은 <span class="highlight">그냥 따라 쓰기</span>보다,
+      자신의 생활(학교, 친구, 게임, 취미)에 맞게 조금씩 바꾸어서 쓰면 더 좋아요!
+    </p>
+  </div>
+
+  <!-- 6. 그룹 마무리 미니 테스트 -->
+  <div class="section">
+    <h2>6. Present 그룹 마무리 미니 테스트</h2>
+    <p>시간을 재고 풀어보면 “모의 시험” 느낌으로 연습할 수 있어요. (8~10분 추천)</p>
+
+    <div class="item">
+      <div class="question">1) 빈칸에 알맞은 be동사를 쓰세요. (am / is / are)</div>
+      <p>
+        a) We ____ in the library.<br>
+        b) I ____ not tired.<br>
+        c) ____ she your teacher?
+      </p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <span class="label">정답</span>: a) are, b) am, c) Is<br>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="question">2) 현재진행형이 되도록 고치세요.</div>
+      <p>a) He plays the guitar now. → He __________ the guitar now.</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <span class="label">정답</span>: He <span class="highlight">is playing</span> the guitar now.</div>
+    </div>
+
+    <div class="item">
+      <div class="question">3) 단순현재 문장으로 고치세요.</div>
+      <p>a) I am going to school every day. → I __________ to school every day.</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <span class="label">정답</span>: I <span class="highlight">go</span> to school every day.</div>
+    </div>
+
+    <div class="item">
+      <div class="question">4) 알맞은 것을 고르세요.</div>
+      <p>
+        (단순현재) “그는 보통 아침에 우유를 마신다.”<br>
+        a) He drinks milk in the morning.<br>
+        b) He is drinking milk in the morning.
+      </p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <span class="label">정답</span>: a)<br>
+        <span class="note">“보통”이라는 말이 숨어 있으므로 습관 → 단순현재를 사용합니다.</span>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="question">5) 부정문으로 고치세요.</div>
+      <p>a) They like horror movies. → They __________ horror movies.</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <span class="label">정답</span>: They <span class="highlight">don’t like</span> horror movies.</div>
+    </div>
+
+    <div class="item">
+      <div class="question">6) 질문 만들기 (단순현재)</div>
+      <p>“너는 피아노를 치니?” → __________ you __________ the piano?</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <span class="label">정답</span>: <span class="highlight">Do</span> you <span class="highlight">play</span> the piano?</div>
+    </div>
+
+    <div class="item">
+      <div class="question">7) have / has / have got 중 알맞은 것을 고르세요.</div>
+      <p>
+        a) I ________ many books.<br>
+        b) She ________ a nice bike.<br>
+        c) We ________ got a test today.
+      </p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <span class="label">정답</span>: a) have, b) has, c) have<br>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="question">8) 다음 한국어 문장을 영어로 써 보세요.</div>
+      <p>“지금 비가 오고 있어.”</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">예시 답안 보기</button>
+      <div class="answer">
+        <span class="label">예시</span>: It is raining now.<br>
+        <span class="note">비/눈이 오다 → It is raining / It is snowing.</span>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="question">9) 다음 한국어 문장을 영어로 써 보세요.</div>
+      <p>“우리는 주말마다 축구를 해.”</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">예시 답안 보기</button>
+      <div class="answer">
+        <span class="label">예시</span>: We play soccer every weekend.</div>
+    </div>
+
+    <div class="item">
+      <div class="question">10) 짧은 작문 (2문장)</div>
+      <p>
+        ① “지금 하고 있는 일” 한 문장<br>
+        ② “평소에 하는 일” 한 문장<br>
+        두 문장을 영어로 써 보세요.
+      </p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">예시 답안 보기</button>
+      <div class="answer">
+        <span class="label">예시</span>:
+        <ul class="example-list">
+          <li>I am doing my homework now.</li>
+          <li>I play basketball after school.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="subheading">점수 기록</div>
+      <p class="small">
+        맞은 개수: ______ / 10
+      </p>
+      <ul class="small example-list">
+        <li>9~10점: 다음 그룹으로 넘어갈 준비가 거의 다 됐어요! 👏</li>
+        <li>7~8점: 잘하고 있어요. 헷갈린 문제 번호만 다시 복습해 주세요.</li>
+        <li>6점 이하: Present 그룹에서 어려웠던 단원(번호)을 표시하고 다시 연습해 보세요.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 7. Spaced Repetition용 퀵 복습 -->
+  <div class="section">
+    <h2>7. 다음 날·다음 주 퀵 복습 세트 (5분용)</h2>
+    <p>다음 공부 시간 시작 전에 <span class="highlight">5분</span>만 투자해서 풀어 보세요.</p>
+
+    <div class="item">
+      <div class="question">1) (am / is / are) I ____ in the gym now.</div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer"><span class="label">정답</span>: am</div>
+    </div>
+
+    <div class="item">
+      <div class="question">2) (단순현재) “그는 피자를 좋아한다.” → 영어로 쓰세요.</div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer"><span class="label">예시</span>: He likes pizza.</div>
+    </div>
+
+    <div class="item">
+      <div class="question">3) (현재진행) “너 지금 영화 보고 있어?” → 영어로 쓰세요.</div>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer"><span class="label">예시</span>: Are you watching a movie now?</div>
+    </div>
+
+    <div class="item">
+      <div class="question">4) 알맞은 것을 고르세요.</div>
+      <p>
+        a) She don’t play tennis.<br>
+        b) She doesn’t play tennis.
+      </p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer"><span class="label">정답</span>: b)</div>
+    </div>
+
+    <div class="item">
+      <div class="question">5) 빈칸에 알맞은 말을 쓰세요. (have / has)</div>
+      <p>My parents ______ a car.</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer"><span class="label">정답</span>: have</div>
+    </div>
+
+    <div class="item">
+      <div class="question">6) 틀린 부분을 고치세요.</div>
+      <p>I am play games every day.</p>
+      <button class="answer-toggle" onclick="toggleAnswer(this)">정답 보기</button>
+      <div class="answer">
+        <span class="label">정답</span>: I play games every day.<br>
+        <span class="note">“every day” → 습관 → 단순현재.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. 자기 점검 & 동기부여 -->
+  <div class="section">
+    <h2>8. 자기 점검 체크리스트 & 응원</h2>
+    <p>아래 문장을 읽고, 스스로 “할 수 있다!”라고 생각되면 체크해 보세요.</p>
+    <ul class="checklist">
+      <li>am / is / are의 차이를 말할 수 있다.</li>
+      <li>“지금 하고 있는 일”을 영어로 한 문장 말할 수 있다.</li>
+      <li>“평소에 하는 일(습관)”을 영어로 한 문장 말할 수 있다.</li>
+      <li>Do / Does, don’t / doesn’t를 실제 문장에 쓸 수 있다.</li>
+      <li>“~을 가지고 있다”를 have / have got으로 말할 수 있다.</li>
+    </ul>
+    <p class="note">
+      여기까지 풀었다면 정말 대단해요! 🎉<br>
+      Present 그룹의 중요한 문법들을 한 번에 복습한 거예요. 헷갈리는 문제는 별표 ⭐를 해 두었다가
+      다음에 다시 풀어 보면 더 오래 기억에 남습니다.
+    </p>
+  </div>
+
+  <!-- 9. 피드백 가이드 (학부모용) -->
+  <div class="section">
+    <h2>9. 학부모용 간단 피드백 가이드</h2>
+    <p class="small">
+      아래 내용은 <span class="highlight">채점과 피드백</span>을 도와드리기 위한 안내입니다.
+      너무 엄격한 시험처럼 보기보다, 아이가 어떤 부분에서 헷갈리는지 찾는 것이 목표입니다.
+    </p>
+
+    <div class="item small">
+      <div class="subheading">① 채점 기준 (권장)</div>
+      <ul class="example-list">
+        <li>동사의 시제(be동사 vs 일반동사 / -ing vs 단순현재)가 맞으면 크게 정답으로 봅니다.</li>
+        <li>문장 어순(주어-동사-목적어)이 맞으면 가급적 정답 처리합니다.</li>
+        <li>철자(spelling) 실수는 의미 전달이 되면 <span class="highlight">부분 점수(½점)</span>를 주세요.</li>
+        <li>작문 문제(영어 문장 만들기)는 예시 답안과 100% 같지 않아도,
+          <span class="highlight">문법의 핵심을 사용했으면</span> 정답으로 봐도 좋습니다.
+        </li>
+      </ul>
+    </div>
+
+    <div class="item small">
+      <div class="subheading">② 오답 활용 팁</div>
+      <ul class="example-list">
+        <li>아이와 함께 오답 문장을 소리 내어 읽고, 어디가 어색한지 아이가 먼저 말해 보게 합니다.</li>
+        <li>“지금 하는 일 vs 평소 습관”처럼 <span class="highlight">의미 차이</span>를 한국어로 짧게 다시 정리해 주세요.</li>
+        <li>틀린 문장 하나를 가지고, <u>맞는 문장 2개</u>를 새로 만들어 보는 활동도 좋습니다.</li>
+      </ul>
+    </div>
+
+    <div class="item small">
+      <div class="subheading">③ 격려 문장 예시</div>
+      <ul class="example-list">
+        <li>“이번에 틀린 문제는 다음에 더 잘 기억나려고 나온 거야. 잘했어!”</li>
+        <li>“문법은 퍼즐 맞추기처럼 천천히 하나씩 맞추면 돼.”</li>
+        <li>“오늘 배운 표현 중에서, 내일 한 번만 더 써 보면 정말 내 것이 될 거야!”</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
